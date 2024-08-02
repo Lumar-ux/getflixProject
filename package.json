@@ -1,5 +1,9 @@
 {
   "devDependencies": {
     "tailwindcss": "^3.4.7"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "water.css": "^2.1.1"
   }
 }
