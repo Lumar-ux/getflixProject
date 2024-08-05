@@ -1,8 +1,7 @@
 <?php 
-
 include "layout/header.php";
-include "./dbh.inc.php";
-    
+require_once 'dbh.inc.php'; // Inclure uniquement une fois
+
 $username = "";
 $fullname = "";
 $email = "";
@@ -16,11 +15,10 @@ $avatar_error = "";
 
 $error = false;
 
-
 /*******************************      AVATAR      ************************************/
 
 // Répertoire contenant les avatars (chemin relatif basé sur le script PHP)
-$avatar_directory = "images/avatar_directory/"; 
+$avatar_directory = "images/avatar_directory/";
 
 // Vérifiez si le répertoire existe avant d'essayer de le lire
 if (is_dir($avatar_directory)) {
@@ -37,8 +35,6 @@ if (is_dir($avatar_directory)) {
 
 // Initialiser $avatar pour éviter les erreurs
 $avatar = isset($_POST['avatar']) ? $_POST['avatar'] : '';
-
-
 
 /********************       Verification connection form    *******************/
 
@@ -71,32 +67,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error = true; 
     }
 
-    include_once("tools/db.php");
     $dbConnection = getDatabaseConnection();
 
-    
+    // Vérifier si l'email est déjà utilisé
     $statement = $dbConnection->prepare("SELECT user_id FROM users WHERE email = ?");
-
-    // Bind variable to the prepared statement as parameters
-    $statement ->bind_param('s', $email);
-
-    // Execute statement
-    $statement->execute();
-
-
-    // Check if email is already in the database
-    $statement ->store_result();
-    if ($statement->num_rows > 0) {
+    $statement->execute([$email]);
+    if ($statement->rowCount() > 0) {
         $email_error = "Email is already used";
         $error = true;
     }
-
-    // Close this statement otherwise we cannot prepare another statement
-    $statement -> close();
-
-
     
-
     /*****************************   validate password  ***********************************/    
     if (strlen($password) < 6) {
         $password_error = "Password must have at least 6 characters";
@@ -115,31 +95,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error = true;
     }
   
-    
-/***************************** If no errors, insert the user into the database **********************/
+    /***************************** If no errors, insert the user into the database **********************/
     if (!$error) {
-        
-/*********************   All fields are valid: create a new user  ***********************/
         $password = password_hash($password, PASSWORD_DEFAULT);
 
-        // let use prepared statements to avoid "sql injection attacks"
+        // Use prepared statements to avoid SQL injection attacks
         $statement = $dbConnection->prepare(
-            "INSERT INTO users (username, password, fullname, email, avatar)" . "VALUES (?, ?, ?, ?, ?)"
+            "INSERT INTO users (username, password, fullname, email, avatar) VALUES (?, ?, ?, ?, ?)"
         );
-
-        // Bind variable to the prepared statement as parameters
-        $statement->bind_param("sssss", $username, $password, $fullname, $email, $avatar);
-
-        // Execute statemenbt
-        $statement->execute();
-
-        $insert_id = $statement ->insert_id;
-        $statement -> close();
+        $statement->execute([$username, $password, $fullname, $email, $avatar]);
+        $insert_id = $dbConnection->lastInsertId();
+        
+        // Optionally handle successful registration, e.g., redirect to another page or display a success message
+        echo "New record created successfully. User ID: " . htmlspecialchars($insert_id);
     }
 }
-
-
 ?>
+
 
 <div class="container py-5">
     <div class="row">
