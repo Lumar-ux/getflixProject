@@ -1,11 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./output.css">
-  <title>Getflix</title>
-</head>
-<body>
-</body>
-</html>
+<?php 
+    include"layout/header.php";
+?>
+
+<div style="background-color: black;">
+    <div class="container-fluid py-5 d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="col-md-6 text-center">
+            <img src="/images/netflix.png" class="img-fluid" alt="Netflix background image" />
+        </div>
+    </div>
+</div>
+
+<?php 
+    include"layout/footer.php";
+?>

@@ -4,6 +4,5 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
-    "water.css": "^2.1.1"
   }
 }
