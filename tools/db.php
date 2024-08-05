@@ -1,14 +1,18 @@
-<?php 
-// Database configuration
-$dsn = 'mysql:host=localhost;dbname=getflixdb';
-$dbusername = "root";
-$dbpassword = "";
+<?php
 
-try {
-// Create and check connection
-$pdo = new PDO($dsn, $dbusername, $dbpassword);
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-exit();
+function getDatabaseConnection(){
+    $host = 'localhost';
+    $dbusername = 'root';
+    $dbpassword = '';
+    $dbname = 'getflixdb';
+    $dsn = 'mysql:host=localhost;dbname=getflixdb';
+
+    // Create connection
+    $connection = new mysqli($host, $dbusername, $dbpassword, $dbname);
+    // Check connection
+    if ($connection->connect_error) {
+        die('Error failed to connect to MySQL: '. $connection->connect_error);
+    }
+    return $connection;
 }
+?>

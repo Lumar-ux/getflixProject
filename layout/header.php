@@ -1,4 +1,10 @@
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
 //Initialize the session
 session_start();
 
@@ -14,9 +20,9 @@ if (isset($_SESSION["email"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./output.css">
+    <link rel="stylesheet" href="output.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="icon" href="/images/logo.png">
+    <link rel="icon" href="images/logo.png">
     <title>Getflix</title>
 </head>
 
@@ -64,10 +70,10 @@ if (isset($_SESSION["email"])) {
                 ?>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a href="/register.php" class="btn btn-outline-dark me-2">Register</a>
+                        <a href="../register.php" class="btn btn-outline-dark me-2">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/login.php" class="btn btn-dark">Login</a>
+                        <a href="../login.php" class="btn btn-dark">Login</a>
                     </li>
                 </ul>
                 <?php   }  ?>

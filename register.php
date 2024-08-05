@@ -1,7 +1,7 @@
 <?php 
 
 include "layout/header.php";
-include "tools/db.php";
+include "./dbh.inc.php";
     
 $username = "";
 $fullname = "";
@@ -71,6 +71,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error = true; 
     }
 
+    include_once("tools/db.php");
+    $dbConnection = getDatabaseConnection();
+
+    
+    $statement = $dbConnection->prepare("SELECT user_id FROM users WHERE email = ?");
+
+    // Bind variable to the prepared statement as parameters
+    $statement ->bind_param('s', $email);
+
+    // Execute statement
+    $statement->execute();
+
+
+    // Check if email is already in the database
+    $statement ->store_result();
+    if ($statement->num_rows > 0) {
+        $email_error = "Email is already used";
+        $error = true;
+    }
+
+    // Close this statement otherwise we cannot prepare another statement
+    $statement -> close();
+
+
+    
+
     /*****************************   validate password  ***********************************/    
     if (strlen($password) < 6) {
         $password_error = "Password must have at least 6 characters";
@@ -89,55 +115,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error = true;
     }
   
-
-    /***************************** check if email is already in the database **********************/
-    $statement = $pdo -> prepare("SELECT user_id FROM users WHERE email = :email");
-    $statement -> bindParam (':email', $email);
-    $statement -> execute();
     
-    if ($statement -> rowCount() > 0) {
-        $email_error = "Email is already used";
-        $error = true;
-        }
-    
-    /***************************** If password valid - pwd to be hashed **********************/
+/***************************** If no errors, insert the user into the database **********************/
     if (!$error) {
-        session_start();
+        
+/*********************   All fields are valid: create a new user  ***********************/
         $password = password_hash($password, PASSWORD_DEFAULT);
 
+        // let use prepared statements to avoid "sql injection attacks"
+        $statement = $dbConnection->prepare(
+            "INSERT INTO users (username, password, fullname, email, avatar)" . "VALUES (?, ?, ?, ?, ?)"
+        );
 
-    /*********************   All fiels are valide: create a new user  ***********************/
-    $statement = $pdo->prepare(
-        'INSERT INTO users (username, password, fullname, email, avatar) VALUES (:username, :password, :fullname, :email, :avatar)'
-    );
-    $statement->bindParam(':username', $username);
-    $statement->bindParam(':password', $password);
-    $statement->bindParam(':fullname', $fullname);
-    $statement->bindParam(':email', $email);
-    $statement->bindParam(':avatar', $avatar);
-    $statement->execute();
+        // Bind variable to the prepared statement as parameters
+        $statement->bind_param("sssss", $username, $password, $fullname, $email, $avatar);
 
-    $_SESSION["user_id"] = $pdo->lastInsertId();
-    $_SESSION["username"] = $username;
-    $_SESSION["fullname"] = $fullname; 
-    $_SESSION["email"] = $email;
-    $_SESSION["avatar"] = $avatar;
+        // Execute statemenbt
+        $statement->execute();
 
-    // Redirection vers la page d'accueil
-    header('Location: /index.php');
-    exit();
-}// <-- Fermeture du bloc if
-} // <-- Fermeture de l'instruction de traitement POST
+        $insert_id = $statement ->insert_id;
+        $statement -> close();
+    }
+}
+
+
 ?>
-
-
-
-
-
-
-
-
-
 
 <div class="container py-5">
     <div class="row">
