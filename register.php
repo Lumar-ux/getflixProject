@@ -1,6 +1,11 @@
 <?php 
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 include "layout/header.php";
-require_once 'dbh.inc.php'; // Inclure uniquement une fois
+require_once 'dbh.inc.php';
 
 $username = "";
 $fullname = "";
@@ -17,12 +22,9 @@ $error = false;
 
 /*******************************      AVATAR      ************************************/
 
-// Répertoire contenant les avatars (chemin relatif basé sur le script PHP)
 $avatar_directory = "images/avatar_directory/";
 
-// Vérifiez si le répertoire existe avant d'essayer de le lire
 if (is_dir($avatar_directory)) {
-    // Liste des avatars disponibles (chargée dynamiquement)
     $avatars = array_filter(scandir($avatar_directory), function($file) use ($avatar_directory) {
         $allowed_ext = array("jpg", "jpeg", "png", "gif");
         $file_ext = pathinfo($file, PATHINFO_EXTENSION);
@@ -33,10 +35,7 @@ if (is_dir($avatar_directory)) {
     $avatar_error = "Avatar directory does not exist.";
 }
 
-// Initialiser $avatar pour éviter les erreurs
 $avatar = isset($_POST['avatar']) ? $_POST['avatar'] : '';
-
-/********************       Verification connection form    *******************/
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
@@ -44,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
-    $avatar = $_POST['avatar']; // Récupère l'avatar sélectionné
+    $avatar = $_POST['avatar'];
 
     /*****************************   validate username  ***********************************/
     if (empty($username)) {
@@ -67,9 +66,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error = true; 
     }
 
+    // Utilisez la fonction pour obtenir la connexion
     $dbConnection = getDatabaseConnection();
 
-    // Vérifier si l'email est déjà utilisé
+    // Vérifiez si l'email est déjà utilisé
     $statement = $dbConnection->prepare("SELECT user_id FROM users WHERE email = ?");
     $statement->execute([$email]);
     if ($statement->rowCount() > 0) {
@@ -99,18 +99,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!$error) {
         $password = password_hash($password, PASSWORD_DEFAULT);
 
-        // Use prepared statements to avoid SQL injection attacks
         $statement = $dbConnection->prepare(
             "INSERT INTO users (username, password, fullname, email, avatar) VALUES (?, ?, ?, ?, ?)"
         );
         $statement->execute([$username, $password, $fullname, $email, $avatar]);
         $insert_id = $dbConnection->lastInsertId();
         
-        // Optionally handle successful registration, e.g., redirect to another page or display a success message
         echo "New record created successfully. User ID: " . htmlspecialchars($insert_id);
     }
 }
 ?>
+
 
 
 <div class="container py-5">
