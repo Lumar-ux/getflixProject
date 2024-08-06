@@ -2,10 +2,10 @@
 include_once "layout/header.php";
 
 // Check if the user is logged in; if yes, redirect them to the home page
-/**if (isset($_SESSION["email"])) {
+if (isset($_SESSION["email"])) {
     header("location: index.php");
     exit;
-} **/
+} 
 
 $email = "";
 $error = "";
