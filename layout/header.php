@@ -66,6 +66,10 @@ if (isset($_SESSION["email"])) {
                                 <hr class="dropdown-divider">
                             </li>
                             <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="text-danger" href="delete-profile.php">Delete</a></li>
                         </ul>
                     </li>
                 </ul>

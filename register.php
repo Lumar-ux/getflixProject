@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-include "layout/header.php";
+include "layout/header.php";  // Assurez-vous que session_start() est dans header.php
 require_once 'dbh.inc.php';
 
 // Initialisation des variables pour stocker les valeurs des champs et les erreurs
@@ -108,16 +108,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $statement->execute([$username, $hashed_password, $fullname, $email, $avatar]);
         $insert_id = $dbConnection->lastInsertId();
         
-        echo "New record created successfully. User ID: " . htmlspecialchars($insert_id);
-
-        // Redirect user to the home page
-         /**header('location: index.php');
-         exit;**/
+        // Définir une variable de session pour indiquer le succès
+        $_SESSION['registration_success'] = true;
+        $_SESSION['fullname'] = $fullname; // Stocker le nom complet pour le message
+    } else {
+        $_SESSION['registration_success'] = false;
     }
-    
+}
+
+// Affichage de l'alerte de succès
+if (isset($_SESSION['registration_success']) && $_SESSION['registration_success']) { ?>
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>
+        <?php echo "Awesome, " . htmlspecialchars($_SESSION['fullname']) . "! Your GETFLIX account has been created. You can now log in and start streaming your favorite shows and movies!"; ?>
+    </strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<?php
+    // Réinitialiser la variable de session pour éviter que l'alerte ne réapparaisse lors du rafraîchissement de la page
+    unset($_SESSION['registration_success']);
+    unset($_SESSION['fullname']);
 }
 ?>
 
+<!-- Le reste de votre code HTML pour le formulaire -->
 <div class="container py-5">
     <div class="row">
         <div class="col-lg-6 mx-auto border shadow p-4">

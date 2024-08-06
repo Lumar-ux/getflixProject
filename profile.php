@@ -7,14 +7,14 @@ if (!isset($_SESSION["email"])) {
     exit;
 }
 
-// Définir le répertoire d'avatars
+// Define the avatar directory
 $avatar_directory = "images/avatar_directory/";
 
 ?>
 
 <div class="container py-5">
     <div class="row">
-        <div class="col-lg-6 mx-auto border shadow p-4">
+        <div class="col-lg-6 mx-auto border shadow p-4 d-flex flex-column" style="height: 100%;">
             <h2 class="text-center mb-4">Profile</h2>
             <hr />
 
@@ -40,12 +40,19 @@ $avatar_directory = "images/avatar_directory/";
                         class="img-thumbnail" style="width: 80px; height: 80px;">
                 </div>
             </div>
+            <br />
 
+            <!-- Button Container -->
+            <div class="mt-auto text-end">
+                <a href="index.php" class="btn btn-outline-danger">
+                    Close
+                </a>
+            </div>
         </div>
     </div>
 </div>
 
 <?php
-// Inclure le footer
+// Include the footer
 include_once "layout/footer.php";
 ?>
