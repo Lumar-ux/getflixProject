@@ -1,6 +1,5 @@
 <?php
 
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -8,16 +7,12 @@ error_reporting(E_ALL);
 
 //Initialize the session
 session_start();
-include_once "dbh.inc.php";
 
 $authenticated = false;
 if (isset($_SESSION["email"])) {
     $authenticated = true;
 }
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,8 +30,8 @@ if (isset($_SESSION["email"])) {
 
     <nav class="navbar navbar-expand-lg bg-light border-bottom shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="index.php">
-                <img src="images/logo.png" width="30" height="30" class="d-inline-block align-top"
+            <a class="navbar-brand" href="/index.php">
+                <img src="/images/logo.png" width="30" height="30" class="d-inline-block align-top"
                     alt="getflix logo">Getflix
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -47,7 +42,7 @@ if (isset($_SESSION["email"])) {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="index.php">Home</a>
+                        <a class="nav-link text-dark" href="/index.php">Home</a>
                     </li>
                 </ul>
 
