@@ -12,12 +12,12 @@
       <section class="hero w-full h-[691px] flex items-center my-[55px]">
         <article class="w-full flex justify-between">
           <img src="image/Chernobyles.jpg" alt="Chernobyles" name="img-hero_01" class="hover:scale-x-150 hover:object-fill hover:cursor-pointer transition object-cover h-[652px] w-[190px] rounded-xl">
-          <img src="image/BohemianRhapsody-Crop.png" alt="Bohemian-Rhapsody" name="img-hero_02" class="hover:scale-x-150 hover:object-fill hover:cursor-pointer transition object-cover h-[652px] w-[190px] rounded-xl">
-          <img src="image/SISU.jpg" alt="SISU" name="img-hero_03" class="hover:scale-x-150 hover:object-fill hover:cursor-pointer transition object-cover h-[652px] w-[190px] rounded-xl">
-          <img src="image/NightAgent-Crop.png" alt="Night_Agent" name="img-hero_04" class="hover:scale-x-150 hover:object-fill hover:cursor-pointer transition object-cover h-[652px] w-[190px] rounded-xl">
-          <img src="image/DropOfGod-Crop.png" alt="DropOfGod" name="img-hero_05" class="hover:scale-x-150 hover:object-fill hover:cursor-pointer transition object-cover h-[652px] w-[190px] rounded-xl">
-          <img src="image/Avatar_2-Crop.png" alt="Avatar_2" name="img-hero_06" class="hover:scale-x-150 hover:object-fill hover:cursor-pointer transition object-cover h-[652px] w-[190px] rounded-xl">
-          <img src="image/Lucky.png" alt="Lucky" name="img-hero_07" class="hover:scale-x-150 hover:object-fill hover:cursor-pointer transition object-cover h-[652px] w-[190px] rounded-xl">
+          <img src="image/BohemianRhapsody-Crop.png" alt="Bohemian-Rhapsody" name="img-hero_02" class="hover:scale-x-150 hover:object-fill hover:cursor-pointer transition duration-200 object-cover h-[652px] w-[190px] rounded-xl">
+          <img src="image/SISU.jpg" alt="SISU" name="img-hero_03" class="hover:scale-x-150 hover:object-fill hover:cursor-pointer transition duration-200 object-cover h-[652px] w-[190px] rounded-xl">
+          <img src="image/NightAgent-Crop.png" alt="Night_Agent" name="img-hero_04" class="hover:scale-x-150 hover:object-fill hover:cursor-pointer transition duration-200 object-cover h-[652px] w-[190px] rounded-xl">
+          <img src="image/DropOfGod-Crop.png" alt="DropOfGod" name="img-hero_05" class="hover:scale-x-150 hover:object-fill hover:cursor-pointer transition duration-200 object-cover h-[652px] w-[190px] rounded-xl">
+          <img src="image/Avatar_2-Crop.png" alt="Avatar_2" name="img-hero_06" class="hover:scale-x-150 hover:object-fill hover:cursor-pointer transition duration-200 object-cover h-[652px] w-[190px] rounded-xl">
+          <img src="image/Lucky.png" alt="Lucky" name="img-hero_07" class="hover:scale-x-150 hover:object-fill hover:cursor-pointer transition duration-200 object-cover h-[652px] w-[190px] rounded-xl">
         </article>
       </section>
       <section class="scroller w-full mt-12 mb-28">

@@ -11,3 +11,25 @@
   width: 0 !important; /* Forcer la largeur à 0 */
   height: auto !important;
 }
+.grid1 {
+  width: 100%;
+}
+.grid1:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.grid-sizer,
+.grid-item {
+  width: 18.7864583333%;
+}
+.grid-item {
+  height: 388px;
+  float: left;
+}
+.grid-item--width2 { width:  25.2604166667%; }
+.grid-item--width3 { width:  56.359374999999%; }
+
+.grid-item--height2 { height: 488px; }
+.grid-item--height3 { height: 588px; }
+.grid-item--height4 { height: 688px; }
