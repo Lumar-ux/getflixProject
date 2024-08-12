@@ -1,3 +1,18 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
+//Initialize the session
+session_start();
+include_once "dbh.inc.php";
+
+$authenticated = false;
+if (isset($_SESSION["email"])) {
+    $authenticated = true;
+}
+?>
 <header class="w-[80%] sm:container mx-auto h-[88.6px] sm:h-[110px]">
     <nav class="h-full w-full">
       <ul class="list-none h-full flex justify-between items-center">
