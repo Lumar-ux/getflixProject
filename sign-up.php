@@ -127,20 +127,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
+
 // Affichage de l'alerte de succès
 if (isset($_SESSION['registration_success']) && $_SESSION['registration_success']) { ?>
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>
+<div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+    <strong class="font-bold">Success! </strong>
+    <span class="block sm:inline">
         <?php echo "Awesome, " . htmlspecialchars($_SESSION['fullname']) . "! Your GETFLIX account has been created. You can now log in and start streaming your favorite shows and movies!"; ?>
-    </strong>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </span>
+    <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+        <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20" onclick="this.parentElement.parentElement.style.display='none';">
+            <title>Close</title>
+            <path
+                d="M14.348 5.652a.5.5 0 1 0-.707-.707L10 8.586 6.36 4.945a.5.5 0 1 0-.707.707l3.64 3.64-3.64 3.64a.5.5 0 0 0 .707.707L10 10.414l3.64 3.64a.5.5 0 0 0 .707-.707l-3.64-3.64 3.64-3.64z" />
+        </svg>
+    </span>
 </div>
+
 <?php
+
     // Réinitialiser la variable de session pour éviter que l'alerte ne réapparaisse lors du rafraîchissement de la page
     unset($_SESSION['registration_success']);
     unset($_SESSION['fullname']);
 }
+
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
