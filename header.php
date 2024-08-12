@@ -1,3 +1,20 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
+//Initialize the session
+session_start();
+include_once "dbh.inc.php";
+
+$authenticated = false;
+if (isset($_SESSION["email"])) {
+    $authenticated = true;
+}
+?>
+
+
 <header class="container mx-auto w-full h-[110px]">
     <nav class="h-full w-full">
         <ul class="list-none h-full flex justify-between items-center">
@@ -320,12 +337,60 @@
                 <img src="image/Search_Icon.svg" alt="Search Icon" class="mr-4">
                 <!-- 120px<img src="image/avatar-01.png" alt="avatar users" class="mr-2.5">
           <img src="image/icon_arrow-down.svg" alt="arrow down"> -->
+
+                <?php
+                if ($authenticated){                              
+                ?>
+                <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                    <button type="button"
+                        class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                        id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
+                        data-dropdown-placement="bottom">
+                        <span class="sr-only">Open user menu</span>
+                        <img class="w-8 h-8 rounded-full"
+                            src="<?php echo htmlspecialchars($avatar_directory . $_SESSION['avatar']); ?>"
+                            alt="user avatar">
+                    </button>
+                    <!-- Dropdown menu -->
+                    <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+                        id="user-dropdown">
+                        <div class="px-4 py-3">
+                            <span class="block text-sm text-gray-900 dark:text-white">
+                                <?php echo htmlspecialchars($_SESSION['fullname']); ?></span>
+                            <span
+                                class="block text-sm  text-gray-500 truncate dark:text-gray-400"><?php echo htmlspecialchars($_SESSION['email']); ?></span>
+                        </div>
+                        <ul class="py-2" aria-labelledby="user-menu-button">
+                            <li>
+                                <a href="profile.php"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</a>
+                            </li>
+                            <li>
+                                <a href="login.php"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Login</a>
+                            </li>
+                            <li>
+                                <a href="logout.php"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Logout</a>
+                            </li>
+                            <li>
+                                <a href="sign-out.php"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign-out</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <?php
+                }  else {
+                ?>
                 <li><a href="sign-up.php"
                         class="mr-4 <?php echo (basename($_SERVER['PHP_SELF']) == 'sign-up.php') ? 'text-pastelBlue' : 'text-white'; ?>">Sign-up</a>
                 </li>
                 <li><a href="login.php"
                         class="mr-4 <?php echo (basename($_SERVER['PHP_SELF']) == 'login.php') ? 'text-pastelBlue' : 'text-white'; ?>">Login</a>
                 </li>
+                <?php   }  ?>
 
             </article>
         </ul>
