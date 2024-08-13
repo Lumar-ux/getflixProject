@@ -1355,6 +1355,10 @@ html {
   height: 250px;
 }
 
+.h-\[388px\] {
+  height: 388px;
+}
+
 .h-\[58px\] {
   height: 58px;
 }
@@ -1390,10 +1394,6 @@ html {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-\[388px\] {
-  height: 388px;
 }
 
 .min-h-\[238px\] {
@@ -1438,6 +1438,10 @@ html {
 
 .w-\[190px\] {
   width: 190px;
+}
+
+.w-\[288\.74px\] {
+  width: 288.74px;
 }
 
 .w-\[328px\] {
@@ -1487,10 +1491,6 @@ html {
 
 .w-screen {
   width: 100vw;
-}
-
-.w-\[288\.74px\] {
-  width: 288.74px;
 }
 
 .flex-1 {
