@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-screen w-screen">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./output.css">
   <title>Category</title>
 </head>
-<body class="bg-halfBlack h-screen w-screen">
+<body class="bg-halfBlack sm:w-screen w-full h-fit">
   <?php include_once("./header.php");?>
-  <section class="container w-full mx-auto mt-[75px] mb-14">
+  <section class="w-[80%] sm:container mx-auto h-fit">
     <article class="flex items-center justify-between mb-14">
-      <h1 name="name-category" class=" text-pastelBlue text-[56px] font-[570] uppercase leading-none">Movies</h1>
+      <h1 name="name-category" class=" text-pastelBlue text-[50px] sm:text-[56px] font-[570] uppercase leading-none">Movies</h1>
       <section class="<?php echo (basename($_SERVER['PHP_SELF']) == 'category.php' && (isset($_GET['language']) or isset($_GET['country']))) ? 'hidden' : 'block'; ?>">
-        <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'category.php' && isset($_GET['genre'])) ? 'text-pastelBlue' : 'text-white'; ?> focus:ring-2 focus:outline-none focus:ring-gray-300 rounded-xl mr-4 inline-flex items-center leading-none h-[20px]" type="button">Genre<svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+        <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'category.php' && isset($_GET['genre'])) ? 'text-pastelBlue' : 'text-white'; ?> focus:ring-2 focus:outline-none focus:ring-gray-300 rounded-xl mr-4 inline-flex items-center leading-none h-[20px] sm:text-base text-sm" type="button">Genre<svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"></path>
         </svg>
         </button>
@@ -90,7 +90,7 @@
         </div>
       </section>
     </article>
-    <article class="w-full grid grid-cols-[288.74px_288.74px_288.74px_288.74px_288.74px] grid-flow-row auto-rows-[388px] gap-6">
+    <article class="w-full grid-cols-2 grid sm:grid-cols-[288.74px_288.74px_288.74px_288.74px_288.74px] grid-flow-row auto-rows-[202.8px] sm:auto-rows-[388px] sm:gap-6 gap-3 sm:mb-14 mb-[39px]">
       <div class="bg-gray-500 rounded-xl" name="img-cat_01"></div>
       <div class="bg-gray-500 rounded-xl" name="img-cat_02"></div>
       <div class="bg-gray-500 rounded-xl" name="img-cat_03"></div>
@@ -105,8 +105,8 @@
       <div class="bg-gray-500 rounded-xl" name="img-cat_12"></div>
       <div class="bg-gray-500 rounded-xl" name="img-cat_13"></div>
       <div class="bg-gray-500 rounded-xl" name="img-cat_14"></div>
-      <div class="col-span-2 bg-gray-500 rounded-xl" name="img-cat_15"></div>
       <div class="bg-gray-500 rounded-xl" name="img-cat_16"></div>
+      <div class="col-span-2 bg-gray-500 rounded-xl" name="img-cat_15"></div>
       <div class="bg-gray-500 rounded-xl" name="img-cat_17"></div>
       <div class="bg-gray-500 rounded-xl" name="img-cat_18"></div>
       <div class="bg-gray-500 rounded-xl" name="img-cat_19"></div>
@@ -116,6 +116,7 @@
       <div class="bg-gray-500 rounded-xl" name="img-cat_23"></div>
       <div class="bg-gray-500 rounded-xl" name="img-cat_24"></div>
       <div class="bg-gray-500 rounded-xl" name="img-cat_25"></div>
+      <div class="bg-gray-500 rounded-xl" name="img-cat_26"></div>
     </article>
   </section>
   <?php include_once("./footer.php");?>
