@@ -1,6 +1,4 @@
 <?php
-include_once "layout/header.php";
-
 // Ensure the user is logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
@@ -59,74 +57,63 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<div class="container py-5">
-    <div class="mx-auto border shadow p-4" style="width: 400px">
-        <h2 class="text-center mb-4">Account Deletion Confirmation</h2>
-        <hr />
+<!DOCTYPE html>
+<html lang="en" class="h-screen w-screen">
 
-        <div class="alert alert-danger alert-dismissible fade show" role="alert" id="alert-box">
-            <strong>
-                <p>Deleting your account will erase all your personal data, preferences, and history. This action is
-                    irreversible. Are you sure you want to proceed?</p>
-            </strong>
-            <button type="button" class="btn-close" id="close-alert" aria-label="Close"></button>
-        </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./output.css">
+    <title>Sign Out</title>
+</head>
 
-        <!-- Sad Message Div (Initially Hidden) -->
-        <div id="sad-message" style="display: none; text-align: center;">
-            <p class="text-warning">We're sorry to see you go. We hope to see you again someday!</p>
-        </div>
-
-        <!-- Error Messages -->
-        <?php if ($email_error): ?>
-        <div class="alert alert-danger" role="alert">
-            <?php echo htmlspecialchars($email_error); ?>
-        </div>
-        <?php endif; ?>
-        <?php if ($password_error): ?>
-        <div class="alert alert-danger" role="alert">
-            <?php echo htmlspecialchars($password_error); ?>
-        </div>
-        <?php endif; ?>
-        <?php if ($error_message): ?>
-        <div class="alert alert-danger" role="alert">
-            <?php echo htmlspecialchars($error_message); ?>
-        </div>
-        <?php endif; ?>
-
-        <form method="post"
-            onsubmit="return confirm('Are you sure you want to delete your account? This action is irreversible.');">
-            <div class="row mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" name="email" value="<?php echo htmlspecialchars($email); ?>" />
-                <?php if ($email_error): ?>
-                <span class="text-danger"><?php echo htmlspecialchars($email_error); ?></span>
-                <?php endif; ?>
-            </div>
-
-            <div class="row mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" name="password" />
-                <?php if ($password_error): ?>
-                <span class="text-danger"><?php echo htmlspecialchars($password_error); ?></span>
-                <?php endif; ?>
-            </div>
-
-            <div class="row mb-3">
-                <div class="col d-grid">
-                    <button type="submit" class="btn btn-danger">Delete Account</button>
+<body class="bg-halfBlack sm:w-screen w-full h-fit">
+    <?php include_once("./header.php");?>
+    <main class="w-[80%] sm:container mx-auto sm:w-full h-[801px] flex sm:mb-14 mb-[39px]">
+        <section
+            class="sign-out w-full sm:w-[651.81px] h-[717px] sm:h-full bg-greyWhite rounded-xl sm:mr-6 mr-0 flex flex-col items-center ">
+            <article class="relative sm:top-[110px] top-[88px]">
+                <h1 class="text-[32px] font-bold mb-8 leading-none text-center">Sign Out</h1>
+                <strong>
+                    <p>Deleting your account will erase all your personal data, preferences, and history.
+                        This action is
+                        irreversible. Are you sure you want to proceed?</p>
+                </strong>
+                <?php if ($error_message || $email_error || $password_error): ?>
+                <div class="text-red-500 mb-4">
+                    <p><?= $error_message ?></p>
+                    <p><?= $email_error ?></p>
+                    <p><?= $password_error ?></p>
                 </div>
-                <div class="col d-grid">
-                    <a href="profile.php" class="btn btn-secondary">Cancel</a>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+                <?php endif; ?>
+                <form action="Sign-out.php" method="post" class="flex flex-col mb-[10px]">
+                    <input type="email" name="email" id="floatingEmail" placeholder="Email" required
+                        class="w-[234px] sm:w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4"
+                        value="<?=$email?>" />
 
-<script src="script.js"></script>
+                    <input type="password" name="password" id="floatingPassword" placeholder="Password"
+                        class="w-[234px] sm:w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4"
+                        value="" />
 
-<?php
-// Include the footer
-include_once "layout/footer.php";
-?>
+                    <button type="submit" name="submit" id="floatingLogin"
+                        class="w-[234px] sm:w-[405px] h-[58px] font-[570] bg-pastelBlue rounded-xl mb-2"><span
+                            class="font-[570]">Sign Out
+                        </span></button>
+                    <a href="sign-out.php">
+                        <p class="underline text-xs text-center">Forgot your password?</p>
+                    </a>
+                    <p class="font-[570] h-fit leading-none text-center my-4">OR</p>
+                    <a href="index.php"
+                        class="w-[234px] sm:w-[405px] h-[58px] text-pastelBlue bg-halfBlack rounded-xl font-[570] mb-2 flex justify-center items-center"><span
+                            class="font-[570]">Close</span></button></a>
+                </form>
+                <section class="img-login h-full sm:grid grid-rows-2 grid-cols-2 gap-6 grow hidden">
+                    <div class="bg-gray-500 rounded-xl" name="img-log_01">1</div>
+                    <div class="bg-gray-500 rounded-xl row-span-2" name="img-log_02">2</div>
+                    <div class="bg-gray-500 rounded-xl" name="img-log_03">3</div>
+                </section>
+    </main>
+    <?php include_once("./footer.php");?>
+</body>
+
+</html>

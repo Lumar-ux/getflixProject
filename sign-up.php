@@ -6,7 +6,6 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Initialize the session
-session_start();
 include_once "dbh.inc.php";
 
 // Variables d'authentification et d'erreurs
@@ -78,13 +77,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $email_error = "Email format is not valid";
         $error = true;
     } else {
-        // Vérifiez si l'email est déjà utilisé
-        $dbConnection = getDatabaseConnection();
-        $statement = $dbConnection->prepare("SELECT user_id FROM users WHERE email = ?");
-        $statement->execute([$email]);
-        if ($statement->rowCount() > 0) {
+        try{
+             // Vérifiez si l'email est déjà utilisé
+            $dbConnection = getDatabaseConnection();
+            $statement = $dbConnection->prepare("SELECT user_id FROM users WHERE email = ?");
+            $statement->execute([$email]);
+            if ($statement->rowCount() > 0) {
             $email_error = "Email is already used";
             $error = true;
+            } 
+        } catch (PDOException $e) {
+           $email_error ="Database error: " . $e->getMessage();
+           $error = true;
         }
     }
 
@@ -108,20 +112,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     /***************************** Si pas d'erreurs, insérer l'utilisateur dans la base de données **********************/
     if (!$error) {
-        // Autorité par défaut à 2 pour les non-admins
-        $autority = 2;
+        try{
+            // Autorité par défaut à 2 pour les non-admins
+            $autority = 2;
 
-        // Hashage du mot de passe avant l'insertion dans la base de données
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $statement = $dbConnection->prepare(
-            "INSERT INTO users (username, password, fullname, email, avatar, autority) VALUES (?, ?, ?, ?, ?, ?)"
-        );
-        $statement->execute([$username, $hashed_password, $fullname, $email, $avatar, $autority]);
-        $insert_id = $dbConnection->lastInsertId();
+            // Hashage du mot de passe avant l'insertion dans la base de données
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            $statement = $dbConnection->prepare(
+                "INSERT INTO users (username, password, fullname, email, avatar, autority) VALUES (?, ?, ?, ?, ?, ?)"
+            );
+            $statement->execute([$username, $hashed_password, $fullname, $email, $avatar, $autority]);
+            $insert_id = $dbConnection->lastInsertId();
 
-        // Définir une variable de session pour indiquer le succès
-        $_SESSION['registration_success'] = true;
-        $_SESSION['fullname'] = $fullname; // Stocker le nom complet pour le message
+            // Définir une variable de session pour indiquer le succès
+            $_SESSION['registration_success'] = true;
+            $_SESSION['fullname'] = $fullname; // Stocker le nom complet pour le message
+        } catch (PDOException $e) {
+            $error = "Database error: " . $e->getMessage();
+            $_SESSION['registration_success'] = false;
+        }
     } else {
         $_SESSION['registration_success'] = false;
     }
@@ -184,9 +193,6 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
                     <input type="password" name="confirm_password" placeholder="Confirm Password"
                         class="w-[234px] sm:w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4" />
                     <span class="text-red-500"><?php echo htmlspecialchars($confirm_password_error); ?></span>
-                    <input type="password" name="confirm-password" placeholder="Confirm Password"
-                        class="w-[234px] sm:w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4"
-                        value="<?php echo htmlspecialchars($fullname); ?>">
                     <input type="fullname" name="fullname" placeholder="Full Name"
                         class="w-[234px] sm:w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4"
                         value="<?php echo htmlspecialchars($fullname); ?>" />

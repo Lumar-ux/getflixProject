@@ -4,9 +4,6 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Initialize the session
-session_start();
-
 // Check if the user is logged in; if yes, redirect them to the home page
 if (isset($_SESSION["email"])) {
     header("location: index.php");
@@ -73,16 +70,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="en" class="h-screen w-screen">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./output.css">
     <title>Login</title>
-  </head>
-  <body class="bg-halfBlack sm:w-screen w-full h-fit">
+</head>
+
+<body class="bg-halfBlack sm:w-screen w-full h-fit">
     <?php include_once("./header.php");?>
     <main class="w-[80%] sm:container mx-auto sm:w-full h-[801px] flex sm:mb-14 mb-[39px]">
-        <section class="login w-full sm:w-[651.81px] h-[717px] sm:h-full bg-greyWhite rounded-xl sm:mr-6 mr-0 flex flex-col items-center ">
+        <section
+            class="login w-full sm:w-[651.81px] h-[717px] sm:h-full bg-greyWhite rounded-xl sm:mr-6 mr-0 flex flex-col items-center ">
             <article class="relative sm:top-[110px] top-[88px]">
                 <h1 class="text-[32px] font-bold mb-8 leading-none text-center">Login</h1>
 
@@ -117,8 +117,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <input type="checkbox" name="rememberMe" id="rememberMe" class="accent-pastelBlue">
                             <label for="rememberMe">Remember me</label>
                         </article>
-                                </form>
-                    <p class="text-xs w-[234px] sm:w-[328px]">This page is protected by Google reCAPTCHA to ensure that you are not a
+                    </form>
+                    <p class="text-xs w-[234px] sm:w-[328px]">This page is protected by Google reCAPTCHA to ensure that
+                        you are not a
                         robot.</p>
             </article>
         </section>
