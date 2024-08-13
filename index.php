@@ -60,7 +60,7 @@
       <article class="grid1 h-full space-y-6">
         <div class="grid-item grid-item--width2 bg-pastelBlue rounded-xl p-4 flex flex-col justify-between mt-6">
           <h1 name="category-01" class="text-white text-[56px] font-[570] uppercase break-words">Movie<br>Top 10</h1>
-          <a href="category.php?movies" class="self-end"><img src="image/Arrow-Categorie.svg" alt="Arrow-Categorie" class="w-[72px] h-[72px] self-end"></a>
+          <a href="category.php?topmovies" class="self-end"><img src="image/Arrow-Categorie.svg" alt="Arrow-Categorie" class="w-[72px] h-[72px] self-end"></a>
         </div>
         <?php foreach ($movie_result as $movie) { ?>
           <a class="grid-item bg-gray-500 rounded-xl ml-4" name="img-cat-3" href="program-detail.php?id=<?php echo $movie['movieapi_id']; ?>"><img class="grid-item bg-gray-500 rounded-xl" src="http://image.tmdb.org/t/p/w500/<?php echo $movie["poster_path"]; ?>" alt="poster"></a>
@@ -75,7 +75,7 @@
       <article class="grid1 h-full space-y-6">
         <div class="grid-item grid-item--width2 bg-pastelBlue rounded-xl p-4 flex flex-col justify-between mt-6">
           <h1 name="category-01" class="text-white text-[56px] font-[570] uppercase break-words">Tv Shows Top 10</h1>
-          <a href="category.php?series" class="self-end"><img src="image/Arrow-Categorie.svg" alt="Arrow-Categorie" class="w-[72px] h-[72px] self-end"></a>
+          <a href="category.php?topseries" class="self-end"><img src="image/Arrow-Categorie.svg" alt="Arrow-Categorie" class="w-[72px] h-[72px] self-end"></a>
         </div>
         <?php foreach ($tv_result as $tv) { ?>
           <a class="grid-item bg-gray-500 rounded-xl ml-4" name="img-cat-3" href="program-detail.php?id=<?php echo $tv['tvapi_id']; ?>"><img class="grid-item bg-gray-500 rounded-xl" src="http://image.tmdb.org/t/p/w500/<?php echo $tv["poster_path"]; ?>" alt="poster"></a>

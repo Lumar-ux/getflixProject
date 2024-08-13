@@ -1392,6 +1392,10 @@ html {
   height: 100vh;
 }
 
+.h-\[388px\] {
+  height: 388px;
+}
+
 .min-h-\[238px\] {
   min-height: 238px;
 }
@@ -1483,6 +1487,10 @@ html {
 
 .w-screen {
   width: 100vw;
+}
+
+.w-\[288\.74px\] {
+  width: 288.74px;
 }
 
 .flex-1 {
