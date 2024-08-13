@@ -12,6 +12,10 @@ $authenticated = false;
 if (isset($_SESSION["email"])) {
     $authenticated = true;
 }
+
+// Define the avatar directory
+$avatar_directory = "image/avatar_directory/";
+
 ?>
 
 
@@ -347,7 +351,7 @@ if (isset($_SESSION["email"])) {
                         id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
                         data-dropdown-placement="bottom">
                         <span class="sr-only">Open user menu</span>
-                        <img class="w-8 h-8 rounded-full"
+                        <img class="w-6 h-6 rounded-full"
                             src="<?php echo htmlspecialchars($avatar_directory . $_SESSION['avatar']); ?>"
                             alt="user avatar">
                     </button>
@@ -364,10 +368,6 @@ if (isset($_SESSION["email"])) {
                             <li>
                                 <a href="profile.php"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</a>
-                            </li>
-                            <li>
-                                <a href="login.php"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Login</a>
                             </li>
                             <li>
                                 <a href="logout.php"

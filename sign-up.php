@@ -174,25 +174,25 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
                 <h1 class="text-[32px] font-bold mb-8 leading-none text-center">Sign Up</h1>
                 <form action="sign-up.php" method="post" class="flex flex-col mb-[10px]">
 
-                    <input type="username" name="username" placeholder="User Name"
+                    <input type="username" name="username" placeholder="User Name" required
                         class="w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4"
                         value="<?php echo htmlspecialchars($username); ?>" />
                     <span class="text-red-500"><?php echo htmlspecialchars($username_error); ?></span>
 
-                    <input type="password" name="password" placeholder="Password"
+                    <input type="password" name="password" placeholder="Password" required
                         class="w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4" value="" />
                     <span class="text-red-500"><?php echo htmlspecialchars($password_error); ?></span>
 
-                    <input type="password" name="confirm_password" placeholder="Confirm Password"
+                    <input type="password" name="confirm_password" placeholder="Confirm Password" required
                         class="w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4" value="" />
                     <span class="text-red-500"><?php echo htmlspecialchars($confirm_password_error); ?></span>
 
-                    <input type="fullname" name="fullname" placeholder="Full Name"
+                    <input type="fullname" name="fullname" placeholder="Full Name" required
                         class="w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4"
                         value="<?php echo htmlspecialchars($fullname); ?>" />
                     <span class="text-red-500"><?php echo htmlspecialchars($fullname_error); ?></span>
 
-                    <input type="email" name="email" placeholder="Email"
+                    <input type="email" name="email" placeholder="Email" required
                         class="w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4"
                         value="<?php echo htmlspecialchars($email); ?>" />
                     <span class="text-red-500"><?php echo htmlspecialchars($email_error); ?></span>
