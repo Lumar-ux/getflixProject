@@ -3,13 +3,14 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-
 //Initialize the session
-session_start();
+// if (session_status() == PHP_SESSION_NONE) {
+//   session_start();
+// }
 include_once "dbh.inc.php";
 
 $authenticated = false;
-if (isset($_SESSION["email"])) {
+if (isset($_SESSION["email"]) && (session_status() == PHP_SESSION_NONE)) {
     $authenticated = true;
 }
 ?>
@@ -320,7 +321,7 @@ if (isset($_SESSION["email"])) {
           ?>
             <article>
                 <!-- button, login -->
-                <div class="sm:flex hidden items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                   <button type="button"
                     class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                     id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
@@ -610,7 +611,7 @@ if (isset($_SESSION["email"])) {
                           <div class="sm:flex hidden items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                             <button type="button"
                                 class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                                id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
+                                id="user-menu-button1" aria-expanded="false" data-dropdown-toggle="user-dropdown1"
                                 data-dropdown-placement="bottom">
                                 <span class="sr-only">Open user menu</span>
                                 <img class="w-8 h-8 rounded-full"
@@ -619,7 +620,7 @@ if (isset($_SESSION["email"])) {
                             </button>
                             <!-- Dropdown menu -->
                             <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
-                                id="user-dropdown">
+                                id="user-dropdown1">
                                 <div class="px-4 py-3">
                                     <span class="block text-sm text-gray-900 dark:text-white">
                                         <?php echo htmlspecialchars($_SESSION['fullname']); ?></span>
