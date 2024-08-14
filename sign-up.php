@@ -202,17 +202,23 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
                     <span class="text-red-500"><?php echo htmlspecialchars($email_error); ?></span>
                     <section
                         class="bg-[#B1BBFC] h-[120px] w-[234px] sm:w-[405px] overflow-x-scroll flex items-center rounded-xl mb-4">
-                        <article class="flex mx-4">
+                        <article class="flex justify-between mx-4">
                             <?php foreach ($avatars as $image): ?>
-                            <input type="radio" name="avatar" class="hidden last:mr-0 mr-4"
-                                value="<?php echo htmlspecialchars($image); ?>"
-                                <?php if (isset($avatar) && $avatar == $image) echo 'checked'; ?>> <img
-                                src="<?php echo htmlspecialchars($avatar_directory . $image); ?>" alt="Avatar"
-                                class="last:mr-0 mr-4 flex-none h-[86px] w-[86px] rounded-full focus:outline-none focus:ring-2 focus:ring-greyWhite">
+                            <div class="flex-none w-20 h-20 mr-4">
+                                <label>
+                                    <input type="radio" name="avatar" value="<?php echo htmlspecialchars($image); ?>"
+                                        <?php if (isset($avatar) && $avatar == $image) echo 'checked'; ?>
+                                        class="hidden">
+                                    <img src="<?php echo htmlspecialchars($avatar_directory . $image); ?>" alt="Avatar"
+                                        tabindex="0"
+                                        class="flex-none w-20 h-20 rounded-full cursor-pointer hover:ring-2 hover:ring-pastelBlue focus:ring-2 focus:ring-greyWhite">
+                                </label>
+                            </div>
                             <?php endforeach;?>
                         </article>
                         <span class="text-red-500"><?php echo htmlspecialchars($avatar_error); ?></span>
                     </section>
+
                     <button type="submit" name="submit"
                         class="w-[234px] sm:w-[405px] h-[58px] font-[570] bg-pastelBlue rounded-xl mb-2"><span
                             class="font-[570]">Sign Up</span></button>

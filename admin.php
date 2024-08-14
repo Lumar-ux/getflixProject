@@ -38,6 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./output.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <title>Admin Dashboard</title> <!-- Correction du titre -->
 </head>
 
@@ -57,6 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
                     <th class="px-4 py-2 border-b">Fullname</th>
                     <th class="px-4 py-2 border-b">Email</th>
                     <th class="px-4 py-2 border-b">Avatar</th>
+                    <th class="px-4 py-2 border-b">Last Updated</th>
                     <th class="px-4 py-2 border-b">Action</th>
                 </tr>
             </thead>
@@ -87,8 +89,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
                         <td class='px-4 py-2 border-b'>
                             <img src='./image/avatar_directory/{$row['avatar']}' alt='Avatar' class='w-8 h-8'>
                         </td>
+                         <td class='px-4 py-2 border-b'>
+                            {$row['last_updated']} <!-- Affichage de la date du dernier changement -->
+                        </td>
                         <td class='px-4 py-2 border-b'>
-                            <form method='POST' action=''>
+                        <a href='edit.php?id={$row['user_id']}' class='bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 inline-block mr-2'>Edit</a>
+                            <form method='POST' action='#' style='display:inline;'>
                                 <input type='hidden' name='id' value='{$row['user_id']}'>
                                 <button type='submit' name='delete' class='bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600'>Delete</button>
                             </form>

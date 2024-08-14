@@ -20,70 +20,70 @@
           <article class="flex">
             <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
               <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Action</a>
+                <a href="#" class="block px-4 py-2 hover:coloHover hover:px-4 hover:py-2 rounded-xl">Action</a>
               </li>
               <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Adventure</a>
+                <a href="#" class="block px-4 py-2 hover:coloHover hover:px-4 hover:py-2 rounded-xl">Adventure</a>
               </li>
               <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Animation</a>
+                <a href="#" class="block px-4 py-2 hover:coloHover hover:px-4 hover:py-2 rounded-xl">Animation</a>
               </li>
               <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Biography</a>
+                <a href="#" class="block px-4 py-2 hover:coloHover hover:px-4 hover:py-2 rounded-xl">Biography</a>
               </li>
               <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Comedy</a>
-              </li>
-            </ul>
-            <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
-              <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Crime</a>
-              </li>
-              <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Documentary</a>
-              </li>
-              <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Drama</a>
-              </li>
-              <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Family</a>
-              </li>
-              <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Fantasy</a>
+                <a href="#" class="block px-4 py-2 hover:coloHover hover:px-4 hover:py-2 rounded-xl">Comedy</a>
               </li>
             </ul>
             <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
               <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Horror</a>
+                <a href="#" class="block px-4 py-2 hover:coloHover hover:px-4 hover:py-2 rounded-xl">Crime</a>
               </li>
               <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">History</a>
+                <a href="#" class="block px-4 py-2 hover:coloHover hover:px-4 hover:py-2 rounded-xl">Documentary</a>
               </li>
               <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Musical</a>
+                <a href="#" class="block px-4 py-2 hover:coloHover hover:px-4 hover:py-2 rounded-xl">Drama</a>
               </li>
               <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Mystery</a>
+                <a href="#" class="block px-4 py-2 hover:coloHover hover:px-4 hover:py-2 rounded-xl">Family</a>
               </li>
               <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Romance</a>
+                <a href="#" class="block px-4 py-2 hover:coloHover hover:px-4 hover:py-2 rounded-xl">Fantasy</a>
               </li>
             </ul>
             <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
               <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Sci-Fi</a>
+                <a href="#" class="block px-4 py-2 hover:coloHover hover:px-4 hover:py-2 rounded-xl">Horror</a>
               </li>
               <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Sport</a>
+                <a href="#" class="block px-4 py-2 hover:coloHover hover:px-4 hover:py-2 rounded-xl">History</a>
               </li>
               <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Thriller</a>
+                <a href="#" class="block px-4 py-2 hover:coloHover hover:px-4 hover:py-2 rounded-xl">Musical</a>
               </li>
               <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">War</a>
+                <a href="#" class="block px-4 py-2 hover:coloHover hover:px-4 hover:py-2 rounded-xl">Mystery</a>
               </li>
               <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Western</a>
+                <a href="#" class="block px-4 py-2 hover:coloHover hover:px-4 hover:py-2 rounded-xl">Romance</a>
+              </li>
+            </ul>
+            <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
+              <li>
+                <a href="#" class="block px-4 py-2 hover:coloHover hover:px-4 hover:py-2 rounded-xl">Sci-Fi</a>
+              </li>
+              <li>
+                <a href="#" class="block px-4 py-2 hover:coloHover hover:px-4 hover:py-2 rounded-xl">Sport</a>
+              </li>
+              <li>
+                <a href="#" class="block px-4 py-2 hover:coloHover hover:px-4 hover:py-2 rounded-xl">Thriller</a>
+              </li>
+              <li>
+                <a href="#" class="block px-4 py-2 hover:coloHover hover:px-4 hover:py-2 rounded-xl">War</a>
+              </li>
+              <li>
+                <a href="#" class="block px-4 py-2 hover:coloHover hover:px-4 hover:py-2 rounded-xl">Western</a>
               </li>
             </ul>
           </article>

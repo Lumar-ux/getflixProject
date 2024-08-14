@@ -10,6 +10,7 @@ module.exports = {
         halfBlack:"#141414",
         pastelBlue:"#798AFC",
         greyWhite:"#F9F9F9",
+        coloHover:"#424242",
       }
     },
   },

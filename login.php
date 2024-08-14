@@ -44,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stored_password = $user['password'];
             $user_id = $user['user_id'];
             $username = $user['username'];
-            $fullname = $user['fullname'];
             $avatar = $user['avatar'];
             $autority = $user['autority'];
 
