@@ -1,3 +1,92 @@
+<?php
+include_once "dbh.inc.php";
+$conn = getDatabaseConnection();
+// The ID to search for
+if (isset($_GET['id'])) {
+    $id = $_GET['id'] ?? null; // Use null coalescing operator for safety
+    if (isset($_GET["type"])) {
+        $type = $_GET["type"];
+    }
+    // Function to fetch data from a table 
+    // in one place it there is 2 table but in other place there are 3 tables
+    function fetchData($conn, $query, $id)
+    {
+        // Prepare and execute the query
+        $stmt = $conn->prepare($query);
+        $stmt->execute([':id' => $id]);
+
+        // Return the fetched data
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    // Check data in table1 (movie) 
+    $query = " SELECT movies.*, movie_cast.* FROM movies INNER JOIN movie_cast ON movies.movieapi_id  = movie_cast.movieapi_id WHERE movies.movieapi_id = :id;";
+    // Call the function
+    $data = fetchData($conn, $query, $id);
+
+    $table1_data = null;
+    $table2_data = null;
+
+    if ($data) {
+        $table1_data = reset($data);
+        $table2_data = $data;
+    } else {
+        // Check data in table2 (tv series)
+        // Define the parameters for the function call
+        $query = "SELECT tv_series.*, seasons.*, episodes.* FROM tv_series INNER JOIN seasons ON tv_series.id = seasons.tv_series_id INNER JOIN episodes ON seasons.id = episodes.season_id WHERE tv_series.tvapi_id = :id;";
+        $data = fetchData($conn, $query, $id);
+
+        if ($data) {
+            $table1_data = reset($data);
+            $table2_data = $data;
+        } else {
+            echo "no data in db";
+            // Data not found in both tables, make an external request
+            // function to get data from api
+
+            // Call the function and get JSON-encoded data
+            // $json_data = get_data_from_api($id, $type, $API_KEY);
+
+            // // Decode JSON data to PHP array
+            // $data = json_decode($json_data, true);
+
+            // // Check if $data is an array and not empty
+            // if (is_array($data) && !empty($data)) {
+            //     if (isset($data['error'])) {
+            //         // Handle error message
+            //         echo "Error: " . $data['error'];
+            //     } else {
+            //         // Process the data
+            //         $table1_data = isset($data[0]) ? $data[0] : [];
+            //         $table2_data = $data;
+            //     }
+            // } else {
+            //     // Handle unexpected data format
+            //     echo "Error: Unexpected data format.";
+            // }
+        }
+    }
+
+    //genre
+    $string = $table1_data['genres'];
+    // Split the string into an array using ', ' as the delimiter
+    $words = explode(', ', $string);
+    // Optionally, trim whitespace from each word
+    $words = array_map('trim', $words);
+
+
+    //changing the time format
+    function formatDuration($minutes)
+    {
+        $hours = intdiv($minutes, 60);
+        $remainingMinutes = $minutes % 60;
+        return sprintf("%d h / %d min", $hours, $remainingMinutes);
+    }
+    $duration = $table1_data['duration'];
+    $formattedDuration = formatDuration($duration);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,50 +94,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./output.css">
-    <title>Program</title>
+    <title>Getflix | <?php echo $table1_data['title']; ?></title>
 </head>
 
 <body class="bg-halfBlack h-screen w-screen">
-    <?php include_once("./header.php");?>
+    <?php include_once("./header.php"); ?>
     <main class="container mx-auto w-full mt-14">
         <section class="porg-detail flex w-full h-[801px] mb-28">
-            <div class="bg-gray-500 rounded-xl h-full w-[679px] mr-14" name="img-cat_08"></div>
+            <img class="bg-gray-500 rounded-xl h-full w-[679px] mr-14" name="img-cat_08" src="http://image.tmdb.org/t/p/w500/<?php echo $table1_data['poster_path']; ?>" alt="poster">
             <article class="flex flex-col w-[801px] h-full justify-between mb-14">
                 <section class="w-full">
                     <h1 name="name-prog"
                         class="bg-pastelBlue text-white py-4 pl-4 text-[34px] text-1 font-[570] uppercase mb-6 rounded-[10px] leading-none w-full">
-                        SILO</h1>
+                        <?php echo $table1_data['title']; ?></h1>
                     <article class="info flex items-center mb-6">
-                        <button name="genre-01"
-                            class="bg-white p-[10px] text-base font-[570] leading-none mr-2 rounded-[10px]">Genre</button>
-                        <button name="genre-02"
-                            class="bg-white p-[10px] text-base font-[570] leading-none mr-2 rounded-[10px]">Genre</button>
-                        <p name="year" class="font-[570] text-base text-white mr-2">year</p>
-                        <p name="duration" class="font-[570] text-base text-white mr-2">duration</p>
-                        <p name="imbdb-note" class="font-[570] text-base text-white">0.0</p>
+                        <?php
+                        foreach ($words as $word) { ?>
+                            <button name="genre-01" class="bg-white p-[10px] text-base font-[570] leading-none mr-2 rounded-[10px]"><?php echo $word ?></button>
+                        <?php } ?>
+
+                        <p name="year" class="font-[570] text-base text-white mr-2">Year: <?php
+                                                                                            $release_date = $table1_data['release_date'];
+                                                                                            $year = date('Y', strtotime($release_date));
+                                                                                            echo $year; ?></p>
+                        <p name="duration" class="font-[570] text-base text-white mr-2">Duration : <?php echo $formattedDuration; ?></p>
+                        <p name="imbdb-note" class="font-[570] text-base text-white"> <?php echo $table1_data['imdb_vote']; ?></p>
                     </article>
                     <article class="flex">
                         <ul class="list-none mr-6">
-                            <li class="text-white text-xs mb-[10px]">Country : <span name="prog-country">United
-                                    States</span></li>
-                            <li class="text-white text-xs">Production : <span name="prog-prod">AMC Studios</span></li>
+                            <li class="text-white text-xs mb-[10px]">Country : <span name="prog-country"><?php echo $table1_data['country']; ?></span></li>
+                            <li class="text-white text-xs">Production : <span name="prog-prod"><?php echo $table1_data['production']; ?></span></li>
                         </ul>
                         <ul class="list-none">
-                            <li class="text-white text-xs mb-[10px]">Date Release : <span name="prog-release">May 05
-                                    2023</span></li>
-                            <li class="text-white text-xs w-[370px]">Cast : <span name="prog-cast">Tim Robbins, Rebecca
-                                    Ferguson, Avi Nash, Rashida Jones, David Oyewolo, Tim Robbins</span></li>
+                            <li class="text-white text-xs mb-[10px]">Date Release : <span name="prog-release"><?php echo $table1_data['release_date']; ?></span></li>
+                            <li class="text-white text-xs w-[370px]">Cast : <span name="prog-cast">
+                                    <?php // to limit the number of cast
+                                    $limit = 9; // Set the limit to the desired number of items
+                                    $count = 0; // Initialize a counter
+
+                                    foreach ($table2_data as $data) {
+                                        echo $data['name'] . ', ';
+                                        $count++;
+
+                                        if ($count >= $limit) {
+                                            break; // Exit the loop once the limit is reached
+                                        }
+                                    } ?></span></li>
                         </ul>
                     </article>
                 </section>
                 <section>
-                    <div class="bg-gray-500 rounded-xl min-h-[238px] w-[417px] mb-6" name="trailer-video">video</div>
-                    <p class="text-white font-[570] text-[18px]">In a future where the Earth has been devastated and the
-                        air has become toxic, the survivors live in a giant 144-storey underground silo. Within this
-                        community, individuals must abide by a series of strict rules designed to protect them. Citizens
-                        who break the law are sent outside the silo, condemned to die in the unbreathable atmosphere.
-                        Gradually, however, the idea that those in charge are lying about what's going on outside is
-                        gaining ground...</p>
+                    <!-- <video class="bg-gray-500 rounded-xl min-h-[238px] w-[417px] mb-6" name="trailer-video" controls>
+                        <source src="https://www.youtube.com/embed/<?php echo $table1_data['trailer_id']; ?>?autoplay=0&controls=1" type="video/mp4">
+                    </video> -->
+                    <iframe class='rounded-xl min-h-[238px] w-[417px] mb-6' src="https://www.youtube.com/embed/<?php echo $table1_data['trailer_id']; ?>?autoplay=0&controls=1" frameborder="0"></iframe>
+
+                    <p class="text-white font-[570] text-[18px]">Overview: <?php echo $table1_data['overview']; ?></p>
                 </section>
             </article>
         </section>
@@ -141,7 +242,7 @@
             </article>
         </section>
     </main>
-    <?php include_once("./footer.php");?>
+    <?php include_once("./footer.php"); ?>
 </body>
 
 </html>

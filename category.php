@@ -21,52 +21,86 @@
   $offset = ($page - 1) * $itemsPerPage; // Calculate offset for SQL query
 
   // Determine the base query and condition based on request
+  // if (isset($_GET["topmovies"])) {
+  //   $h1_text = 'Movies';
+  //   $url_get = 'topmovies';
+  //   $query = "SELECT movieapi_id AS id, poster_path, 'movie' AS type FROM movies WHERE imdb_vote > 7";
+  //   // $conditionMovies = " WHERE imdb_vote > 7";
+  // } elseif (isset($_GET['topseries'])) {
+  //   $h1_text = 'TV Shows';
+  //   $url_get = 'topseries';
+  //   $query = "SELECT tvapi_id AS id, poster_path, 'tv_series' AS type FROM tv_series WHERE imdb_vote > 7";
+  //   // $conditionSeries = " WHERE imdb_vote > 7";
+  // } elseif (isset($_GET['movies'])) {
+  //   $query = "SELECT movieapi_id AS id, poster_path, 'movie' AS type FROM movies" . $conditionMovies;
+  // } elseif (isset($_GET['series'])) {
+  //   $query = "SELECT tvapi_id AS id, poster_path, 'tv_series' AS type FROM tv_series" . $conditionSeries;
+  // } else {
+  //   // Combine query if filtering by country, language, or genre
+  //   $query = "SELECT movieapi_id AS id, poster_path, 'movie' AS type FROM movies" . $conditionMovies .
+  //     " UNION ALL SELECT tvapi_id AS id, poster_path, 'tv_series' AS type FROM tv_series" . $conditionSeries;
+  // }
+
+
   if (isset($_GET['topmovies'])) {
     $h1_text = 'Movies';
     $url_get = 'topmovies';
-    $query = "SELECT movieapi_id AS id, poster_path, 'movie' AS type FROM movies";
-    $conditionMovies = " WHERE imdb_vote > 7";
+    $query = "SELECT movieapi_id AS id, poster_path, 'movie' AS type FROM movies WHERE imdb_vote > 7";
+    echo "Top Movies Query: " . $query; // Debugging output
   } elseif (isset($_GET['topseries'])) {
     $h1_text = 'TV Shows';
     $url_get = 'topseries';
-    $query = "SELECT tvapi_id AS id, poster_path, 'tv_series' AS type FROM tv_series";
-    $conditionSeries = " WHERE imdb_vote > 7";
+    $query = "SELECT tvapi_id AS id, poster_path, 'tv_series' AS type FROM tv_series WHERE imdb_vote > 7";
+    echo "Top Series Query: " . $query; // Debugging output
+    // $conditionSeries = " WHERE imdb_vote > 7";
   } elseif (isset($_GET['movies'])) {
     $h1_text = 'Movies';
     $url_get = 'movies';
-    $query = "SELECT movieapi_id AS id, poster_path, 'movie' AS type FROM movies";
+    $query = "SELECT movieapi_id AS id, poster_path, 'movie' AS type FROM movies" . $conditionMovies;
+    echo "Movies Query: " . $query; // Debugging output
   } elseif (isset($_GET['series'])) {
     $h1_text = 'TV Shows';
     $url_get = 'series';
-    $query = "SELECT tvapi_id AS id, poster_path, 'tv_series' AS type FROM tv_series";
+    $query = "SELECT tvapi_id AS id, poster_path, 'tv_series' AS type FROM tv_series" . $conditionSeries;
+    echo "Series Query: " . $query; // Debugging output
   } else {
-    // Default behavior if no specific request, allow filtering both movies and TV series by country or language
-    $query = "SELECT movieapi_id AS id, poster_path, 'movie' AS type FROM movies";
-    $query .= " UNION ALL SELECT tvapi_id AS id, poster_path, 'tv_series' AS type FROM tv_series";
+    $url_get = '';
+    // Combine query if filtering by country, language, or genre
+    $query = "SELECT movieapi_id AS id, poster_path, 'movie' AS type FROM movies" . $conditionMovies .
+      " UNION ALL SELECT tvapi_id AS id, poster_path, 'tv_series' AS type FROM tv_series" . $conditionSeries;
+    echo "Default Query: " . $query; // Debugging output
   }
+
+  // Initialize condition variables
+  $conditionMovies = '';
+  $conditionSeries = '';
 
   // Add WHERE clause for genre if needed
   if (isset($_GET['g'])) {
     $genre = $_GET['g'];
+    $condition = "LOWER(genres) LIKE LOWER(:genre)";
     if (isset($_GET['movies'])) {
-      $conditionMovies .= (empty($conditionMovies) ? " WHERE LOWER(genres) LIKE LOWER(:genre)" : " AND LOWER(genres) LIKE LOWER(:genre)");
+      $conditionMovies .= (empty($conditionMovies) ? " WHERE $condition" : " AND $condition");
     } elseif (isset($_GET['series'])) {
-      $conditionSeries .= (empty($conditionSeries) ? " WHERE LOWER(genres) LIKE LOWER(:genre)" : " AND LOWER(genres) LIKE LOWER(:genre)");
+      $conditionSeries .= (empty($conditionSeries) ? " WHERE $condition" : " AND $condition");
+    } else {
+      $conditionMovies .= (empty($conditionMovies) ? " WHERE $condition" : " AND $condition");
+      $conditionSeries .= (empty($conditionSeries) ? " WHERE $condition" : " AND $condition");
     }
-    $h1_text = htmlspecialchars($_GET['g']) . " $h1_text";
+    $h1_text = htmlspecialchars($genre) . " Movies & TV Shows";
   }
 
   // Add WHERE clause for country if needed
   if (isset($_GET['c'])) {
     $country = $_GET['c'];
+    $condition = "LOWER(country) LIKE LOWER(:country)";
     if (isset($_GET['movies'])) {
-      $conditionMovies .= (empty($conditionMovies) ? " WHERE LOWER(country) LIKE LOWER(:country)" : " AND LOWER(country) LIKE LOWER(:country)");
+      $conditionMovies .= (empty($conditionMovies) ? " WHERE $condition" : " AND $condition");
     } elseif (isset($_GET['series'])) {
-      $conditionSeries .= (empty($conditionSeries) ? " WHERE LOWER(country) LIKE LOWER(:country)" : " AND LOWER(country) LIKE LOWER(:country)");
+      $conditionSeries .= (empty($conditionSeries) ? " WHERE $condition" : " AND $condition");
     } else {
-      // If neither movies nor series is specified, apply the condition to both.
-      $conditionMovies .= " WHERE LOWER(country) LIKE LOWER(:country)";
-      $conditionSeries .= " WHERE LOWER(country) LIKE LOWER(:country)";
+      $conditionMovies .= (empty($conditionMovies) ? " WHERE $condition" : " AND $condition");
+      $conditionSeries .= (empty($conditionSeries) ? " WHERE $condition" : " AND $condition");
     }
     $h1_text = htmlspecialchars($country) . ' Movies & TV Shows';
   }
@@ -74,38 +108,39 @@
   // Add WHERE clause for language if needed
   if (isset($_GET['l'])) {
     $language = $_GET['l'];
+    $condition = "LOWER(language) LIKE LOWER(:language)";
     if (isset($_GET['movies'])) {
-      $conditionMovies .= (empty($conditionMovies) ? " WHERE LOWER(language) LIKE LOWER(:language)" : " AND LOWER(language) LIKE LOWER(:language)");
+      $conditionMovies .= (empty($conditionMovies) ? " WHERE $condition" : " AND $condition");
     } elseif (isset($_GET['series'])) {
-      $conditionSeries .= (empty($conditionSeries) ? " WHERE LOWER(language) LIKE LOWER(:language)" : " AND LOWER(language) LIKE LOWER(:language)");
+      $conditionSeries .= (empty($conditionSeries) ? " WHERE $condition" : " AND $condition");
     } else {
-      // If neither movies nor series is specified, apply the condition to both.
-      $conditionMovies .= " WHERE LOWER(language) LIKE LOWER(:language)";
-      $conditionSeries .= " WHERE LOWER(language) LIKE LOWER(:language)";
+      $conditionMovies .= (empty($conditionMovies) ? " WHERE $condition" : " AND $condition");
+      $conditionSeries .= (empty($conditionSeries) ? " WHERE $condition" : " AND $condition");
     }
     $h1_text = htmlspecialchars($language) . ' Movies & TV Shows';
   }
 
-  // Apply the conditions to the query
-  $query = "";
+  // Build the query based on conditions
   if (isset($_GET['movies'])) {
     $query = "SELECT movieapi_id AS id, poster_path, 'movie' AS type FROM movies" . $conditionMovies;
   } elseif (isset($_GET['series'])) {
     $query = "SELECT tvapi_id AS id, poster_path, 'tv_series' AS type FROM tv_series" . $conditionSeries;
   } else {
-    // Combine query if filtering by country, language, or genre
     $query = "SELECT movieapi_id AS id, poster_path, 'movie' AS type FROM movies" . $conditionMovies .
       " UNION ALL SELECT tvapi_id AS id, poster_path, 'tv_series' AS type FROM tv_series" . $conditionSeries;
   }
 
-  //for the pagination
+  // Add pagination
   $query .= " LIMIT :offset, :limit";
 
   // Debugging output
-  // echo $query;
+  echo "Final Query: " . $query;
+  print_r($_GET);
 
+  // Prepare the statement
   $dbConnection = getDatabaseConnection();
   $stmt = $dbConnection->prepare($query);
+
   // Bind parameters only if they exist in the query
   if (strpos($query, ':country') !== false && isset($_GET['c'])) {
     $stmt->bindValue(':country', '%' . $country . '%', PDO::PARAM_STR);
@@ -117,21 +152,11 @@
     $stmt->bindValue(':language', '%' . $language . '%', PDO::PARAM_STR);
   }
 
-  // Bind parameters if needed
-  if (isset($_GET['c'])) {
-    $stmt->bindValue(':country', '%' . $country . '%', PDO::PARAM_STR);
-  }
-  if (isset($_GET['g'])) {
-    $stmt->bindValue(':genre', '%' . $genre . '%', PDO::PARAM_STR);
-  }
-  if (isset($_GET['l'])) {
-    $stmt->bindValue(':language', '%' . $language . '%', PDO::PARAM_STR);
-  }
-
   // Bind pagination parameters (always used)
   $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
   $stmt->bindValue(':limit', $itemsPerPage, PDO::PARAM_INT);
 
+  // Execute the statement
   $stmt->execute();
   // echo 'offset :' . $offset . " & item per page: " . $itemsPerPage;
   // $stmt->execute();
@@ -159,6 +184,30 @@
   $totalStmt->execute();
   $totalItems = $totalStmt->fetchColumn();
   $total_page = ceil($totalItems / $itemsPerPage);
+
+
+
+  // get the parameters from url
+  // Add other filters like country (`c`) or language (`l`) if they are in the URL
+  $params = $_GET; // Get all existing parameters
+
+  // Remove `g` if it exists, because it will be added dynamically in the dropdown
+  unset($params['g']);
+
+  // Build the base URL without the `g` parameter
+  $url_get = http_build_query($params);
+
+  function buildUrlWithGenre($baseParams, $genre)
+  {
+    // Set or update the genre ('g') parameter
+    $baseParams['g'] = $genre;
+
+    // Build the query string with updated parameters
+    $queryString = http_build_query($baseParams);
+
+    // Return the complete URL with the updated query string
+    return "?$queryString";
+  }
 
   ?>
   <section class="container w-full mx-auto mt-[75px] mb-14">
@@ -190,53 +239,53 @@
             </ul>
             <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
               <li>
-                <a href="?<?php echo $url_get; ?>&g=crime" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Crime</a>
+                <a href="<?php echo buildUrlWithGenre($params, 'Crime'); ?>" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Crime</a>
               </li>
               <li>
-                <a href="?<?php echo $url_get; ?>&g=documentary" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Documentary</a>
+                <a href="<?php echo buildUrlWithGenre($params, 'Documentary'); ?>" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Documentary</a>
               </li>
               <li>
-                <a href="?<?php echo $url_get; ?>&g=drama" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Drama</a>
+                <a href="<?php echo buildUrlWithGenre($params, 'Drama'); ?>" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Drama</a>
               </li>
               <li>
-                <a href="?<?php echo $url_get; ?>&g=family" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Family</a>
+                <a href="<?php echo buildUrlWithGenre($params, 'Family'); ?>" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Family</a>
               </li>
               <li>
-                <a href="?<?php echo $url_get; ?>&g=fantasy" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Fantasy</a>
-              </li>
-            </ul>
-            <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
-              <li>
-                <a href="?<?php echo $url_get; ?>&g=horror" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Horror</a>
-              </li>
-              <li>
-                <a href="?<?php echo $url_get; ?>&g=history" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">History</a>
-              </li>
-              <li>
-                <a href="?<?php echo $url_get; ?>&g=musical" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Musical</a>
-              </li>
-              <li>
-                <a href="?<?php echo $url_get; ?>&g=mystery" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Mystery</a>
-              </li>
-              <li>
-                <a href="?<?php echo $url_get; ?>&g=romance" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Romance</a>
+                <a href="<?php echo buildUrlWithGenre($params, 'Fantasy'); ?>" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Fantasy</a>
               </li>
             </ul>
             <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
               <li>
-                <a href="?<?php echo $url_get; ?>&g=sci-Fi" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Sci-Fi</a>
+                <a href="<?php echo buildUrlWithGenre($params, 'Horror'); ?>" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Horror</a>
               </li>
               <li>
-                <a href="?<?php echo $url_get; ?>&g=sport" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Sport</a>
+                <a href="<?php echo buildUrlWithGenre($params, 'History'); ?>" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">History</a>
               </li>
               <li>
-                <a href="?<?php echo $url_get; ?>&g=thriller" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Thriller</a>
+                <a href="<?php echo buildUrlWithGenre($params, 'Musical'); ?>" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Musical</a>
               </li>
               <li>
-                <a href="?<?php echo $url_get; ?>&g=war" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">War</a>
+                <a href="<?php echo buildUrlWithGenre($params, 'Mystery'); ?>" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Mystery</a>
               </li>
               <li>
-                <a href="?<?php echo $url_get; ?>&g=western" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Western</a>
+                <a href="<?php echo buildUrlWithGenre($params, 'Romance'); ?>" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Romance</a>
+              </li>
+            </ul>
+            <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'Sci-Fi'); ?>" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Sci-Fi</a>
+              </li>
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'Sport'); ?>" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Sport</a>
+              </li>
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'Thriller'); ?>" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Thriller</a>
+              </li>
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'War'); ?>" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">War</a>
+              </li>
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'western'); ?>" class="block px-4 py-2 hover:bg-gray-300 hover:px-4 hover:py-2 rounded-xl">Western</a>
               </li>
             </ul>
           </article>
