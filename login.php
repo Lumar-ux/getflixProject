@@ -4,6 +4,9 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+// Démarrage de la session
+session_start();
+
 // Check if the user is logged in; if yes, redirect them to the home page
 if (isset($_SESSION["email"])) {
     header("location: index.php");
@@ -53,10 +56,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['fullname'] = $fullname;
                 $_SESSION['email'] = $email;
                 $_SESSION['avatar'] = $avatar;
+                $_SESSION['autority'] = $autority;
 
-
-                // Redirect user to the home page
+                // Redirect user based on their autority level/role
+                if ($autority == 1) { 
+                    header('location: admin.php');
+                } else {
                 header('location: index.php');
+            }
                 exit;
             } else {
                 $error = 'Incorrect password!';
