@@ -206,8 +206,8 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
                             <?php foreach ($avatars as $image): ?>
                             <input type="radio" name="avatar" class="hidden last:mr-0 mr-4"
                                 value="<?php echo htmlspecialchars($image); ?>"
-                                <?php if (isset($avatar) && $avatar == $image) echo 'checked'; ?>>
-                            <img src="<?php echo htmlspecialchars($avatar_directory . $image); ?>" alt="Avatar"
+                                <?php if (isset($avatar) && $avatar == $image) echo 'checked'; ?>> <img
+                                src="<?php echo htmlspecialchars($avatar_directory . $image); ?>" alt="Avatar"
                                 class="last:mr-0 mr-4 flex-none h-[86px] w-[86px] rounded-full focus:outline-none focus:ring-2 focus:ring-greyWhite">
                             <?php endforeach;?>
                         </article>
