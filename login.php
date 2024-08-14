@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         // Prepare the SQL query using PDO
         $statement = $dbConnection->prepare(
-            "SELECT user_id, username, fullname, password, avatar FROM users WHERE email = :email"
+            "SELECT user_id, username, fullname, password, avatar, autority FROM users WHERE email = :email"
         );
         
         // Bind the 'email' parameter to the query
@@ -46,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $username = $user['username'];
             $fullname = $user['fullname'];
             $avatar = $user['avatar'];
+            $autority = $user['autority'];
 
             if (password_verify($password, $stored_password)) {
                 // Password is correct
@@ -58,12 +59,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['avatar'] = $avatar;
                 $_SESSION['autority'] = $autority;
 
+                // Debugging: Display session data and stop execution
+                //var_dump($_SESSION);
+                //exit();
+
                 // Redirect user based on their autority level/role
                 if ($autority == 1) { 
                     header('location: admin.php');
                 } else {
                 header('location: index.php');
-            }
+                }
                 exit;
             } else {
                 $error = 'Incorrect password!';
