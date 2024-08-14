@@ -1,42 +1,25 @@
-<?php 
-include_once "layout/header.php";
+<?php
+session_start();
+include_once "dbh.inc.php";
 
-// Check if the user is logged in; if not, redirect them to the login page
+// Assurez-vous que l'utilisateur est connecté
 if (!isset($_SESSION["email"])) {
-    header("location: login.php");
-    exit;
+    header("Location: login.php");
+    exit();
 }
 
-// Define the avatar directory
-$avatar_directory = "images/avatar_directory/";
+// Définissez le répertoire des avatars
+$avatar_directory = "image/avatar_directory/";
 
+$dbConnection = getDatabaseConnection();
+
+// Préparez la requête SQL pour récupérer les commentaires de l'utilisateur
+$user_id = $_SESSION['user_id']; // Assurez-vous que user_id est stocké dans la session
+$sql = "SELECT comment FROM tv_series_comments WHERE user_id = ?";
+$stmt = $dbConnection->prepare($sql);
+$stmt->execute([$user_id]);
+$comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
-
-<div class="row mb-3">
-    <div class="col-sm-4">Username</div>
-    <div class="col-sm-8"><?php echo htmlspecialchars($_SESSION['username']); ?></div>
-</div>
-
-<div class="row mb-3">
-    <div class="col-sm-4">Fullname</div>
-    <div class="col-sm-8"><?php echo htmlspecialchars($_SESSION['fullname']); ?></div>
-</div>
-
-<div class="row mb-3">
-    <div class="col-sm-4">Email</div>
-    <div class="col-sm-8"><?php echo htmlspecialchars($_SESSION['email']); ?></div>
-</div>
-
-<div class="row mb-3">
-    <div class="col-sm-4">Avatar</div>
-    <div class="col-sm-8">
-        <img src="<?php echo htmlspecialchars($avatar_directory . $_SESSION['avatar']); ?>" alt="Avatar"
-            class="img-thumbnail" style="width: 80px; height: 80px;">
-    </div>
-</div>
-<br />
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,92 +28,77 @@ $avatar_directory = "images/avatar_directory/";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./output.css">
-    <title>Sign Up</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Profile</title>
 </head>
 
-<body class="bg-halfBlack h-screen w-screen">
-    <?php include_once("./header.php");?>
-    <main class="container mx-auto w-full h-[801px] my-14 flex">
-        <section class="Profile w-[651.81px] h-full bg-greyWhite rounded-xl mr-6 flex flex-col items-center ">
-            <article class="relative top-[50px]">
-                <h1 class="text-[32px] font-bold mb-8 leading-none text-center">Profile</h1>
-                <section class="flex flex-col mb-[10px]">
-                    <section class="mb-3 flex items-center">
-                        <img src="<?php echo htmlspecialchars($avatar_directory . $_SESSION['avatar']); ?>" alt="Avatar"
-                            class="w-20 h-20 object-cover rounded-full cursor-pointer
-                       hover:ring-2 hover:ring-pastelBlue
-                       focus:outline-none focus:ring-2 focus:ring-greyWhite">
-                    </section>
+<body class="bg-gray-100 h-screen flex justify-center items-center">
 
-                    <section class="mb-3 flex items-center">
-                        <Label for="profile" value="Username">
-                            <span><?php echo htmlspecialchars($_SESSION['username']); ?></span>
-                        </Label>
-                    </section>
+    <main class="bg-white p-10 rounded-lg shadow-lg w-full max-w-md relative">
+        <!-- Avatar Section -->
+        <header class="flex justify-center mb-10">
+            <img src="<?php echo htmlspecialchars($avatar_directory . $_SESSION['avatar']); ?>" alt="Avatar"
+                class="w-32 h-32 object-cover rounded-full border-4 border-pastelBlue">
+        </header>
 
-                    <section class="mb-3 flex items-center">
-                        <Label for="profile" value="Username">
-                            <span><?php echo htmlspecialchars($_SESSION['username']); ?></span>
-                        </Label>
-                    </section>
-
-                    <!-- Autres informations ou éléments de profil -->
-                </section>
+        <!-- Profile Information Section -->
+        <section class="text-align">
+            <!-- Full Name -->
+            <article class="mb-4">
+                <h1 class="text-lg font-semibold text-gray-700 inline-block">Full Name :</h1>
+                <span id="fullname" class="text-lg text-gray-900 font-normal inline-block">
+                    <?php echo htmlspecialchars($_SESSION['fullname']); ?>
+                </span>
             </article>
 
-
-
-
-
-            <span type="password" name="password" placeholder="Password"
-                class="w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4" value="" />
-            <span class="text-red-500"><?php echo htmlspecialchars($password_error); ?></span>
-
-            <input type="password" name="confirm_password" placeholder="Confirm Password"
-                class="w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4" value="" />
-            <span class="text-red-500"><?php echo htmlspecialchars($confirm_password_error); ?></span>
-
-            <input type="fullname" name="fullname" placeholder="Full Name"
-                class="w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4"
-                value="<?php echo htmlspecialchars($fullname); ?>" />
-            <span class="text-red-500"><?php echo htmlspecialchars($fullname_error); ?></span>
-
-            <input type="email" name="email" placeholder="Email"
-                class="w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4"
-                value="<?php echo htmlspecialchars($email); ?>" />
-            <span class="text-red-500"><?php echo htmlspecialchars($email_error); ?></span>
-
-            <section class="bg-[#B1BBFC] h-auto w-[405px] overflow-x-auto flex items-center rounded-xl mb-4">
-                <div class="grid grid-cols-4 gap-4 p-4">
-                    <?php foreach ($avatars as $image): ?>
-                    <div class="flex justify-center items-center">
-                        <label>
-                            <input type="radio" name="avatar" value="<?php echo htmlspecialchars($image); ?>"
-                                <?php if (isset($avatar) && $avatar == $image) echo 'checked'; ?> class="hidden">
-                            <img src="<?php echo htmlspecialchars($avatar_directory . $image); ?>" alt="Avatar" class="w-20 h-20 object-cover rounded-full cursor-pointer
-                           hover:ring-2 hover:ring-pastelBlue
-                           focus:outline-none focus:ring-2 focus:ring-greyWhite">
-                        </label>
-                    </div>
-                    <?php endforeach; ?>
-                </div>
-                <span class="text-red-500"><?php echo htmlspecialchars($avatar_error); ?></span>
-            </section>
-            <button type="action" name="sign-out"
-                class="w-[405px] h-[58px] font-[570] bg-pastelBlue rounded-xl mb-2"><span
-                    class="font-[570]">close</span></button>
+            <!-- Username -->
+            <article class="mb-4">
+                <h2 class="text-lg font-semibold text-gray-700 inline-block">User Name :</h2>
+                <span id="username" class="text-lg text-gray-900 font-normal inline-block">
+                    <?php echo htmlspecialchars($_SESSION['username']); ?>
+                </span>
+            </article>
         </section>
-        </aside>
-        <!-- <p class="text-xs w-[328px]">This page is protected by Google reCAPTCHA to ensure that you are not a robot.</p> -->
+
+        <!-- Email -->
+        <article class="mb-10">
+            <h2 class="text-lg font-semibold text-gray-700 inline-block">Email :</h2>
+            <span id="username" class="text-lg text-gray-900 font-normal inline-block">
+                <?php echo htmlspecialchars($_SESSION['email']); ?>
+            </span>
         </article>
+
+        <!-- User Comments Section -->
+        <section>
+            <h2 class="text-lg font-semibold text-gray-700 mb-4">My Comments:</h2>
+            <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+                <?php if (count($comments) > 0): ?>
+                <ul class="list-disc pl-5">
+                    <?php foreach ($comments as $comment): ?>
+                    <li class="mb-2"><?php echo htmlspecialchars($comment['comment']); ?></li>
+                    <?php endforeach; ?>
+                </ul>
+                <?php else: ?>
+                <p class="text-gray-600">You have not posted any comments yet.</p>
+                <?php endif; ?>
+            </div>
         </section>
-        <section class="img-login h-full grid grid-rows-2 grid-cols-2 gap-6 grow">
-            <div class="bg-gray-500 rounded-xl" name="img-log_01">1</div>
-            <div class="bg-gray-500 rounded-xl row-span-2" name="img-log_02">2</div>
-            <div class="bg-gray-500 rounded-xl" name="img-log_03">3</div>
-        </section>
+
+        <!-- Close Button Section -->
+        <footer class="absolute bottom-4 right-4">
+            <button onclick="window.location.href='index.php';"
+                class="p-2 bg-red-500 text-white rounded-full hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400">
+                <!-- SVG Cross Icon -->
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </footer>
+
     </main>
-    <?php include_once("./footer.php");?>
+
 </body>
 
 </html>

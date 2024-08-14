@@ -1,12 +1,10 @@
 <?php
-
 // Affichage des erreurs PHP pour le débogage
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Initialize the session
-session_start();
 include_once "dbh.inc.php";
 
 // Variables d'authentification et d'erreurs
@@ -78,13 +76,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $email_error = "Email format is not valid";
         $error = true;
     } else {
-        // Vérifiez si l'email est déjà utilisé
-        $dbConnection = getDatabaseConnection();
-        $statement = $dbConnection->prepare("SELECT user_id FROM users WHERE email = ?");
-        $statement->execute([$email]);
-        if ($statement->rowCount() > 0) {
+        try{
+             // Vérifiez si l'email est déjà utilisé
+            $dbConnection = getDatabaseConnection();
+            $statement = $dbConnection->prepare("SELECT user_id FROM users WHERE email = ?");
+            $statement->execute([$email]);
+            if ($statement->rowCount() > 0) {
             $email_error = "Email is already used";
             $error = true;
+            } 
+        } catch (PDOException $e) {
+           $email_error ="Database error: " . $e->getMessage();
+           $error = true;
         }
     }
 
@@ -108,20 +111,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     /***************************** Si pas d'erreurs, insérer l'utilisateur dans la base de données **********************/
     if (!$error) {
-        // Autorité par défaut à 2 pour les non-admins
-        $autority = 2;
+        try{
+            // Autorité par défaut à 2 pour les non-admins
+            $autority = 2;
 
-        // Hashage du mot de passe avant l'insertion dans la base de données
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $statement = $dbConnection->prepare(
-            "INSERT INTO users (username, password, fullname, email, avatar, autority) VALUES (?, ?, ?, ?, ?, ?)"
-        );
-        $statement->execute([$username, $hashed_password, $fullname, $email, $avatar, $autority]);
-        $insert_id = $dbConnection->lastInsertId();
+            // Hashage du mot de passe avant l'insertion dans la base de données
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            $statement = $dbConnection->prepare(
+                "INSERT INTO users (username, password, fullname, email, avatar, autority) VALUES (?, ?, ?, ?, ?, ?)"
+            );
+            $statement->execute([$username, $hashed_password, $fullname, $email, $avatar, $autority]);
+            $insert_id = $dbConnection->lastInsertId();
 
-        // Définir une variable de session pour indiquer le succès
-        $_SESSION['registration_success'] = true;
-        $_SESSION['fullname'] = $fullname; // Stocker le nom complet pour le message
+            // Définir une variable de session pour indiquer le succès
+            $_SESSION['registration_success'] = true;
+            $_SESSION['fullname'] = $fullname; // Stocker le nom complet pour le message
+        } catch (PDOException $e) {
+            $error = "Database error: " . $e->getMessage();
+            $_SESSION['registration_success'] = false;
+        }
     } else {
         $_SESSION['registration_success'] = false;
     }
@@ -157,7 +165,7 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-screen w-screen">
 
 <head>
     <meta charset="UTF-8">
@@ -166,64 +174,59 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
     <title>Sign Up</title>
 </head>
 
-<body class="bg-halfBlack h-screen w-screen">
+<body class="bg-halfBlack sm:w-screen w-full h-fit">
     <?php include_once("./header.php");?>
-    <main class="container mx-auto w-full h-[801px] my-14 flex">
-        <section class="login w-[651.81px] h-full bg-greyWhite rounded-xl mr-6 flex flex-col items-center ">
+    <main class="w-[80%] sm:container mx-auto h-[801px] sm:mb-14 mb-[39px] flex">
+        <section
+            class="login w-[651.81px] h-[775px] sm:h-full bg-greyWhite rounded-xl sm:mr-6 mr-0 flex flex-col items-center sm:mb-14 mb-[39px]">
             <article class="relative top-[50px]">
                 <h1 class="text-[32px] font-bold mb-8 leading-none text-center">Sign Up</h1>
-                <form action="sign-up.php" method="post" class="flex flex-col mb-[10px]">
-
+                <form action="#" method="post" class="flex flex-col mb-[10px]">
                     <input type="username" name="username" placeholder="User Name"
-                        class="w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4"
-                        value="<?php echo htmlspecialchars($username); ?>" />
+                        class="w-[234px] sm:w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4"
+                        value="<?php echo htmlspecialchars($username); ?>">
                     <span class="text-red-500"><?php echo htmlspecialchars($username_error); ?></span>
-
                     <input type="password" name="password" placeholder="Password"
-                        class="w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4" value="" />
+                        class="w-[234px] sm:w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4">
                     <span class="text-red-500"><?php echo htmlspecialchars($password_error); ?></span>
-
                     <input type="password" name="confirm_password" placeholder="Confirm Password"
-                        class="w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4" value="" />
+                        class="w-[234px] sm:w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4" />
                     <span class="text-red-500"><?php echo htmlspecialchars($confirm_password_error); ?></span>
-
                     <input type="fullname" name="fullname" placeholder="Full Name"
-                        class="w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4"
+                        class="w-[234px] sm:w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4"
                         value="<?php echo htmlspecialchars($fullname); ?>" />
                     <span class="text-red-500"><?php echo htmlspecialchars($fullname_error); ?></span>
-
                     <input type="email" name="email" placeholder="Email"
-                        class="w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4"
-                        value="<?php echo htmlspecialchars($email); ?>" />
+                        class="w-[234px] sm:w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4"
+                        value="<?php echo htmlspecialchars($email); ?>">
                     <span class="text-red-500"><?php echo htmlspecialchars($email_error); ?></span>
-
-                    <section class="bg-[#B1BBFC] h-auto w-[405px] overflow-x-auto flex items-center rounded-xl mb-4">
-                        <div class="grid grid-cols-4 gap-4 p-4">
+                    <section
+                        class="bg-[#B1BBFC] h-[120px] w-[234px] sm:w-[405px] overflow-x-scroll flex items-center rounded-xl mb-4">
+                        <article class="flex justify-between mx-4">
                             <?php foreach ($avatars as $image): ?>
-                            <div class="flex justify-center items-center">
+                            <div class="flex-none w-20 h-20 mr-4">
                                 <label>
                                     <input type="radio" name="avatar" value="<?php echo htmlspecialchars($image); ?>"
                                         <?php if (isset($avatar) && $avatar == $image) echo 'checked'; ?>
                                         class="hidden">
                                     <img src="<?php echo htmlspecialchars($avatar_directory . $image); ?>" alt="Avatar"
-                                        class="w-20 h-20 object-cover rounded-full cursor-pointer
-                           hover:ring-2 hover:ring-pastelBlue
-                           focus:outline-none focus:ring-2 focus:ring-greyWhite">
+                                        tabindex="0"
+                                        class="flex-none w-20 h-20 rounded-full cursor-pointer hover:ring-2 hover:ring-pastelBlue focus:ring-2 focus:ring-greyWhite">
                                 </label>
                             </div>
-                            <?php endforeach; ?>
-                        </div>
+                            <?php endforeach;?>
+                        </article>
                         <span class="text-red-500"><?php echo htmlspecialchars($avatar_error); ?></span>
                     </section>
+
                     <button type="submit" name="submit"
-                        class="w-[405px] h-[58px] font-[570] bg-pastelBlue rounded-xl mb-2"><span
+                        class="w-[234px] sm:w-[405px] h-[58px] font-[570] bg-pastelBlue rounded-xl mb-2"><span
                             class="font-[570]">Sign Up</span></button>
+                </form>
+                <!-- <p class="text-xs w-[328px]">This page is protected by Google reCAPTCHA to ensure that you are not a robot.</p> -->
+            </article>
         </section>
-        </form>
-        <!-- <p class="text-xs w-[328px]">This page is protected by Google reCAPTCHA to ensure that you are not a robot.</p> -->
-        </article>
-        </section>
-        <section class="img-login h-full grid grid-rows-2 grid-cols-2 gap-6 grow">
+        <section class="img-login h-full sm:grid grid-rows-2 grid-cols-2 gap-6 grow hidden">
             <div class="bg-gray-500 rounded-xl" name="img-log_01">1</div>
             <div class="bg-gray-500 rounded-xl row-span-2" name="img-log_02">2</div>
             <div class="bg-gray-500 rounded-xl" name="img-log_03">3</div>
