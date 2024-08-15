@@ -43,27 +43,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
 </head>
 
 <body class="bg-gray-100">
-    <div class="container mx-auto p-6 md:p-8 lg:p-12">
+    <!-- Début du conteneur principal -->
+    <section class="container mx-auto p-6 md:p-8 lg:p-12">
         <h2 class="text-2xl font-bold mb-4">Admin Dashboard</h2>
-        <a class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" href="#" role="button">XXX</a>
-        <a class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" href="#" role="button">XXX</a>
+        <!-- Boutons flexibles et responsive -->
+        <section class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+            <a class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" href="#" role="button">XXX</a>
+            <a class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" href="#" role="button">XXX</a>
+        </section>
         <br><br>
-        <table class="min-w-full bg-white border border-gray-200">
-            <thead class="bg-gray-200">
-                <tr>
-                    <th class="px-4 py-2 border-b">Autority</th>
-                    <th class="px-4 py-2 border-b">User_id</th>
-                    <th class="px-4 py-2 border-b">Username</th>
-                    <th class="px-4 py-2 border-b">Password</th>
-                    <th class="px-4 py-2 border-b">Fullname</th>
-                    <th class="px-4 py-2 border-b">Email</th>
-                    <th class="px-4 py-2 border-b">Avatar</th>
-                    <th class="px-4 py-2 border-b">Last Updated</th>
-                    <th class="px-4 py-2 border-b">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php 
+        <!-- Tableau avec conteneur scrollable -->
+        <section class="overflow-x-auto">
+            <table class="min-w-full bg-white border border-gray-200">
+                <thead class="bg-gray-200">
+                    <tr>
+                        <th class="px-4 py-2 border-b text-xs md:text-sm">Autority</th>
+                        <th class="px-4 py-2 border-b text-xs md:text-sm">User_id</th>
+                        <th class="px-4 py-2 border-b text-xs md:text-sm">Username</th>
+                        <th class="px-4 py-2 border-b text-xs md:text-sm">Password</th>
+                        <th class="px-4 py-2 border-b text-xs md:text-sm">Fullname</th>
+                        <th class="px-4 py-2 border-b text-xs md:text-sm">Email</th>
+                        <th class="px-4 py-2 border-b text-xs md:text-sm">Avatar</th>
+                        <th class="px-4 py-2 border-b text-xs md:text-sm">Last Updated</th>
+                        <th class="px-4 py-2 border-b text-xs md:text-sm">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
                 // Configuration de la base de données
                 include_once "dbh.inc.php";
                 
@@ -80,34 +86,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
                 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                     echo "
                     <tr>
-                        <td class='px-4 py-2 border-b'>{$row['autority']}</td>
-                        <td class='px-4 py-2 border-b'>{$row['user_id']}</td>
-                        <td class='px-4 py-2 border-b'>{$row['username']}</td>
-                        <td class='px-4 py-2 border-b'>{$row['password']}</td>
-                        <td class='px-4 py-2 border-b'>{$row['fullname']}</td>
-                        <td class='px-4 py-2 border-b'>{$row['email']}</td>
-                        <td class='px-4 py-2 border-b'>
+                        <td class='px-4 py-2 border-b text-xs md:text-sm'>{$row['autority']}</td>
+                        <td class='px-4 py-2 border-b text-xs md:text-sm'>{$row['user_id']}</td>
+                        <td class='px-4 py-2 border-b text-xs md:text-sm'>{$row['username']}</td>
+                        <td class='px-4 py-2 border-b text-xs md:text-sm'>{$row['password']}</td>
+                        <td class='px-4 py-2 border-b text-xs md:text-sm'>{$row['fullname']}</td>
+                        <td class='px-4 py-2 border-b text-xs md:text-sm'>{$row['email']}</td>
+                        <td class='px-4 py-2 border-b text-xs md:text-sm'>
                             <img src='./image/avatar_directory/{$row['avatar']}' alt='Avatar' class='w-8 h-8'>
                         </td>
-                         <td class='px-4 py-2 border-b'>
+                         <td class='px-4 py-2 border-b text-xs md:text-sm'>
                             {$row['last_updated']} <!-- Affichage de la date du dernier changement -->
                         </td>
-                        <td class='px-4 py-2 border-b'>
-                        <div class='flex space-x-2'>
+                        <td class='px-4 py-2 border-b text-xs md:text-sm'>
+                        <section class='flex space-x-2'>
                             <a href='edit.php?id={$row['user_id']}' class='bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 inline-block mr-2'>Edit</a>
                             <form method='POST' action='#' style='display:inline;'>
                                 <input type='hidden' name='id' value='{$row['user_id']}'>
                                 <button type='submit' name='delete' class='bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600'>Delete</button>
                             </form>
-                        </div>
+                        </section>
                         </td>
                     </tr>
                     ";
                 }
                 ?>
-            </tbody>
-        </table>
-    </div>
+                </tbody>
+            </table>
+        </section>
+    </section>
 </body>
 
 </html>
