@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 //Initialize the session
 // if (session_status() == PHP_SESSION_NONE) {
 //   session_start();
-// }
+
 include_once "dbh.inc.php";
 
 $authenticated = false;
