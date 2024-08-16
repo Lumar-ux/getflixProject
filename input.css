@@ -91,3 +91,9 @@ body:hover::-webkit-scrollbar-thumb, .cate-main:hover::-webkit-scrollbar-thumb {
   .grid-item--height3 { height: 512px; }
   .grid-item--height4 { height: 612px; }
 }
+.separator::before {
+  content: '·';
+  margin-right: 0.5rem;
+  color: white;
+  font-weight: bold;
+}

@@ -106,9 +106,9 @@ if (isset($_GET['id'])) {
     <section class="porg-detail block sm:flex w-full sm:h-[801px] h-[716.4px] sm:mb-28 mb-[78px]">
       <!-- <div class="bg-gray-500 rounded-xl h-[270px] sm:h-full w-full sm:w-[679px] sm:mr-14 sm:mb-0 mb-3 sm:m-0" name="img-cat_08"></div> -->
 
-      <img class="bg-gray-500 rounded-xl h-[270px] sm:h-full w-full sm:w-[679px] sm:mr-14 sm:mb-0 mb-3 sm:m-0" name="img-cat_08" src="http://image.tmdb.org/t/p/w500/<?php echo $table1_data['poster_path']; ?>" alt="poster">
+      <img class="bg-gray-500 rounded-xl h-[270px] sm:h-full sm:w-fit sm:mr-14 sm:mb-0 mb-3 sm:m-0 object-contain" name="img-cat_08" src="http://image.tmdb.org/t/p/w500/<?php echo $table1_data['poster_path']; ?>" alt="poster">
 
-      <article class="flex flex-col w-full sm:w-[801px] sm:h-full h-[436px] sm:justify-between">
+      <article class="flex flex-col w-full sm:h-full h-[436px] sm:justify-between">
         <section class="detail w-full">
           <h1 name="name-prog" class="bg-pastelBlue text-white py-4 pl-4 text-[34px] text-1 font-[570] uppercase sm:mb-6 mb-2.5 rounded-[10px] leading-none w-full"> <?php echo $table1_data['title']; ?></h1>
           <article class="info flex items-center sm:mb-6 mb-2.5">
@@ -116,12 +116,12 @@ if (isset($_GET['id'])) {
             foreach ($words as $word) { ?>
               <button name="genre-01" class="bg-white p-[10px] sm:text-base text-[13px] font-[570] leading-none mr-2 rounded-[10px]"><?php echo $word ?></button>
             <?php } ?>
-            <p name=" year" class="font-[570] sm:text-base text-[13px] text-white mr-2">Year: <?php
+            <p name=" year" class="separator leading-none font-[570] sm:text-base text-[13px] text-white mr-2">Year: <?php
                                                                                               $release_date = $table1_data['release_date'];
                                                                                               $year = date('Y', strtotime($release_date));
                                                                                               echo $year; ?></p>
-            <p name="duration" class="font-[570] sm:text-base text-[13px] text-white mr-2">Duration : <?php echo $formattedDuration; ?></p>
-            <p name="imbdb-note" class="font-[570] sm:text-base text-[13px] text-white"><?php echo $table1_data['imdb_vote']; ?></p>
+            <p name="duration" class="separator leading-none font-[570] sm:text-base text-[13px] text-white mr-2">Duration : <?php echo $formattedDuration; ?></p>
+            <p name="imbdb-note" class="separator leading-none font-[570] sm:text-base text-[13px] text-white"><?php echo $table1_data['imdb_vote']; ?></p>
           </article>
           <article class="flex">
             <ul class="list-none mr-6">
@@ -147,7 +147,7 @@ if (isset($_GET['id'])) {
           </article>
         </section>
         <section class="descriptif mt-auto">
-          <p class="text-white font-[570] sm:text-[18px] text-3.5 line-clamp-6">Overview: <?php echo $table1_data['overview']; ?></p>
+          <p class="text-white font-[570] sm:text-[18px] text-3.5 line-clamp-6 w-[80%]"><?php echo $table1_data['overview']; ?></p>
         </section>
       </article>
     </section>
