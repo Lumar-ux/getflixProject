@@ -21,7 +21,7 @@ if (isset($_GET['id'])) {
 
 
   // Check data in table1 (movie) 
-  $query = " SELECT movies.*, movie_cast.* FROM movies INNER JOIN movie_cast ON movies.movieapi_id  = movie_cast.movieapi_id WHERE movies.movieapi_id = :id;";
+  $query = " SELECT movies.*,movies.id as movie_id, movie_cast.* ,'movie' as type FROM movies INNER JOIN movie_cast ON movies.movieapi_id  = movie_cast.movieapi_id WHERE movies.movieapi_id = :id;";
   // Call the function
   $data = fetchData($conn, $query, $id);
 
@@ -35,6 +35,7 @@ if (isset($_GET['id'])) {
     // Check data in table2 (tv series)
     // Define the parameters for the function call
     $query = "SELECT tv_series.*, seasons.*, episodes.* FROM tv_series INNER JOIN seasons ON tv_series.id = seasons.tv_series_id INNER JOIN episodes ON seasons.id = episodes.season_id WHERE tv_series.tvapi_id = :id;";
+
     $data = fetchData($conn, $query, $id);
 
     if ($data) {
@@ -68,12 +69,7 @@ if (isset($_GET['id'])) {
     }
   }
 
-  //genre
-  $string = $table1_data['genres'];
-  // Split the string into an array using ', ' as the delimiter
-  $words = explode(', ', $string);
-  // Optionally, trim whitespace from each word
-  $words = array_map('trim', $words);
+
 
 
   //changing the time format
@@ -85,7 +81,91 @@ if (isset($_GET['id'])) {
   }
   $duration = $table1_data['duration'];
   $formattedDuration = formatDuration($duration);
+  //genre
+  $string = $table1_data['genres'];
+  // Split the string into an array using ', ' as the delimiter
+  $words = explode(', ', $string);
+  // Optionally, trim whitespace from each word
+  $words = array_map('trim', $words);
+
+
+  $firstGenre = isset($words[0]) ? $words[0] : null;
+
+  // --------------------------------------------------------------
+  // find movie or series with same genres
+  // Determine which table to query
+  $table = '';
+  $id_column = '';
+  $exclude_id = $id;
+  if (isset($table1_data['movieapi_id'])) {
+    $table = 'movies';
+    $id_column = 'movieapi_id';
+  } elseif (isset($table1_data['tvapi_id'])) {
+    $table = 'tv_series';
+    $id_column = 'tvapi_id';
+  }
+
+  if ($table) {
+    // Start building the query
+    $query = "SELECT *, $id_column as id FROM $table WHERE $id_column != :exclude_id";
+    $conditions = [];
+
+    // Build the conditions for the genres
+    foreach ($words as $index => $genre) {
+      $paramName = ':genre_' . $index; // Use index to ensure unique parameter names
+      $conditions[] = "LOWER(genres) LIKE LOWER(CONCAT('%', $paramName, '%'))";
+    }
+
+    // If there are genre conditions, add them to the query
+    if (!empty($conditions)) {
+      $query .= " AND (" . implode(' OR ', $conditions) . ")";
+    }
+
+    // Add the LIMIT clause
+    $query .= " LIMIT 15";
+
+    // Prepare the query using PDO
+    $statement = $conn->prepare($query);
+
+    // Bind the genre parameters
+    foreach ($words as $index => $genre) {
+      $paramName = ':genre_' . $index; // Use the same index-based parameter name
+      $statement->bindValue($paramName, $genre, PDO::PARAM_STR);
+    }
+    // Bind the exclude_id parameter
+    $statement->bindValue(':exclude_id', $exclude_id, PDO::PARAM_INT);
+
+    // Execute the query
+    $statement->execute();
+    $same_genre_results = $statement->fetchAll(PDO::FETCH_ASSOC);
+  }
 }
+
+
+// ------- test comments---------------------------------------------
+if (isset($_POST['submit'])) {
+  $text = $_POST["message-current-user"];
+  $dbmovie_id = $table1_data['movie_id'];
+  $user_id = 1; // need actual user is from session
+
+
+  try {
+    $query = "INSERT INTO movie_comments (comment,movie_id,user_id) VALUES (:comment, :movie_id, :user_id)";
+    $stmt = $conn->prepare($query);
+
+    $stmt->bindParam(':comment', $text);
+    $stmt->bindParam(':movie_id', $dbmovie_id);
+    $stmt->bindParam(':user_id', $user_id);
+    $result = $stmt->execute();
+    if ($result) {
+      header("Location:program-detail.php?id=$id&comment=success");
+    }
+  } catch (PDOException $e) {
+    // Handle any errors
+    echo "Error: " . $e->getMessage();
+  }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en" class="h-screen w-screen">
@@ -146,7 +226,7 @@ if (isset($_GET['id'])) {
             </ul>
           </article>
         </section>
-        <section class="descriptif mt-auto">
+        <section class="descriptif mt-0">
           <p class="text-white font-[570] sm:text-[18px] text-3.5 line-clamp-6">Overview: <?php echo $table1_data['overview']; ?></p>
         </section>
       </article>
@@ -155,23 +235,19 @@ if (isset($_GET['id'])) {
       <article class="grid1 h-full space-y-3 sm:space-y-6">
         <div class="grid-item grid-item--width2 bg-pastelBlue rounded-xl p-4 flex flex-col justify-between mt-0 sm:mt-6">
           <h1 name="category-01" class="text-white text-[51px] sm:text-[56px] font-[570] uppercase break-words leading-tight">You may also like</h1>
-          <a href="category.php?movies" class="self-end w-[19%] h-[19%]"><img src="image/Arrow-Categorie.svg" alt="Arrow-Categorie" class="w-full h-full"></a>
+          <a href="category.php?g=<?php echo $firstGenre; ?>" class="self-end w-[19%] h-[19%]"><img src="image/Arrow-Categorie.svg" alt="Arrow-Categorie" class="w-full h-full"></a>
         </div>
-        <div class="grid-item  bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-1">1</div>
-        <div class="grid-item bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-2">2</div>
-        <div class="grid-item grid-item--width2 bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-3">3</div>
-        <div class="grid-item bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-4">4</div>
-        <div class="grid-item grid-item--width2 bg-gray-500 rounded-xl ml-3" name="img-cat-5">5</div>
-        <div class="grid-item  bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-6">6</div>
-        <div class="grid-item bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-7">7</div>
-        <div class="grid-item bg-gray-500 rounded-xl" name="img-cat-8">8</div>
-        <div class="grid-item  bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-9">9</div>
-        <div class="grid-item grid-item--width2 bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-10">10</div>
-        <div class="grid-item bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-11">11</div>
-        <div class="grid-item grid-item--width2 bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-12">12</div>
-        <div class="grid-item bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-13">13</div>
-        <div class="grid-item grid-item--width2 bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-14">14</div>
-        <div class="grid-item bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-15">15</div>
+        <?php
+        // get the movies with the same genres from db
+        $counter = 1;
+        foreach ($same_genre_results as $result) {
+          $additionalClass = ($counter % 3 === 0) ? 'grid-item--width2' : '';
+        ?>
+          <a href="program-detail.php?id=<?php echo $result['id']; ?>" class="grid-item <?php echo $additionalClass; ?> bg-gray-500 rounded-xl ml-3 sm:ml-6">
+            <img class="w-full h-full" src="http://image.tmdb.org/t/p/w500/<?php echo $result['poster_path']; ?>" alt="poster">
+          </a>
+        <?php $counter++;
+        } ?>
       </article>
     </section>
     <section class="w-full mb-14">
@@ -183,27 +259,60 @@ if (isset($_GET['id'])) {
             <h2 name="current-name-user" class="text-white font-bold leading-none">User</h2>
           </article>
           <div class="form-floating">
-            <form action="#" method="POST" class="flex flex-col">
+            <form action="" method="POST" class="flex flex-col">
               <textarea class="form-control w-full h-20 rounded-xl p-4 mb-1" placeholder="Leave a comment here..." id="floatingTextarea2" name="message-current-user"></textarea>
               <button type="submit" name="submit" class="send text-[12px] font-normal text-white w-fit hover:bg-[#424242] px-4 py-2 rounded-xl"><span class="text-[12px] font-normal text-white">Envoyé</span></button>
             </form>
           </div>
         </section>
       </article>
-      <article name="post-Area" class="flex mb-10">
-        <section class="w-full sm:w-[875px]">
-          <article class="flex items-center mb-2">
-            <div class="flex-none w-[40px] h-[40px] bg-greyWhite rounded-full mr-2"></div>
-            <h2 name="current-name-user" class="text-white font-bold leading-none">User</h2>
-          </article>
-          <div class="screen-message w-full h-20 rounded-xl p-4 mb-1 bg-greyWhite" name="message-user"></div>
-          <div class="flex">
-            <button class="p-2 hover:bg-coloHover mr-2 rounded-full"><img src="image/thumb_up_32dp_FFF_FILL0_wght400_GRAD0_opsz40.svg" alt="Thumb-Up" class="w-[18px] h-[18px]"></button>
-            <button class="p-2 hover:bg-coloHover rounded-full"><img src="image/thumb_down_32dp_FFF_FILL0_wght400_GRAD0_opsz40.svg" alt="Thumb-Down" class="w-[18px] h-[18px]"></button>
-            <!-- <button type="submit" name="submit" class="send flex hover:bg-[#424242] px-4 py-2 rounded-xl"><img src="image/reply_32dp_FFF_FILL0_wght400_GRAD0_opsz40.svg" alt="Reply-Icon" class="w-[18px] h-[18px] mr-1"><span class="text-[12px] font-normal text-white">Reply</span></button> -->
-          </div>
-        </section>
-      </article>
+
+      <?php
+      //------------------------- comments--------------------------------------
+      $query = "SELECT users.username, users.avatar, movie_comments.comment, movie_comments.created_at
+                FROM users
+                INNER JOIN movie_comments ON users.user_id = movie_comments.user_id
+                WHERE movie_comments.movie_id = :movie_id;";
+
+      $moviedb_id = $table1_data['movie_id'];
+
+      try {
+        // Prepare the statement
+        $stmt = $conn->prepare($query);
+
+        // Bind the parameter
+        $stmt->bindParam(':movie_id', $moviedb_id, PDO::PARAM_INT);
+
+        // Execute the statement
+        $stmt->execute();
+
+        // Fetch all results
+        $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      } catch (PDOException $e) {
+        // Handle any errors
+        echo "Error: " . $e->getMessage();
+      }
+      foreach ($comments as $row) { ?>
+
+        <article name="post-Area" class="flex mb-10">
+          <section class="w-full sm:w-[875px]">
+            <article class="flex items-center mb-2">
+              <!-- <div class="flex-none w-[40px] h-[40px] bg-greyWhite rounded-full mr-2"></div> -->
+              <img src="<?php echo $row['avatar'];  ?>" class="flex-none w-[40px] h-[40px] bg-greyWhite rounded-full mr-2" alt="user image">
+              <h2 name="current-name-user" class="text-white font-bold leading-none"><?php echo $row['username'];  ?></h2>
+            </article>
+            <div class="screen-message w-full h-20 rounded-xl p-4 mb-1 bg-greyWhite text-black" name="message-user">
+              <p><?php echo $row['comment'];  ?></p>
+            </div>
+            <div class="flex">
+              <!-- <button class="p-2 hover:bg-coloHover mr-2 rounded-full"><img src="image/thumb_up_32dp_FFF_FILL0_wght400_GRAD0_opsz40.svg" alt="Thumb-Up" class="w-[18px] h-[18px]"></button>
+              <button class="p-2 hover:bg-coloHover rounded-full"><img src="image/thumb_down_32dp_FFF_FILL0_wght400_GRAD0_opsz40.svg" alt="Thumb-Down" class="w-[18px] h-[18px]"></button> -->
+              <!-- <button type="submit" name="submit" class="send flex hover:bg-[#424242] px-4 py-2 rounded-xl"><img src="image/reply_32dp_FFF_FILL0_wght400_GRAD0_opsz40.svg" alt="Reply-Icon" class="w-[18px] h-[18px] mr-1"><span class="text-[12px] font-normal text-white">Reply</span></button> -->
+            </div>
+          </section>
+        </article>
+      <?php    } ?>
+      <!-- 
       <article name="post-Area" class="flex mb-10">
         <section class="w-full sm:w-[875px]">
           <article class="flex items-center mb-2">
@@ -213,12 +322,12 @@ if (isset($_GET['id'])) {
           <div class="screen-message w-full h-20 rounded-xl p-4 mb-1 bg-greyWhite" name="message-user"></div>
           <div class="flex">
             <button class="p-2 hover:bg-[#424242] mr-2 rounded-full"><img src="image/thumb_up_32dp_FFF_FILL0_wght400_GRAD0_opsz40.svg" alt="Thumb-Up" class="w-[18px] h-[18px]"></button>
-            <button class="p-2 hover:bg-[#424242] rounded-full"><img src="image/thumb_down_32dp_FFF_FILL0_wght400_GRAD0_opsz40.svg" alt="Thumb-Down" class="w-[18px] h-[18px]"></button>
-            <!-- <button type="submit" name="submit" class="send flex hover:bg-[#424242] px-4 py-2 rounded-xl"><img src="image/reply_32dp_FFF_FILL0_wght400_GRAD0_opsz40.svg" alt="Reply-Icon" class="w-[18px] h-[18px] mr-1"><span class="text-[12px] font-normal text-white">Reply</span></button> -->
-          </div>
+            <button class="p-2 hover:bg-[#424242] rounded-full"><img src="image/thumb_down_32dp_FFF_FILL0_wght400_GRAD0_opsz40.svg" alt="Thumb-Down" class="w-[18px] h-[18px]"></button> -->
+      <!-- <button type="submit" name="submit" class="send flex hover:bg-[#424242] px-4 py-2 rounded-xl"><img src="image/reply_32dp_FFF_FILL0_wght400_GRAD0_opsz40.svg" alt="Reply-Icon" class="w-[18px] h-[18px] mr-1"><span class="text-[12px] font-normal text-white">Reply</span></button> -->
+      <!-- </div>
         </section>
-      </article>
-      <article name="post-Area" class="flex mb-10">
+      </article> -->
+      <!-- <article name="post-Area" class="flex mb-10">
         <section class="w-full sm:w-[875px]">
           <article class="flex items-center mb-2">
             <div class="flex-none w-[40px] h-[40px] bg-greyWhite rounded-full mr-2"></div>
@@ -227,11 +336,11 @@ if (isset($_GET['id'])) {
           <div class="screen-message w-full h-20 rounded-xl p-4 mb-1 bg-greyWhite" name="message-user"></div>
           <div class="flex">
             <button class="p-2 hover:bg-[#424242] mr-2 rounded-full"><img src="image/thumb_up_32dp_FFF_FILL0_wght400_GRAD0_opsz40.svg" alt="Thumb-Up" class="w-[18px] h-[18px]"></button>
-            <button class="p-2 hover:bg-[#424242] rounded-full"><img src="image/thumb_down_32dp_FFF_FILL0_wght400_GRAD0_opsz40.svg" alt="Thumb-Down" class="w-[18px] h-[18px]"></button>
-            <!-- <button type="submit" name="submit" class="send flex hover:bg-[#424242] px-4 py-2 rounded-xl"><img src="image/reply_32dp_FFF_FILL0_wght400_GRAD0_opsz40.svg" alt="Reply-Icon" class="w-[18px] h-[18px] mr-1"><span class="text-[12px] font-normal text-white">Reply</span></button> -->
-          </div>
+            <button class="p-2 hover:bg-[#424242] rounded-full"><img src="image/thumb_down_32dp_FFF_FILL0_wght400_GRAD0_opsz40.svg" alt="Thumb-Down" class="w-[18px] h-[18px]"></button> -->
+      <!-- <button type="submit" name="submit" class="send flex hover:bg-[#424242] px-4 py-2 rounded-xl"><img src="image/reply_32dp_FFF_FILL0_wght400_GRAD0_opsz40.svg" alt="Reply-Icon" class="w-[18px] h-[18px] mr-1"><span class="text-[12px] font-normal text-white">Reply</span></button> -->
+      <!-- </div>
         </section>
-      </article>
+      </article> -->
     </section>
   </main>
   <?php include_once("./footer.php"); ?>

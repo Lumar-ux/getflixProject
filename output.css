@@ -1290,14 +1290,6 @@ html {
   margin-top: 1.5rem;
 }
 
-.mt-\[75px\] {
-  margin-top: 75px;
-}
-
-.mt-auto {
-  margin-top: auto;
-}
-
 .line-clamp-2 {
   overflow: hidden;
   display: -webkit-box;
@@ -1457,10 +1449,6 @@ html {
   height: 100vh;
 }
 
-.h-\[150px\] {
-  height: 150px;
-}
-
 .w-1\/2 {
   width: 50%;
 }
@@ -1493,6 +1481,10 @@ html {
   width: 16rem;
 }
 
+.w-7 {
+  width: 1.75rem;
+}
+
 .w-8 {
   width: 2rem;
 }
@@ -1519,6 +1511,10 @@ html {
 
 .w-\[328px\] {
   width: 328px;
+}
+
+.w-\[405px\] {
+  width: 405px;
 }
 
 .w-\[40px\] {
@@ -1548,14 +1544,6 @@ html {
 
 .w-screen {
   width: 100vw;
-}
-
-.w-\[202\.8px\] {
-  width: 202.8px;
-}
-
-.w-7 {
-  width: 1.75rem;
 }
 
 .min-w-full {
@@ -1881,6 +1869,11 @@ html {
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
 
+.border-gray-700 {
+  --tw-border-opacity: 1;
+  border-color: rgb(55 65 81 / var(--tw-border-opacity));
+}
+
 .border-green-400 {
   --tw-border-opacity: 1;
   border-color: rgb(49 196 141 / var(--tw-border-opacity));
@@ -1894,11 +1887,6 @@ html {
 .border-red-400 {
   --tw-border-opacity: 1;
   border-color: rgb(249 128 128 / var(--tw-border-opacity));
-}
-
-.border-gray-700 {
-  --tw-border-opacity: 1;
-  border-color: rgb(55 65 81 / var(--tw-border-opacity));
 }
 
 .\!bg-gray-50 {
@@ -2126,12 +2114,12 @@ html {
   font-size: 34px;
 }
 
-.text-\[51px\] {
-  font-size: 51px;
+.text-\[50px\] {
+  font-size: 50px;
 }
 
-.text-\[56px\] {
-  font-size: 56px;
+.text-\[51px\] {
+  font-size: 51px;
 }
 
 .text-base {
@@ -2152,10 +2140,6 @@ html {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
-}
-
-.text-\[50px\] {
-  font-size: 50px;
 }
 
 .font-\[570\] {
@@ -2196,6 +2180,11 @@ html {
 
 .leading-tight {
   line-height: 1.25;
+}
+
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 .text-blue-500 {
@@ -2253,6 +2242,11 @@ html {
   color: rgb(4 108 78 / var(--tw-text-opacity));
 }
 
+.text-halfBlack {
+  --tw-text-opacity: 1;
+  color: rgb(20 20 20 / var(--tw-text-opacity));
+}
+
 .text-pastelBlue {
   --tw-text-opacity: 1;
   color: rgb(121 138 252 / var(--tw-text-opacity));
@@ -2271,11 +2265,6 @@ html {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.text-halfBlack {
-  --tw-text-opacity: 1;
-  color: rgb(20 20 20 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -2545,6 +2534,11 @@ body:hover::-webkit-scrollbar-thumb, .cate-main:hover::-webkit-scrollbar-thumb {
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-gray-300:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-gray-500:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(107 114 128 / var(--tw-bg-opacity));
@@ -2560,9 +2554,9 @@ body:hover::-webkit-scrollbar-thumb, .cate-main:hover::-webkit-scrollbar-thumb {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-gray-300:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+.hover\:px-2:hover {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .hover\:px-4:hover {
@@ -2570,19 +2564,14 @@ body:hover::-webkit-scrollbar-thumb, .cate-main:hover::-webkit-scrollbar-thumb {
   padding-right: 1rem;
 }
 
-.hover\:py-2:hover {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-
-.hover\:px-2:hover {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
-
 .hover\:py-1:hover {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
+}
+
+.hover\:py-2:hover {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .hover\:text-blue-600:hover {
@@ -2862,6 +2851,10 @@ body:hover::-webkit-scrollbar-thumb, .cate-main:hover::-webkit-scrollbar-thumb {
     height: 110px;
   }
 
+  .sm\:h-\[150px\] {
+    height: 150px;
+  }
+
   .sm\:h-\[30px\] {
     height: 30px;
   }
@@ -2882,12 +2875,12 @@ body:hover::-webkit-scrollbar-thumb, .cate-main:hover::-webkit-scrollbar-thumb {
     height: 100%;
   }
 
-  .sm\:h-\[150px\] {
-    height: 150px;
-  }
-
   .sm\:w-\[190px\] {
     width: 190px;
+  }
+
+  .sm\:w-\[202\.8px\] {
+    width: 202.8px;
   }
 
   .sm\:w-\[328px\] {
@@ -2924,10 +2917,6 @@ body:hover::-webkit-scrollbar-thumb, .cate-main:hover::-webkit-scrollbar-thumb {
 
   .sm\:w-screen {
     width: 100vw;
-  }
-
-  .sm\:w-\[202\.8px\] {
-    width: 202.8px;
   }
 
   .sm\:columns-4 {

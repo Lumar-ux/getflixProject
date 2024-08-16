@@ -10,29 +10,6 @@ $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Current page
 $itemsPerPage = 10; // Number of items per page
 $offset = ($page - 1) * $itemsPerPage; // Calculate offset for SQL query
 
-if (isset($_GET['topmovies'])) {
-  $h1_text = 'Movies';
-  $url_get = 'topmovies';
-  $query = "SELECT movieapi_id AS id, poster_path, 'movie' AS type FROM movies WHERE imdb_vote > 7";
-} elseif (isset($_GET['topseries'])) {
-  $h1_text = 'TV Shows';
-  $url_get = 'topseries';
-  $query = "SELECT tvapi_id AS id, poster_path, 'tv_series' AS type FROM tv_series WHERE imdb_vote > 7";
-  // $conditionSeries = " WHERE imdb_vote > 7";
-} elseif (isset($_GET['movies'])) {
-  $h1_text = 'Movies';
-  $url_get = 'movies';
-  $query = "SELECT movieapi_id AS id, poster_path, 'movie' AS type FROM movies" . $conditionMovies;
-} elseif (isset($_GET['series'])) {
-  $h1_text = 'TV Shows';
-  $url_get = 'series';
-  $query = "SELECT tvapi_id AS id, poster_path, 'tv_series' AS type FROM tv_series" . $conditionSeries;
-} else {
-  $url_get = '';
-  // Combine query if filtering by country, language, or genre
-  $query = "SELECT movieapi_id AS id, poster_path, 'movie' AS type FROM movies" . $conditionMovies .
-    " UNION ALL SELECT tvapi_id AS id, poster_path, 'tv_series' AS type FROM tv_series" . $conditionSeries;
-}
 
 // Initialize condition variables
 $conditionMovies = '';
@@ -50,7 +27,6 @@ if (isset($_GET['g'])) {
     $conditionMovies .= (empty($conditionMovies) ? " WHERE $condition" : " AND $condition");
     $conditionSeries .= (empty($conditionSeries) ? " WHERE $condition" : " AND $condition");
   }
-  $h1_text = htmlspecialchars($genre) . " Movies & TV Shows";
 }
 
 // Add WHERE clause for country if needed
@@ -65,7 +41,6 @@ if (isset($_GET['c'])) {
     $conditionMovies .= (empty($conditionMovies) ? " WHERE $condition" : " AND $condition");
     $conditionSeries .= (empty($conditionSeries) ? " WHERE $condition" : " AND $condition");
   }
-  $h1_text = htmlspecialchars($country) . ' Movies & TV Shows';
 }
 
 // Add WHERE clause for language if needed
@@ -80,18 +55,67 @@ if (isset($_GET['l'])) {
     $conditionMovies .= (empty($conditionMovies) ? " WHERE $condition" : " AND $condition");
     $conditionSeries .= (empty($conditionSeries) ? " WHERE $condition" : " AND $condition");
   }
-  $h1_text = htmlspecialchars($language) . ' Movies & TV Shows';
 }
 
-// Build the query based on conditions
-if (isset($_GET['movies'])) {
+// h1 text based on the url
+// Default fallback
+$h1_text = 'Movies & TV Shows';
+// Check if the genre is set and use it
+if (isset($_GET['g'])) {
+  $genre = htmlspecialchars($_GET['g']);
+  if (isset($_GET['movies'])) {
+    $h1_text = "$genre Movies";
+  } elseif (isset($_GET['series'])) {
+    $h1_text = "$genre TV Shows";
+  } else {
+    $h1_text = "$genre Movies & TV Shows";
+  }
+} elseif (isset($_GET['movies'])) {
+  $h1_text = 'Movies';
+} elseif (isset($_GET['series'])) {
+  $h1_text = 'TV Shows';
+} elseif (isset($_GET['topmovies'])) {
+  $h1_text = 'Top Movies';
+} elseif (isset($_GET['topseries'])) {
+  $h1_text = 'Top TV Shows';
+} elseif (isset($_GET['c'])) {
+  $h1_text = htmlspecialchars($_GET['c']) . ' Movies & TV Shows';
+} elseif (isset($_GET['l'])) {
+  $h1_text = htmlspecialchars($_GET['l']) . ' Movies & TV Shows';
+}
+
+
+if (isset($_GET['topmovies'])) {
+  $url_get = 'topmovies';
+  $query = "SELECT movieapi_id AS id, poster_path, 'movie' AS type FROM movies WHERE imdb_vote > 7" . $conditionMovies;
+} elseif (isset($_GET['topseries'])) {
+  $url_get = 'topseries';
+  $query = "SELECT tvapi_id AS id, poster_path, 'tv_series' AS type FROM tv_series WHERE imdb_vote > 7" . $conditionSeries;
+  // $conditionSeries = " WHERE imdb_vote > 7";
+} elseif (isset($_GET['movies'])) {
+  $url_get = 'movies';
   $query = "SELECT movieapi_id AS id, poster_path, 'movie' AS type FROM movies" . $conditionMovies;
 } elseif (isset($_GET['series'])) {
+  $url_get = 'series';
   $query = "SELECT tvapi_id AS id, poster_path, 'tv_series' AS type FROM tv_series" . $conditionSeries;
 } else {
+  $url_get = '';
+  // Combine query if filtering by country, language, or genre
   $query = "SELECT movieapi_id AS id, poster_path, 'movie' AS type FROM movies" . $conditionMovies .
     " UNION ALL SELECT tvapi_id AS id, poster_path, 'tv_series' AS type FROM tv_series" . $conditionSeries;
 }
+
+
+
+// Build the query based on conditions
+// if (isset($_GET['movies'])) {
+//   $query = "SELECT movieapi_id AS id, poster_path, 'movie' AS type FROM movies" . $conditionMovies;
+// } elseif (isset($_GET['series'])) {
+//   $query = "SELECT tvapi_id AS id, poster_path, 'tv_series' AS type FROM tv_series" . $conditionSeries;
+// } else {
+//   $query = "SELECT movieapi_id AS id, poster_path, 'movie' AS type FROM movies" . $conditionMovies .
+//     " UNION ALL SELECT tvapi_id AS id, poster_path, 'tv_series' AS type FROM tv_series" . $conditionSeries;
+// }
 
 // Add pagination
 $query .= " LIMIT :offset, :limit";
