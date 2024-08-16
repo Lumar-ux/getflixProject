@@ -9,6 +9,10 @@ if (!isset($_SESSION['autority']) || $_SESSION['autority'] !== 1) {
 
 require_once "dbh.inc.php";
 
+// Initialiser les variables
+$user = null;
+$userId = null;
+
 // Vérifiez si un ID est fourni pour l'édition
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
     $id = intval($_GET['id']);
@@ -23,6 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
         if (!$user) {
             die("Utilisateur non trouvé.");
         }
+        $userId = $user['user_id'];
     } catch(PDOException $e) {  
         die("Échec de la requête : ". $e->getMessage());
     }
@@ -35,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
     $authority = $_POST['authority']; // Autorité
 
     // Gestion de l'avatar
-    $avatar = $user['avatar']; // Valeur par défaut de l'avatar
+    $avatar = $_POST['current_avatar']; // Valeur par défaut de l'avatar
 
     if (!empty($_FILES['avatar']['name'])) {
         // Nouveau fichier a été téléchargé
@@ -45,11 +50,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
 
         // Déplacer le fichier téléchargé
         if (move_uploaded_file($avatarFile['tmp_name'], $avatarPath)) {
+            $avatar = $avatarName;
             // Mettre à jour l'avatar dans la base de données
             // Connexion à la base de données et requête de mise à jour
-            $query = "UPDATE users SET avatar = ? WHERE id = ?";
-            $stmt = $pdo->prepare($query);
-            $stmt->execute([$avatarName, $userId]);
+            //$query = "UPDATE users SET avatar = ? WHERE id = ?";
+            //$stmt = $pdo->prepare($query);
+            //$stmt->execute([$avatarName, $userId]);
         // Erreur lors du téléchargement du fichier
         } else {
             echo "Erreur lors du téléchargement du fichier.";
@@ -97,6 +103,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit User</title>
+    <link rel="stylesheet" href="./output.css">
+    <link rel="icon" href="image/favicon.ico.jpg" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 

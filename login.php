@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stored_password = $user['password'];
             $user_id = $user['user_id'];
             $username = $user['username'];
+            $fullname = $user['fullname'];
             $avatar = $user['avatar'];
             $autority = $user['autority'];
 
@@ -86,6 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./output.css">
+    <link rel="icon" href="image/favicon.ico.jpg" type="image/x-icon">
     <title>Login</title>
 </head>
 
@@ -101,37 +103,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                     <strong class="font-bold"><?= $error ?></strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </aside>
-                    <?php } ?>
+                </div>
+                <?php } ?>
 
-                    <form action="login.php" method="post" class="flex flex-col mb-[10px]">
-                        <input type="email" name="email" id="floatingEmail" placeholder="Email"
-                            class="w-[234px] sm:w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4"
-                            value="<?=$email?>" />
+                <form action="login.php" method="post" class="flex flex-col mb-[10px]">
+                    <input type="email" name="email" id="floatingEmail" placeholder="Email"
+                        class="w-[234px] sm:w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4"
+                        value="<?=$email?>" />
 
-                        <input type="password" name="password" id="floatingPassword" placeholder="Password"
-                            class="w-[234px] sm:w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4"
-                            value="" />
+                    <input type="password" name="password" id="floatingPassword" placeholder="Password"
+                        class="w-[234px] sm:w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4"
+                        value="" />
 
-                        <button type="submit" name="submit" id="floatingLogin"
-                            class="w-[234px] sm:w-[405px] h-[58px] font-[570] bg-pastelBlue rounded-xl mb-2"><span
-                                class="font-[570]">Log
-                                in</span></button>
-                        <a href="index.php">
-                            <p class="underline text-xs text-center">Forgot your password?</p>
-                        </a>
-                        <p class="font-[570] h-fit leading-none text-center my-4">OR</p>
-                        <a href="sign-up.php"
-                            class="w-[234px] sm:w-[405px] h-[58px] text-pastelBlue bg-halfBlack rounded-xl font-[570] mb-2 flex justify-center items-center"><span
-                                class="font-[570]">Sign Up</span></button></a>
-                        <article>
-                            <input type="checkbox" name="rememberMe" id="rememberMe" class="accent-pastelBlue">
-                            <label for="rememberMe">Remember me</label>
-                        </article>
-                    </form>
-                    <p class="text-xs w-[234px] sm:w-[328px]">This page is protected by Google reCAPTCHA to ensure that
-                        you are not a
-                        robot.</p>
+                    <button type="submit" name="submit" id="floatingLogin"
+                        class="w-[234px] sm:w-[405px] h-[58px] font-[570] bg-pastelBlue rounded-xl mb-2"><span
+                            class="font-[570]">Log
+                            in</span></button>
+                    <a href="index.php">
+                        <p class="underline text-xs text-center">Forgot your password?</p>
+                    </a>
+                    <p class="font-[570] h-fit leading-none text-center my-4">OR</p>
+                    <a href="sign-up.php"
+                        class="w-[234px] sm:w-[405px] h-[58px] text-pastelBlue bg-halfBlack rounded-xl font-[570] mb-2 flex justify-center items-center"><span
+                            class="font-[570]">Sign Up</span></button></a>
+                    <article>
+                        <input type="checkbox" name="rememberMe" id="rememberMe" class="accent-pastelBlue">
+                        <label for="rememberMe">Remember me</label>
+                    </article>
+                </form>
+                <p class="text-xs w-[234px] sm:w-[328px]">This page is protected by Google reCAPTCHA to ensure that
+                    you are not a
+                    robot.</p>
             </article>
         </section>
         <section class="img-login h-full sm:grid grid-rows-2 grid-cols-2 gap-6 grow hidden">
