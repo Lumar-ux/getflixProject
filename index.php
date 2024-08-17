@@ -129,7 +129,7 @@ $n = count($elements);
           <a href="category.php?topmovies" class="self-end w-[19%] h-[19%]"><img src="image/Arrow-Categorie.svg" alt="Arrow-Categorie" class="w-full h-full"></a>
         </div>
         <?php foreach ($movie_result as $movie) { ?>
-          <a class="grid-item bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-3" href="program-detail.php?id=<?php echo $movie['movieapi_id']; ?>"><img class="grid-item bg-gray-500 rounded-xl" src="http://image.tmdb.org/t/p/w500/<?php echo $movie["poster_path"]; ?>" alt="poster"></a>
+          <a class="grid-item bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-3" href="program-detail.php?id=<?php echo $movie['movieapi_id'];?>&movies"><img class="grid-item bg-gray-500 rounded-xl" src="http://image.tmdb.org/t/p/w500/<?php echo $movie["poster_path"]; ?>" alt="poster"></a>
         <?php } ?>
       </article>
     </section>
@@ -140,9 +140,10 @@ $n = count($elements);
           <a href="category.php?topseries" class="self-end w-[19%] h-[19%]"><img src="image/Arrow-Categorie.svg" alt="Arrow-Categorie" class="w-full h-full"></a>
         </div>
         <?php foreach ($tv_result as $tv) { ?>
-          <a class="grid-item bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-3" href="program-detail.php?id=<?php echo $tv['tvapi_id']; ?>"><img class="grid-item bg-gray-500 rounded-xl" src="http://image.tmdb.org/t/p/w500/<?php echo $tv["poster_path"]; ?>" alt="poster"></a>
+          <a class="grid-item bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-3" href="program-detail.php?id=<?php echo $tv['tvapi_id'];?>&tvshows"><img class="grid-item bg-gray-500 rounded-xl" src="http://image.tmdb.org/t/p/w500/<?php echo $tv["poster_path"]; ?>" alt="poster"></a>
         <?php } ?>
 
+<<<<<<< HEAD
             </article>
         </section>
         <section class="cate-main w-full h-fit overflow-x-scroll mb-14">
@@ -185,6 +186,36 @@ $n = count($elements);
     <?php include_once("./footer.php"); ?>
     <script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
     <!-- <script src="./masonry.pkgd.js"></script> -->
+=======
+      </article>
+    </section>
+    <section class="cate-main w-full h-fit overflow-x-scroll mb-14">
+      <article class="grid1 h-full space-y-3 sm:space-y-6">
+        <div class="grid-item grid-item--width2 bg-pastelBlue rounded-xl p-4 flex flex-col justify-between mt-3 sm:mt-6">
+          <h1 name="category-03" class="text-white text-[51px] sm:text-[56px] font-[570] uppercase break-words leading-tight">Discover Movies</h1>
+          <a href="category.php?movies" class="self-end w-[19%] h-[19%]"><img src="image/Arrow-Categorie.svg" alt="Arrow-Categorie" class="w-full h-full"></a>
+        </div>
+        <?php foreach ($dis_movie_result as $dis_movie) { ?>
+          <a class="grid-item bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-3" href="program-detail.php?id=<?php echo $dis_movie['movieapi_id'];?>&movies"><img class="grid-item bg-gray-500 rounded-xl" src="http://image.tmdb.org/t/p/w500/<?php echo $dis_movie["poster_path"]; ?>" alt="poster"></a>
+        <?php } ?>
+      </article>
+    </section>
+    <section class="cate-main w-full h-fit overflow-x-scroll mb-14">
+      <article class="grid1 h-full space-y-3 sm:space-y-6">
+        <div class="grid-item grid-item--width2 bg-pastelBlue rounded-xl p-4 flex flex-col justify-between mt-3 sm:mt-6">
+          <h1 name="category-04" class="text-white text-[51px] sm:text-[56px] font-[570] uppercase break-words leading-tight">Discover Tv Shows</h1>
+          <a href="category.php?series" class="self-end w-[19%] h-[19%]"><img src="image/Arrow-Categorie.svg" alt="Arrow-Categorie" class="w-full h-full"></a>
+        </div>
+        <?php foreach ($dis_tv_result as $dis_tv) { ?>
+          <a class="grid-item bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-3" href="program-detail.php?id=<?php echo $dis_tv['tvapi_id'];?>&tvshows"><img class="grid-item bg-gray-500 rounded-xl" src="http://image.tmdb.org/t/p/w500/<?php echo $dis_tv["poster_path"]; ?>" alt="poster"></a>
+        <?php } ?>
+      </article>
+    </section>
+  </main>
+  <?php include_once("./footer.php"); ?>
+  <script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
+  <!-- <script src="./masonry.pkgd.js"></script> -->
+>>>>>>> 8525e94 (Section Episode/Mobile version page detail)
 </body>
 
 </html>
