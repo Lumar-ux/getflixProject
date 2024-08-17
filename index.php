@@ -125,7 +125,7 @@ $n = count($elements);
           <a href="category.php?topmovies" class="self-end w-[19%] h-[19%]"><img src="image/Arrow-Categorie.svg" alt="Arrow-Categorie" class="w-full h-full"></a>
         </div>
         <?php foreach ($movie_result as $movie) { ?>
-          <a class="grid-item bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-3" href="program-detail.php?id=<?php echo $movie['movieapi_id']; ?>"><img class="grid-item bg-gray-500 rounded-xl" src="http://image.tmdb.org/t/p/w500/<?php echo $movie["poster_path"]; ?>" alt="poster"></a>
+          <a class="grid-item bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-3" href="program-detail.php?id=<?php echo $movie['movieapi_id'];?>&movies"><img class="grid-item bg-gray-500 rounded-xl" src="http://image.tmdb.org/t/p/w500/<?php echo $movie["poster_path"]; ?>" alt="poster"></a>
         <?php } ?>
       </article>
     </section>
@@ -136,7 +136,7 @@ $n = count($elements);
           <a href="category.php?topseries" class="self-end w-[19%] h-[19%]"><img src="image/Arrow-Categorie.svg" alt="Arrow-Categorie" class="w-full h-full"></a>
         </div>
         <?php foreach ($tv_result as $tv) { ?>
-          <a class="grid-item bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-3" href="program-detail.php?id=<?php echo $tv['tvapi_id']; ?>"><img class="grid-item bg-gray-500 rounded-xl" src="http://image.tmdb.org/t/p/w500/<?php echo $tv["poster_path"]; ?>" alt="poster"></a>
+          <a class="grid-item bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-3" href="program-detail.php?id=<?php echo $tv['tvapi_id'];?>&tvshows"><img class="grid-item bg-gray-500 rounded-xl" src="http://image.tmdb.org/t/p/w500/<?php echo $tv["poster_path"]; ?>" alt="poster"></a>
         <?php } ?>
 
       </article>
@@ -148,7 +148,7 @@ $n = count($elements);
           <a href="category.php?movies" class="self-end w-[19%] h-[19%]"><img src="image/Arrow-Categorie.svg" alt="Arrow-Categorie" class="w-full h-full"></a>
         </div>
         <?php foreach ($dis_movie_result as $dis_movie) { ?>
-          <a class="grid-item bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-3" href="program-detail.php?id=<?php echo $dis_movie['movieapi_id']; ?>"><img class="grid-item bg-gray-500 rounded-xl" src="http://image.tmdb.org/t/p/w500/<?php echo $dis_movie["poster_path"]; ?>" alt="poster"></a>
+          <a class="grid-item bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-3" href="program-detail.php?id=<?php echo $dis_movie['movieapi_id'];?>&movies"><img class="grid-item bg-gray-500 rounded-xl" src="http://image.tmdb.org/t/p/w500/<?php echo $dis_movie["poster_path"]; ?>" alt="poster"></a>
         <?php } ?>
       </article>
     </section>
@@ -159,7 +159,7 @@ $n = count($elements);
           <a href="category.php?series" class="self-end w-[19%] h-[19%]"><img src="image/Arrow-Categorie.svg" alt="Arrow-Categorie" class="w-full h-full"></a>
         </div>
         <?php foreach ($dis_tv_result as $dis_tv) { ?>
-          <a class="grid-item bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-3" href="program-detail.php?id=<?php echo $dis_tv['tvapi_id']; ?>"><img class="grid-item bg-gray-500 rounded-xl" src="http://image.tmdb.org/t/p/w500/<?php echo $dis_tv["poster_path"]; ?>" alt="poster"></a>
+          <a class="grid-item bg-gray-500 rounded-xl ml-3 sm:ml-6" name="img-cat-3" href="program-detail.php?id=<?php echo $dis_tv['tvapi_id'];?>&tvshows"><img class="grid-item bg-gray-500 rounded-xl" src="http://image.tmdb.org/t/p/w500/<?php echo $dis_tv["poster_path"]; ?>" alt="poster"></a>
         <?php } ?>
       </article>
     </section>

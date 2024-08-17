@@ -233,6 +233,7 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
         </section>
     </main>
     <?php include_once("./footer.php");?>
+    <script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
 </body>
 
 </html>

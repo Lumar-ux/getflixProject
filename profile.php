@@ -98,7 +98,7 @@ $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </footer>
 
     </main>
-
+    <script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
 </body>
 
 </html>

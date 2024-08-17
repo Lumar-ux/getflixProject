@@ -94,6 +94,7 @@ if (isset($_GET['id'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./output.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.js" integrity="sha512-bkge924rHvzs8HYzPSjoL47QZU0PYng6QsMuo3xxmEtCeGsfIeDl6t4ATj+NxwUbwOEYKsGO8A5zIAkMXP+cHQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <title>Getflix | <?php echo $table1_data['title']; ?></title>
 </head>
 
@@ -105,32 +106,34 @@ if (isset($_GET['id'])) {
     </section>
     <section class="porg-detail block sm:flex w-full sm:h-[801px] h-[716.4px] sm:mb-28 mb-[78px]">
       <!-- <div class="bg-gray-500 rounded-xl h-[270px] sm:h-full w-full sm:w-[679px] sm:mr-14 sm:mb-0 mb-3 sm:m-0" name="img-cat_08"></div> -->
-
-      <img class="bg-gray-500 rounded-xl h-[270px] sm:h-full sm:w-fit sm:mr-14 sm:mb-0 mb-3 sm:m-0 object-contain" name="img-cat_08" src="http://image.tmdb.org/t/p/w500/<?php echo $table1_data['poster_path']; ?>" alt="poster">
-
+      <img class="rounded-xl h-[270px] sm:h-full hover:h-fit sm:hover:h-full hover:object-contain sm:w-fit w-full sm:mr-14 sm:mb-0 mb-3 sm:m-0 sm:object-contain object-cover" name="img-cat_08" src="http://image.tmdb.org/t/p/w500/<?php echo $table1_data['poster_path']; ?>" alt="poster">
       <article class="flex flex-col w-full sm:h-full h-[436px] sm:justify-between">
         <section class="detail w-full">
-          <h1 name="name-prog" class="bg-pastelBlue text-white py-4 pl-4 text-[34px] text-1 font-[570] uppercase sm:mb-6 mb-2.5 rounded-[10px] leading-none w-full"> <?php echo $table1_data['title']; ?></h1>
-          <article class="info flex items-center sm:mb-6 mb-2.5">
-            <?php
-            foreach ($words as $word) { ?>
-              <button name="genre-01" class="bg-white p-[10px] sm:text-base text-[13px] font-[570] leading-none mr-2 rounded-[10px]"><?php echo $word ?></button>
-            <?php } ?>
-            <p name=" year" class="separator leading-none font-[570] sm:text-base text-[13px] text-white mr-2">Year: <?php
+          <h1 name="name-prog" class="bg-pastelBlue text-white sm:p-4 p-[10px] text-[34px] font-[570] uppercase sm:mb-6 mb-3 rounded-[10px] leading-none w-full"> <?php echo $table1_data['title']; ?></h1>
+          <article class="info flex sm:flex-row flex-col sm:items-center sm:mb-6 mb-3">
+            <section class="sm:mb-0 mb-2">
+              <?php
+              foreach ($words as $word) { ?>
+                <button name="genre-01" class="bg-white p-[10px] sm:text-base text-[13px] font-[570] leading-none mr-2 rounded-[10px]"><?php echo $word ?></button>
+              <?php } ?>
+            </section>
+            <section class="flex">
+              <p name=" year" class="sm:separator leading-none font-[570] sm:text-base text-[13px] text-white mr-2">Year: <?php
                                                                                               $release_date = $table1_data['release_date'];
                                                                                               $year = date('Y', strtotime($release_date));
                                                                                               echo $year; ?></p>
-            <p name="duration" class="separator leading-none font-[570] sm:text-base text-[13px] text-white mr-2">Duration : <?php echo $formattedDuration; ?></p>
-            <p name="imbdb-note" class="separator leading-none font-[570] sm:text-base text-[13px] text-white"><?php echo $table1_data['imdb_vote']; ?></p>
+              <p name="duration" class="separator leading-none font-[570] sm:text-base text-[13px] text-white mr-2">Duration : <?php echo $formattedDuration; ?></p>
+              <p name="imbdb-note" class="separator leading-none font-[570] sm:text-base text-[13px] text-white"><?php echo $table1_data['imdb_vote']; ?></p>
+            </section>
           </article>
           <article class="flex">
             <ul class="list-none mr-6">
-              <li class="text-white text-xs mb-[10px]">Country : <span name="prog-country"><?php echo $table1_data['country']; ?></span></li>
-              <li class="text-white text-xs">Production : <span name="prog-prod"><?php echo $table1_data['production']; ?></span></li>
+              <li class="text-white sm:text-xs text-[10px] sm:mb-[10px] mb-2">Country : <span name="prog-country"><?php echo $table1_data['country']; ?></span></li>
+              <li class="text-white sm:text-xs text-[10px]">Production : <span name="prog-prod"><?php echo $table1_data['production']; ?></span></li>
             </ul>
             <ul class="list-none">
-              <li class="text-white text-xs mb-[10px]">Date Release : <span name="prog-release"><?php echo $table1_data['release_date']; ?></span></li>
-              <li class="text-white text-xs sm:w-[370px] w-[136.5px] line-clamp-2">Cast : <span name="prog-cast">
+              <li class="text-white sm:text-xs text-[10px] sm:mb-[10px] mb-2">Date Release : <span name="prog-release"><?php echo $table1_data['release_date']; ?></span></li>
+              <li class="text-white sm:text-xs text-[10px] sm:w-[370px] w-[136.5px] line-clamp-2">Cast : <span name="prog-cast">
                   <?php // to limit the number of cast
                   $limit = 9; // Set the limit to the desired number of items
                   $count = 0; // Initialize a counter
@@ -147,13 +150,45 @@ if (isset($_GET['id'])) {
           </article>
         </section>
         <section class="descriptif mt-auto">
-          <p class="text-white font-[570] sm:text-[18px] text-3.5 line-clamp-6 w-[80%]"><?php echo $table1_data['overview']; ?></p>
+          <p class="text-white font-[570] sm:text-[18px] text-sm line-clamp-6"><?php echo $table1_data['overview']; ?></p>
+        </section>
+      </article>
+    </section>
+    <section class="list-episode w-full h-fit bg-greyWhite border-[#B9B9B] border-1 rounded-xl p-[30px] mb-6 <?php echo (basename($_SERVER['PHP_SELF']) == 'program-detail.php' && isset($_GET['movies'])) ? 'hidden' : 'block'; ?>">
+      <article>
+        <section class="mb-6">
+          <button id="dropdownHoverButtonEpisode" data-dropdown-toggle="dropdownHoverEpisode" data-dropdown-trigger="hover" class="text-white bg-pastelBlue hover:bg-[#5461B0] focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg sm:text-base text-sm px-3 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Saison <img src="image/arrow_drop_up_32dp_FFFFFF_FILL0_wght400_GRAD0_opsz40.svg" alt="Arrow Drop Down" class="w-6 h-6 ml-2"> 
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+          </button>
+          <!-- Dropdown menu -->
+          <div id="dropdownHoverEpisode" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+              <ul class="p-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHoverButtonEpisode">
+                <?php
+                for($i=1;$i<10;$i++){
+                ?>
+                <li>
+                  <a href="#" class="block px-4 py-2 hover:bg-coloHover hover:text-white">Saison <?php echo $i;?></a>
+                </li>
+                <?php }?>
+              </ul>
+          </div>
+        </section>
+        <section class="w-full">
+            <ul class="w-full grid sm:grid-cols-5 sm:grid-rows-2 auto-rows-auto gap-2">
+              <?php
+                for($e=1;$e<11;$e++){
+              ?>
+              <li class="sm:w-[285.93px] w-full h-[56.72px] border-2 border-pastelBlue rounded-xl p-4 flex items-center">
+                  <p class="leading-none sm:text-base text-sm font-[570] text-[#6C6C6C]">Eps<?php echo $e?> : <span class="font-normal" name="nameEpisode"></span></p>
+              </li>
+              <?php }?>
+            </ul>
         </section>
       </article>
     </section>
     <section class="cate-main w-full h-fit overflow-x-scroll mb-14">
       <article class="grid1 h-full space-y-3 sm:space-y-6">
-        <div class="grid-item grid-item--width2 bg-pastelBlue rounded-xl p-4 flex flex-col justify-between mt-0 sm:mt-6">
+        <div class="grid-item grid-item--width2 bg-pastelBlue rounded-xl p-4 flex flex-col justify-between mt-3 sm:mt-6">
           <h1 name="category-01" class="text-white text-[51px] sm:text-[56px] font-[570] uppercase break-words leading-tight">You may also like</h1>
           <a href="category.php?movies" class="self-end w-[19%] h-[19%]"><img src="image/Arrow-Categorie.svg" alt="Arrow-Categorie" class="w-full h-full"></a>
         </div>
@@ -235,6 +270,7 @@ if (isset($_GET['id'])) {
     </section>
   </main>
   <?php include_once("./footer.php"); ?>
+  <script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
 </body>
 
 </html>

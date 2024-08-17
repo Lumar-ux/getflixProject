@@ -187,7 +187,7 @@ function buildUrlWithGenre($baseParams, $genre)
   <section class="w-[80%] sm:container mx-auto h-fit">
     <article class="flex items-center justify-between mb-14">
       <h1 name="name-category" class=" text-pastelBlue text-[50px] sm:text-[56px] font-[570] uppercase leading-none"><?php echo $h1_text; ?></h1>
-      <section class="<?php echo (basename($_SERVER['PHP_SELF']) == 'category.php' && (isset($_GET['language']) or isset($_GET['country']))) ? 'hidden' : 'block'; ?>">
+      <section>
         <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'category.php' && isset($_GET['genre'])) ? 'text-pastelBlue' : 'text-white'; ?> focus:ring-2 focus:outline-none focus:ring-gray-300 rounded-xl mr-4 inline-flex items-center leading-none h-[20px] sm:text-base text-sm" type="button">Genre<svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"></path>
           </svg>
@@ -269,7 +269,7 @@ function buildUrlWithGenre($baseParams, $genre)
     <article class="w-full grid-cols-2 grid sm:grid-cols-[288.74px_288.74px_288.74px_288.74px_288.74px] grid-flow-row auto-rows-[202.8px] sm:auto-rows-[388px] sm:gap-6 gap-3 sm:mb-14 mb-[39px]">
       <?php
       foreach ($result as $row) { ?>
-        <a class="bg-gray-500 rounded-xl" href="program-detail.php?id=<?php echo $row['id']; ?>" name="img-cat_07">
+        <a class="bg-gray-500 rounded-xl" href="program-detail.php?id=<?php echo $row['id'];?>" name="img-cat_07">
           <img class="rounded-xl h-full w-full" src="http://image.tmdb.org/t/p/w500/<?php echo $row["poster_path"]; ?>" alt="poster">
         </a>
       <?php } ?>
