@@ -200,142 +200,111 @@ function buildUrlWithGenre($baseParams, $genre)
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./output.css">
-    <link rel="icon" href="image/favicon.ico.jpg" type="image/x-icon">
-    <title>Category</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./output.css">
+  <title>Category</title>
 </head>
 
 <body class="bg-halfBlack h-screen w-screen">
-    <?php include_once("./header.php"); ?>
-    <section class="w-[80%] sm:container mx-auto h-fit">
-        <article class="flex items-center justify-between mb-14">
-            <h1 name="name-category"
-                class=" text-pastelBlue text-[50px] sm:text-[56px] font-[570] uppercase leading-none">
-                <?php echo $h1_text; ?></h1>
-            <section
-                class="<?php echo (basename($_SERVER['PHP_SELF']) == 'category.php' && (isset($_GET['language']) or isset($_GET['country']))) ? 'hidden' : 'block'; ?>">
-                <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover"
-                    class="<?php echo (basename($_SERVER['PHP_SELF']) == 'category.php' && isset($_GET['genre'])) ? 'text-pastelBlue' : 'text-white'; ?> focus:ring-2 focus:outline-none focus:ring-gray-300 rounded-xl mr-4 inline-flex items-center leading-none h-[20px] sm:text-base text-sm"
-                    type="button">Genre<svg class="w-2.5 h-2.5 ml-2" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 1 4 4 4-4"></path>
-                    </svg>
-                </button>
-                <div id="dropdownHover"
-                    class="z-10 bg-greyWhite divide-y divide-gray-100 rounded-xl shadow w-fit hidden px-2">
-                    <article class="flex">
-                        <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
-                            <li>
-                                <a href="<?php echo buildUrlWithGenre($params, 'Action'); ?>"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Action</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo buildUrlWithGenre($params, 'Adventure'); ?>"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Adventure</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo buildUrlWithGenre($params, 'Animation'); ?>"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Animation</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo buildUrlWithGenre($params, 'Biography'); ?>"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Biography</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo buildUrlWithGenre($params, 'Comedy'); ?>"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Comedy</a>
-                            </li>
-                        </ul>
-                        <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
-                            <li>
-                                <a href="<?php echo buildUrlWithGenre($params, 'Crime'); ?>"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Crime</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo buildUrlWithGenre($params, 'Documentary'); ?>"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Documentary</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo buildUrlWithGenre($params, 'Drama'); ?>"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Drama</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo buildUrlWithGenre($params, 'Family'); ?>"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Family</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo buildUrlWithGenre($params, 'Fantasy'); ?>"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Fantasy</a>
-                            </li>
-                        </ul>
-                        <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
-                            <li>
-                                <a href="<?php echo buildUrlWithGenre($params, 'Horror'); ?>"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Horror</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo buildUrlWithGenre($params, 'History'); ?>"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">History</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo buildUrlWithGenre($params, 'Musical'); ?>"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Musical</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo buildUrlWithGenre($params, 'Mystery'); ?>"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Mystery</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo buildUrlWithGenre($params, 'Romance'); ?>"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Romance</a>
-                            </li>
-                        </ul>
-                        <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
-                            <li>
-                                <a href="<?php echo buildUrlWithGenre($params, 'Sci-Fi'); ?>"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Sci-Fi</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo buildUrlWithGenre($params, 'Sport'); ?>"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Sport</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo buildUrlWithGenre($params, 'Thriller'); ?>"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Thriller</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo buildUrlWithGenre($params, 'War'); ?>"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">War</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo buildUrlWithGenre($params, 'western'); ?>"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Western</a>
-                            </li>
-                        </ul>
-                    </article>
-                </div>
-            </section>
-        </article>
-        <article
-            class="w-full grid-cols-2 grid sm:grid-cols-[288.74px_288.74px_288.74px_288.74px_288.74px] grid-flow-row auto-rows-[202.8px] sm:auto-rows-[388px] sm:gap-6 gap-3 sm:mb-14 mb-[39px]">
-            <?php
+  <?php include_once("./header.php"); ?>
+  <section class="w-[80%] sm:container mx-auto h-fit">
+    <article class="flex items-center justify-between mb-14">
+      <h1 name="name-category" class=" text-pastelBlue text-[50px] sm:text-[56px] font-[570] uppercase leading-none"><?php echo $h1_text; ?></h1>
+      <section class="<?php echo (basename($_SERVER['PHP_SELF']) == 'category.php' && (isset($_GET['language']) or isset($_GET['country']))) ? 'hidden' : 'block'; ?>">
+        <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'category.php' && isset($_GET['genre'])) ? 'text-pastelBlue' : 'text-white'; ?> focus:ring-2 focus:outline-none focus:ring-gray-300 rounded-xl mr-4 inline-flex items-center leading-none h-[20px] sm:text-base text-sm" type="button">Genre<svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"></path>
+          </svg>
+        </button>
+        <div id="dropdownHover" class="z-10 bg-greyWhite divide-y divide-gray-100 rounded-xl shadow w-fit hidden px-2">
+          <article class="flex">
+            <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'Action'); ?>" class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Action</a>
+              </li>
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'Adventure'); ?>" class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Adventure</a>
+              </li>
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'Animation'); ?>" class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Animation</a>
+              </li>
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'Biography'); ?>" class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Biography</a>
+              </li>
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'Comedy'); ?>" class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Comedy</a>
+              </li>
+            </ul>
+            <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'Crime'); ?>" class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Crime</a>
+              </li>
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'Documentary'); ?>" class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Documentary</a>
+              </li>
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'Drama'); ?>" class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Drama</a>
+              </li>
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'Family'); ?>" class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Family</a>
+              </li>
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'Fantasy'); ?>" class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Fantasy</a>
+              </li>
+            </ul>
+            <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'Horror'); ?>" class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Horror</a>
+              </li>
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'History'); ?>" class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">History</a>
+              </li>
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'Musical'); ?>" class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Musical</a>
+              </li>
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'Mystery'); ?>" class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Mystery</a>
+              </li>
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'Romance'); ?>" class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Romance</a>
+              </li>
+            </ul>
+            <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton">
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'Sci-Fi'); ?>" class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Sci-Fi</a>
+              </li>
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'Sport'); ?>" class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Sport</a>
+              </li>
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'Thriller'); ?>" class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Thriller</a>
+              </li>
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'War'); ?>" class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">War</a>
+              </li>
+              <li>
+                <a href="<?php echo buildUrlWithGenre($params, 'western'); ?>" class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Western</a>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </article>
+    <article class="w-full grid-cols-2 grid sm:grid-cols-[288.74px_288.74px_288.74px_288.74px_288.74px] grid-flow-row auto-rows-[202.8px] sm:auto-rows-[388px] sm:gap-6 gap-3 sm:mb-14 mb-[39px]">
+      <?php
       foreach ($result as $row) { ?>
-            <a class="bg-gray-500 rounded-xl" href="program-detail.php?id=<?php echo $row['id']; ?>" name="img-cat_07">
-                <img class="rounded-xl h-full w-full"
-                    src="http://image.tmdb.org/t/p/w500/<?php echo $row["poster_path"]; ?>" alt="poster">
-            </a>
-            <?php } ?>
-        </article>
-    </section>
-    <!-- w-[288.74px] h-[388px] sm:h-[150px] sm:w-[202.8px] -->
-    <!-- Pagination HTML -->
-    <section class="container w-full mx-auto my-4 flex justify-center">
-        <nav aria-label="Page navigation example" class="mx-auto mt-5">
-            <ul class="inline-flex -space-x-px text-sm gap-1">
-                <?php
+        <a class="bg-gray-500 rounded-xl" href="program-detail.php?id=<?php echo $row['id']; ?>" name="img-cat_07">
+          <img class="rounded-xl h-full w-full" src="http://image.tmdb.org/t/p/w500/<?php echo $row["poster_path"]; ?>" alt="poster">
+        </a>
+      <?php } ?>
+    </article>
+  </section>
+  <!-- w-[288.74px] h-[388px] sm:h-[150px] sm:w-[202.8px] -->
+  <!-- Pagination HTML -->
+  <section class="container w-full mx-auto my-4 flex justify-center">
+    <nav aria-label="Page navigation example" class="mx-auto mt-5">
+      <ul class="inline-flex -space-x-px text-sm gap-1">
+        <?php
         // Build base URL for pagination
         $base_url = '?page=';
         $url_params = '';
@@ -348,36 +317,33 @@ function buildUrlWithGenre($baseParams, $genre)
         // Previous button
         $prev_page = max(1, $page - 1);
         ?>
-                <li>
-                    <a href="<?php echo $base_url . $prev_page . $url_params; ?>"
-                        class="flex items-center justify-center px-3 h-8 rounded-l-xl text-gray-50 border border-gray-300 bg-gray-900 hover:bg-gray-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white">Previous</a>
-                </li>
+        <li>
+          <a href="<?php echo $base_url . $prev_page . $url_params; ?>" class="flex items-center justify-center px-3 h-8 rounded-l-xl text-gray-50 border border-gray-300 bg-gray-900 hover:bg-gray-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white">Previous</a>
+        </li>
 
-                <?php
+        <?php
         // Page number links
         for ($x = 1; $x <= $total_page; $x++): ?>
-                <li>
-                    <a href="<?php echo $base_url . $x . $url_params; ?>"
-                        class="flex items-center justify-center px-3 h-8 text-gray-50 border border-gray-300 hover:bg-gray-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white <?php echo ($x == $page) ? 'font-bold bg-gray-500' : 'bg-gray-900'; ?>">
-                        <?php echo $x; ?>
-                    </a>
-                </li>
-                <?php endfor; ?>
+          <li>
+            <a href="<?php echo $base_url . $x . $url_params; ?>" class="flex items-center justify-center px-3 h-8 text-gray-50 border border-gray-300 hover:bg-gray-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white <?php echo ($x == $page) ? 'font-bold bg-gray-500' : 'bg-gray-900'; ?>">
+              <?php echo $x; ?>
+            </a>
+          </li>
+        <?php endfor; ?>
 
-                <?php
+        <?php
         // Next button
         $next_page = min($total_page, $page + 1);
         ?>
-                <li>
-                    <a href="<?php echo $base_url . $next_page . $url_params; ?>"
-                        class="flex items-center justify-center px-3 h-8 rounded-r-xl text-gray-50 border border-gray-300 bg-gray-900 hover:bg-gray-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white">Next</a>
-                </li>
-            </ul>
-        </nav>
-    </section>
+        <li>
+          <a href="<?php echo $base_url . $next_page . $url_params; ?>" class="flex items-center justify-center px-3 h-8 rounded-r-xl text-gray-50 border border-gray-300 bg-gray-900 hover:bg-gray-500 dark:border-gray-700 dark:bg-gray-700 dark:text-white">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </section>
 
-    <?php include_once("./footer.php"); ?>
-    <script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
+  <?php include_once("./footer.php"); ?>
+  <script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
 </body>
 
 </html>

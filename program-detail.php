@@ -146,7 +146,7 @@ if (isset($_GET['id'])) {
 if (isset($_POST['submit'])) {
   $text = $_POST["message-current-user"];
   $dbmovie_id = $table1_data['movie_id'];
-  $user_id = 1; // need actual user is from session
+  $user_id = $_SESSION["user_id"];
 
 
   try {
@@ -156,9 +156,11 @@ if (isset($_POST['submit'])) {
     $stmt->bindParam(':comment', $text);
     $stmt->bindParam(':movie_id', $dbmovie_id);
     $stmt->bindParam(':user_id', $user_id);
-    $result = $stmt->execute();
-    if ($result) {
+    $st_result = $stmt->execute();
+    if ($st_result) {
       header("Location:program-detail.php?id=$id&comment=success");
+    } else {
+      header("Location:program-detail.php?id=$id&comment=unsuccess");
     }
   } catch (PDOException $e) {
     // Handle any errors
@@ -174,6 +176,7 @@ if (isset($_POST['submit'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./output.css">
+  <link rel="icon" href="image/favicon.ico.jpg" type="image/x-icon">
   <title>Getflix | <?php echo $table1_data['title']; ?></title>
 </head>
 
@@ -255,8 +258,9 @@ if (isset($_POST['submit'])) {
       <article name="Comment-Area" class="flex mb-10">
         <section class="w-full sm:w-[875px]">
           <article class="flex items-center mb-2">
-            <div class="flex-none w-[40px] h-[40px] bg-greyWhite rounded-full mr-2"></div>
-            <h2 name="current-name-user" class="text-white font-bold leading-none">User</h2>
+            <!-- <div class="flex-none w-[40px] h-[40px] bg-greyWhite rounded-full mr-2"></div> -->
+            <img src="./image/avatar_directory/<?php echo $user_data_avatar; ?>" alt="" class="flex-none w-[40px] h-[40px] bg-greyWhite rounded-full mr-2">
+            <h2 name="current-name-user" class="text-white font-bold leading-none"><?php echo $user_data_username; ?></h2>
           </article>
           <div class="form-floating">
             <form action="" method="POST" class="flex flex-col">
@@ -272,24 +276,15 @@ if (isset($_POST['submit'])) {
       $query = "SELECT users.username, users.avatar, movie_comments.comment, movie_comments.created_at
                 FROM users
                 INNER JOIN movie_comments ON users.user_id = movie_comments.user_id
-                WHERE movie_comments.movie_id = :movie_id;";
-
+                WHERE movie_comments.movie_id = :movie_id ORDER BY movie_comments.created_at DESC; ";
       $moviedb_id = $table1_data['movie_id'];
 
       try {
-        // Prepare the statement
         $stmt = $conn->prepare($query);
-
-        // Bind the parameter
         $stmt->bindParam(':movie_id', $moviedb_id, PDO::PARAM_INT);
-
-        // Execute the statement
         $stmt->execute();
-
-        // Fetch all results
         $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
       } catch (PDOException $e) {
-        // Handle any errors
         echo "Error: " . $e->getMessage();
       }
       foreach ($comments as $row) { ?>
@@ -298,7 +293,7 @@ if (isset($_POST['submit'])) {
           <section class="w-full sm:w-[875px]">
             <article class="flex items-center mb-2">
               <!-- <div class="flex-none w-[40px] h-[40px] bg-greyWhite rounded-full mr-2"></div> -->
-              <img src="<?php echo $row['avatar'];  ?>" class="flex-none w-[40px] h-[40px] bg-greyWhite rounded-full mr-2" alt="user image">
+              <img src="./image/avatar_directory/<?php echo $row['avatar']; ?>" class="flex-none w-[40px] h-[40px] bg-greyWhite rounded-full mr-2" alt="user image">
               <h2 name="current-name-user" class="text-white font-bold leading-none"><?php echo $row['username'];  ?></h2>
             </article>
             <div class="screen-message w-full h-20 rounded-xl p-4 mb-1 bg-greyWhite text-black" name="message-user">
@@ -312,38 +307,10 @@ if (isset($_POST['submit'])) {
           </section>
         </article>
       <?php    } ?>
-      <!-- 
-      <article name="post-Area" class="flex mb-10">
-        <section class="w-full sm:w-[875px]">
-          <article class="flex items-center mb-2">
-            <div class="flex-none w-[40px] h-[40px] bg-greyWhite rounded-full mr-2"></div>
-            <h2 name="current-name-user" class="text-white font-bold leading-none">User</h2>
-          </article>
-          <div class="screen-message w-full h-20 rounded-xl p-4 mb-1 bg-greyWhite" name="message-user"></div>
-          <div class="flex">
-            <button class="p-2 hover:bg-[#424242] mr-2 rounded-full"><img src="image/thumb_up_32dp_FFF_FILL0_wght400_GRAD0_opsz40.svg" alt="Thumb-Up" class="w-[18px] h-[18px]"></button>
-            <button class="p-2 hover:bg-[#424242] rounded-full"><img src="image/thumb_down_32dp_FFF_FILL0_wght400_GRAD0_opsz40.svg" alt="Thumb-Down" class="w-[18px] h-[18px]"></button> -->
-      <!-- <button type="submit" name="submit" class="send flex hover:bg-[#424242] px-4 py-2 rounded-xl"><img src="image/reply_32dp_FFF_FILL0_wght400_GRAD0_opsz40.svg" alt="Reply-Icon" class="w-[18px] h-[18px] mr-1"><span class="text-[12px] font-normal text-white">Reply</span></button> -->
-      <!-- </div>
-        </section>
-      </article> -->
-      <!-- <article name="post-Area" class="flex mb-10">
-        <section class="w-full sm:w-[875px]">
-          <article class="flex items-center mb-2">
-            <div class="flex-none w-[40px] h-[40px] bg-greyWhite rounded-full mr-2"></div>
-            <h2 name="current-name-user" class="text-white font-bold leading-none">User</h2>
-          </article>
-          <div class="screen-message w-full h-20 rounded-xl p-4 mb-1 bg-greyWhite" name="message-user"></div>
-          <div class="flex">
-            <button class="p-2 hover:bg-[#424242] mr-2 rounded-full"><img src="image/thumb_up_32dp_FFF_FILL0_wght400_GRAD0_opsz40.svg" alt="Thumb-Up" class="w-[18px] h-[18px]"></button>
-            <button class="p-2 hover:bg-[#424242] rounded-full"><img src="image/thumb_down_32dp_FFF_FILL0_wght400_GRAD0_opsz40.svg" alt="Thumb-Down" class="w-[18px] h-[18px]"></button> -->
-      <!-- <button type="submit" name="submit" class="send flex hover:bg-[#424242] px-4 py-2 rounded-xl"><img src="image/reply_32dp_FFF_FILL0_wght400_GRAD0_opsz40.svg" alt="Reply-Icon" class="w-[18px] h-[18px] mr-1"><span class="text-[12px] font-normal text-white">Reply</span></button> -->
-      <!-- </div>
-        </section>
-      </article> -->
     </section>
   </main>
   <?php include_once("./footer.php"); ?>
+  <script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
 </body>
 
 </html>

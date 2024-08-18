@@ -8,6 +8,10 @@ error_reporting(E_ALL);
 // Initialize the session
 include_once "dbh.inc.php";
 
+if (session_status() === PHP_SESSION_NONE) {
+    // Session has not started, so start it
+    session_start();
+}
 // Variables d'authentification et d'erreurs
 $authenticated = false;
 if (isset($_SESSION["email"])) {
@@ -126,8 +130,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $insert_id = $dbConnection->lastInsertId();
 
             // Définir une variable de session pour indiquer le succès
+
             $_SESSION['registration_success'] = true;
+            $_SESSION['email'] = $email;
             $_SESSION['fullname'] = $fullname; // Stocker le nom complet pour le message
+            $_SESSION['avatar'] = $avatar;
+            $_SESSION['user_id'] = $insert_id;
             header('Location:index.php');
         } catch (PDOException $e) {
             $error = "Database error: " . $e->getMessage();
