@@ -92,7 +92,7 @@ include_once "graph.inc.php"; // Inclure le fichier pour générer les données 
                 <!-- Boutons flexibles et responsive -->
                 <section class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 rounded-xl">
                     <a class="bg-pastelBlue text-white px-8 py-3 rounded-lg hover:bg-[#5461B0]" href="#" role="button">XXX</a>
-                    <a class="bg-pastelBlue text-white px-8 py-3 rounded-lg hover:bg-[#5461B0]" href="#" role="button">XXX</a>
+                    <a class="bg-pastelBlue text-white px-8 py-3 rounded-lg hover:bg-[#5461B0]" href="index.php" role="button">Home</a>
                     <a class="bg-red-500 text-white px-8 py-3 rounded-lg hover:bg-red-600" href="logout.php" role="button">Exit</a>
                     <!-- Bouton Exit -->
                 </section>

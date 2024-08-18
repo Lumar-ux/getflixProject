@@ -1377,6 +1377,10 @@ html {
   height: 2.25rem;
 }
 
+.h-\[104px\] {
+  height: 104px;
+}
+
 .h-\[120px\] {
   height: 120px;
 }
@@ -1464,14 +1468,6 @@ html {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-\[\] {
-  height: ;
-}
-
-.h-\[104px\] {
-  height: 104px;
 }
 
 .w-1\/2 {
@@ -2115,9 +2111,9 @@ html {
   padding-right: 1.25rem;
 }
 
-.px-6 {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .py-1 {
@@ -2138,11 +2134,6 @@ html {
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-}
-
-.px-8 {
-  padding-left: 2rem;
-  padding-right: 2rem;
 }
 
 .pl-5 {
