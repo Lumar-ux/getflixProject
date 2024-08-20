@@ -1,12 +1,13 @@
 <?php
 include_once "dbh.inc.php";
+require_once('env.php');
 $conn = getDatabaseConnection();
 // The ID to search for
 if (isset($_GET['id'])) {
   $id = $_GET['id'] ?? null; // Use null coalescing operator for safety
-  // if (isset($_GET["type"])) {
-  //   $type = $_GET["type"];
-  // }
+  if (isset($_GET["type"])) {
+    $M_type = $_GET["type"];
+  }
   // Function to fetch data from a table 
   // in one place it there is 2 table but in other place there are 3 tables
   function fetchData($conn, $query, $id)
@@ -53,29 +54,37 @@ if (isset($_GET['id'])) {
       $seasons = fetchData($conn, $query, $series_id);
     } else {
       echo "no data in db";
+      require_once("get_data.php");
+
       // Data not found in both tables, make an external request
       // function to get data from api
 
       // Call the function and get JSON-encoded data
-      // $json_data = get_data_from_api($id, $type, $API_KEY);
+      $json_data = get_data_from_api($id, $M_type, $API_KEY);
 
       // // Decode JSON data to PHP array
-      // $data = json_decode($json_data, true);
+      $data = json_decode($json_data, true);
 
       // // Check if $data is an array and not empty
-      // if (is_array($data) && !empty($data)) {
-      //     if (isset($data['error'])) {
-      //         // Handle error message
-      //         echo "Error: " . $data['error'];
-      //     } else {
-      //         // Process the data
-      //         $table1_data = isset($data[0]) ? $data[0] : [];
-      //         $table2_data = $data;
-      //     }
-      // } else {
-      //     // Handle unexpected data format
-      //     echo "Error: Unexpected data format.";
-      // }
+      if (is_array($data) && !empty($data)) {
+        if (isset($data['error'])) {
+          // Handle error message
+          echo "Error: " . $data['error'];
+        } else {
+          // Process the data
+          $table1_data = isset($data[0]) ? $data[0] : [];
+          $table2_data = $data;
+
+          $series_id = $table1_data['id'];
+          // getting series seasons 
+          $query = "SELECT * FROM seasons WHERE tv_series_id=:id;";
+
+          $seasons = fetchData($conn, $query, $series_id);
+        }
+      } else {
+        // Handle unexpected data format
+        echo "Error: Unexpected data format.";
+      }
     }
   }
 
@@ -192,6 +201,7 @@ if (isset($_POST['submit'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./output.css">
+  <link rel="icon" href="image/favicon.ico.jpg" type="image/x-icon">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.js" integrity="sha512-bkge924rHvzs8HYzPSjoL47QZU0PYng6QsMuo3xxmEtCeGsfIeDl6t4ATj+NxwUbwOEYKsGO8A5zIAkMXP+cHQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <title>Getflix | <?php echo $table1_data['title']; ?></title>
 </head>

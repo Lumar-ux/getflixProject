@@ -351,14 +351,14 @@ $avatar_directory = "image/avatar_directory/";
                     </div>
                     <div class="flex items-center">
                         <label for="simple-search" class="sr-only">Search</label>
-                        <button id="dropdown-button-2" class="z-10 inline-flex items-center sm:py-2.5 sm:px-4  px-2 text-sm font-medium sm:h-[50px] h-[25px] text-gray-500 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white dark:border-gray-600 focus:ring-pastelBlue focus:ring-2" type="button">
-                            <span id="selected-item sm:text-base text-sm">Movie</span> <!-- Span to show selected item -->
+                        <button id="dropdown-button-2" class="z-10 inline-flex items-center sm:py-2.5 sm:px-4  px-1 text-sm font-medium sm:h-[50px] h-[20px] text-gray-500 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white dark:border-gray-600 focus:ring-pastelBlue focus:ring-2" type="button">
+                            <span id="selected-item" class="sm:text-base text-sm w-20">Movie</span> <!-- Span to show selected item -->
                             <svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
                             </svg>
                         </button>
                         <!-- Dropdown for filter -->
-                        <div id="dropdown-search-city" class="absolute z-10 mt-12 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                        <div id="dropdown-search-city" class="absolute z-10 mt-40 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                             <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button-2">
                                 <li>
                                     <a href="#" class="dropdown-item inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-black" role="menuitem">
@@ -372,8 +372,8 @@ $avatar_directory = "image/avatar_directory/";
                                 </li>
                             </ul>
                         </div>
-                        <div class="relative sm:w-full sm:h-[50px] h-[25px] w-[120px]">
-                            <input type="text" id="livesearch" autocomplete="off" class="bg-gray-50 text-gray-900 text-sm rounded-r-lg  block w-full h-full py-3 px-4  dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white focus:ring-pastelBlue focus:ring-2" placeholder="Search ..." required />
+                        <div class="relative sm:w-full sm:h-[50px] h-[20px] w-[120px] mr-3">
+                            <input type="text" id="livesearch" autocomplete="off" class="bg-gray-50 text-gray-900 text-md rounded-r-lg  block w-full h-full py-3 px-4  dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white focus:ring-pastelBlue focus:ring-2" placeholder="Search ..." required />
 
                             <!-- showing results resieved from search -->
                             <div id="livesearch_dropdown" class="z-10 mt-1 hidden absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-full dark:bg-gray-700">
@@ -403,7 +403,7 @@ $avatar_directory = "image/avatar_directory/";
                     $user_data_email = $user_result->email;
                     $user_data_avatar = $user_result->avatar;
                 ?>
-                    <article class="user-profil sm:w-[50px] sm:h-[50px] h-[30px] w-[30px] sm:ml-4 ml-2 shrink-0">
+                    <article class="user-profil sm:w-[50px] sm:h-[50px] h-[30px] w-[30px] sm:ml-4 ml-3 shrink-0">
                         <!-- button, login -->
                         <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                             <button type="button"
