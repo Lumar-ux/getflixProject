@@ -81,73 +81,76 @@ include_once "graph.inc.php"; // Inclure le fichier pour générer les données 
     <title>Admin Dashboard</title>
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-halfBlack sm:w-screen w-full h-fit">
     <!-- Début du conteneur principal -->
-    <section class="container mx-auto p-6 md:p-8 lg:p-12">
-        <h2 class="text-2xl font-bold mb-4">Admin Dashboard</h2>
-        <!-- Boutons flexibles et responsive -->
-        <section class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-            <a class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" href="#" role="button">XXX</a>
-            <a class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" href="#" role="button">XXX</a>
-            <a class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" href="logout.php" role="button">Exit</a>
-            <!-- Bouton Exit -->
+    <main class="w-[80%] sm:container mx-auto">
+        <section class="flex flex-col md:flex-row gap-6 my-6 w-full h-[104px]">
+            <article class="bg-pastelBlue p-6 rounded-xl w-[75%] shadow-md">
+                <h2 class="text-4xl font-bold uppercase text-white">Admin Dashboard</h2>
+            </article>
+            <article class="bg-greyWhite p-6 rounded-xl w-[25%] flex items-center justify-center">
+                <!-- Boutons flexibles et responsive -->
+                <section class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 rounded-xl">
+                    <a class="bg-pastelBlue text-white px-8 py-3 rounded-lg hover:bg-[#5461B0]" href="#" role="button">XXX</a>
+                    <a class="bg-pastelBlue text-white px-8 py-3 rounded-lg hover:bg-[#5461B0]" href="index.php" role="button">Home</a>
+                    <a class="bg-red-500 text-white px-8 py-3 rounded-lg hover:bg-red-600" href="logout.php" role="button">Exit</a>
+                    <!-- Bouton Exit -->
+                </section>
+            </article>
         </section>
-        <br><br>
-
         <!-- Conteneur flex pour le formulaire et le graphique -->
-        <section class="flex flex-col md:flex-row gap-6  mb-6">
+        <section class="flex flex-col md:flex-row gap-6 my-6">
             <!-- Formulaire pour ajouter un nouvel utilisateur -->
-            <section class="bg-white p-6 rounded-lg shadow-md w-full md:w-1/3">
-                <h3 class="text-xl font-semibold mb-4">Add New User</h3>
+            <section class="bg-greyWhite p-6 rounded-xl shadow-md w-full md:w-1/3">
+                <h3 class="text-xl font-semibold mb-4 uppercase tracking-tight">Add New User</h3>
                 <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
                     <section class="mb-4">
                         <!-- Formulaire d'ajout d'utilisateur -->
                         <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
-                        <input type="text" id="username" name="username" required
-                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <input type="text" id="username" name="username" required class="h-[45px] bg-greyWhite mt-1 block  w-full border-pastelBlue border-2 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </section>
                     <div class="mb-4">
                         <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
                         <input type="password" id="password" name="password" required
-                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            class="h-[45px] bg-greyWhite mt-1 block w-full border-pastelBlue border-2 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
                     <div class="mb-4">
                         <label for="fullname" class="block text-sm font-medium text-gray-700">Full Name</label>
                         <input type="text" id="fullname" name="fullname" required
-                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            class="h-[45px] bg-greyWhite mt-1 block w-full border-pastelBlue border-2 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
                     <div class="mb-4">
                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                         <input type="email" id="email" name="email" required
-                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            class="h-[45px] bg-greyWhite mt-1 block w-full border-pastelBlue border-2 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
                     <div class="mb-4">
                         <label for="autority" class="block text-sm font-medium text-gray-700">Authority</label>
                         <select id="autority" name="autority" required
-                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            class="h-[45px] bg-greyWhite p-2 mt-1 block w-full border-pastelBlue border-2 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             <option value="1">Admin</option>
                             <option value="2">User</option>
                         </select>
                     </div>
                     <button type="submit" name="add"
-                        class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Add User</button>
+                        class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Add User</button>
                 </form>
             </section>
 
             <!-- Section pour le graphique -->
-            <aside class="bg-white p-6 rounded-lg shadow-md w-full md:w-2/3">
-                <h3 class="text-xl font-semibold mb-4">User Growth Over Time</h3>
+            <aside class="bg-greyWhite p-6 rounded-xl shadow-md w-full md:w-2/3">
+                <h3 class="text-xl font-semibold mb-4 uppercase tracking-tight">User Growth Over Time</h3>
                 <!-- Remplacez ce texte par le code du graphique -->
-                <section class="h-65 bg-gray-200 rounded-lg flex items-center justify-center">
+                <section class="h-65 bg-gray-200 rounded-xl flex items-center justify-center">
                     <canvas id="userChart"></canvas>
                 </section>
             </aside>
         </section>
 
         <!-- Tableau avec conteneur scrollable -->
-        <section class="overflow-x-auto">
-            <table class="min-w-full bg-white border border-gray-200">
-                <thead class="bg-gray-200">
+        <section class="overflow-x-auto rounded-xl shadow-md">
+            <table class="min-w-full bg-greyWhite">
+                <thead class="bg-gray-200 rounded-xl">
                     <tr>
                         <th class="px-4 py-2 border-b text-xs md:text-sm">Created_at</th>
                         <th class="px-4 py-2 border-b text-xs md:text-sm">Autority</th>
@@ -158,7 +161,7 @@ include_once "graph.inc.php"; // Inclure le fichier pour générer les données 
                         <th class="px-4 py-2 border-b text-xs md:text-sm">Email</th>
                         <th class="px-4 py-2 border-b text-xs md:text-sm">Avatar</th>
                         <th class="px-4 py-2 border-b text-xs md:text-sm">Last Updated</th>
-                        <th class="px-4 py-2 border-b text-xs md:text-sm">Action</th>
+                        <th class="px-4 py-2 text-xs md:text-sm">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -179,26 +182,26 @@ include_once "graph.inc.php"; // Inclure le fichier pour générer les données 
                 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                     echo "
                     <tr>
-                        <td class='px-4 py-2 border-b text-xs md:text-sm'>{$row['created_at']}</td>
-                        <td class='px-4 py-2 border-b text-xs md:text-sm'>{$row['autority']}</td>
-                        <td class='px-4 py-2 border-b text-xs md:text-sm'>{$row['user_id']}</td>
-                        <td class='px-4 py-2 border-b text-xs md:text-sm'>{$row['username']}</td>
-                        <td class='px-4 py-2 border-b text-xs md:text-sm'>{$row['password']}</td>
-                        <td class='px-4 py-2 border-b text-xs md:text-sm'>{$row['fullname']}</td>
-                        <td class='px-4 py-2 border-b text-xs md:text-sm'>{$row['email']}</td>
-                        <td class='px-4 py-2 border-b text-xs md:text-sm'>
+                        <td class='px-4 py-2 text-xs md:text-sm'>{$row['created_at']}</td>
+                        <td class='px-4 py-2 text-xs md:text-sm'>{$row['autority']}</td>
+                        <td class='px-4 py-2 text-xs md:text-sm'>{$row['user_id']}</td>
+                        <td class='px-4 py-2 text-xs md:text-sm'>{$row['username']}</td>
+                        <td class='px-4 py-2 text-xs md:text-sm'>{$row['password']}</td>
+                        <td class='px-4 py-2 text-xs md:text-sm'>{$row['fullname']}</td>
+                        <td class='px-4 py-2 text-xs md:text-sm'>{$row['email']}</td>
+                        <td class='px-4 py-2 text-xs md:text-sm'>
                             <img src='./image/avatar_directory/{$row['avatar']}' alt='Avatar' class='w-8 h-8'>
                         </td>
-                         <td class='px-4 py-2 border-b text-xs md:text-sm'>
+                         <td class='px-4 py-2 text-xs md:text-sm'>
                             {$row['last_updated']} <!-- Affichage de la date du dernier changement -->
                         </td>
-                        <td class='px-4 py-2 border-b text-xs md:text-sm'>
+                        <td class='px-4 py-2 text-xs md:text-sm'>
                         <section class='flex space-x-2'>
-                            <a href='edit.php?id={$row['user_id']}' class='bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 inline-block mr-2'>Edit</a>
+                            <a href='edit.php?id={$row['user_id']}' class='bg-pastelBlue text-white px-3 py-1 rounded-lg hover:bg-[#5461B0] inline-block mr-2'>Edit</a>
 <form method='POST' action='admin.php' style='display:inline;'>
                     <input type='hidden' name='id' value='{$row['user_id']}'>
                     <button type='submit' name='delete'
-                        class='bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600'>Delete</button>
+                        class='bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600'>Delete</button>
                     </form>
         </section>
         </td>
@@ -209,7 +212,7 @@ include_once "graph.inc.php"; // Inclure le fichier pour générer les données 
                 </tbody>
             </table>
         </section>
-    </section>
+    </main>
     <!-- Inclure Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>

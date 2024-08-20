@@ -7,7 +7,7 @@ $conditionMovies = '';
 $conditionSeries = '';
 $h1_text = '';
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Current page
-$itemsPerPage = 10; // Number of items per page
+$itemsPerPage = 30; // Number of items per page
 $offset = ($page - 1) * $itemsPerPage; // Calculate offset for SQL query
 
 
@@ -211,7 +211,7 @@ function buildUrlWithGenre($baseParams, $genre)
   <section class="w-[80%] sm:container mx-auto h-fit">
     <article class="flex items-center justify-between mb-14">
       <h1 name="name-category" class=" text-pastelBlue text-[50px] sm:text-[56px] font-[570] uppercase leading-none"><?php echo $h1_text; ?></h1>
-      <section class="<?php echo (basename($_SERVER['PHP_SELF']) == 'category.php' && (isset($_GET['language']) or isset($_GET['country']))) ? 'hidden' : 'block'; ?>">
+      <section>
         <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'category.php' && isset($_GET['genre'])) ? 'text-pastelBlue' : 'text-white'; ?> focus:ring-2 focus:outline-none focus:ring-gray-300 rounded-xl mr-4 inline-flex items-center leading-none h-[20px] sm:text-base text-sm" type="button">Genre<svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"></path>
           </svg>

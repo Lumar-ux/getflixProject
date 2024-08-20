@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $affectedRows = $stmt->rowCount();
     if ($affectedRows > 0) {
         $mail = require __DIR__ . "/mailer.php";
-        $mail->setFrom("getflix404@gmail.com"); // email address from your domain
+        $mail->setFrom("noreply@getflix.rf.gd"); // email address from your domain
         $mail->addAddress($email); // user email
         $mail->Subject = "Password Reset";
         $mail->Body = <<<END

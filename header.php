@@ -339,10 +339,10 @@ $avatar_directory = "image/avatar_directory/";
                     </article>
                 </div>
             </li>
-            <li class="mobile-nav sm:flex hidden">
-                <img src="image/Search_Icon.svg" alt="Search Icon" class="mr-4 sm:block hidden">
+            <li class="desktop-nav flex">
+                <img src="image/Search_Icon.svg" alt="Search Icon" class="mr-4 block">
                 <!-- 120px<img src="image/avatar-01.png" alt="avatar users" class="mr-2.5">
-            <img src="image/icon_arrow-down.svg" alt="arrow down"> -->
+                <img src="image/icon_arrow-down.svg" alt="arrow down"> -->
                 <?php
                 if ($authenticated) {
                     // echo $user_id;
@@ -365,7 +365,7 @@ $avatar_directory = "image/avatar_directory/";
                                 data-dropdown-placement="bottom">
                                 <span class="sr-only">Open user menu</span>
                                 <img class="w-8 h-8 rounded-full"
-                                    src="<?php echo $avatar_directory . $user_data_avatar; ?>"
+                                    src="<?php echo htmlspecialchars($avatar_directory . $_SESSION['avatar']); ?>"
                                     alt="user avatar">
                             </button>
                             <!-- Dropdown menu -->
@@ -373,27 +373,30 @@ $avatar_directory = "image/avatar_directory/";
                                 id="user-dropdown">
                                 <div class="px-4 py-3">
                                     <span class="block text-sm text-gray-900 dark:text-white">
-                                        <?php echo $user_data_username; ?></span>
+                                        <?php echo htmlspecialchars($_SESSION['fullname']); ?></span>
                                     <span
-                                        class="block text-sm  text-gray-500 truncate dark:text-gray-400"><?php echo $user_data_email; ?></span>
+                                        class="block text-sm  text-gray-500 truncate dark:text-gray-400"><?php echo htmlspecialchars($_SESSION['email']); ?></span>
                                 </div>
                                 <ul class="py-2" aria-labelledby="user-menu-button">
                                     <li>
                                         <a href="profile.php"
                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</a>
                                     </li>
-                                    <!-- <li>
+                                    <li class="<?php echo (basename((!isset($_SESSION['autority']) || $_SESSION['autority'] !== 1))) ? 'hidden' : 'block'; ?>">
+                                        <a href="admin.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Admin</a>
+                                    </li>
+                                    <li>
                                         <a href="login.php"
                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Login</a>
-                                    </li> -->
+                                    </li>
                                     <li>
                                         <a href="logout.php"
                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Logout</a>
                                     </li>
                                     <!-- <li>
-                                        <a href="sign-out.php"
-                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign-out</a>
-                                    </li> -->
+                                    <a href="sign-out.php"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign-out</a>
+                                </li> -->
                                 </ul>
                             </div>
                         </div>
@@ -409,7 +412,6 @@ $avatar_directory = "image/avatar_directory/";
         <?php   }  ?>
         <!-- menu pour mobile -->
         <article class="sm:hidden flex items-center">
-            <img src="image/Search_Icon.svg" alt="Search Icon" class="mr-4">
             <button id="multiLevelDropdownButton" data-dropdown-toggle="multi-dropdown"
                 class="p-2 focus:ring-2 focus:outline-none focus:ring-gray-300 rounded-xl mr-4 inline-flex items-center leading-none h-[20px]"
                 type="button"><img src="image/menu_32dp_FFF_FILL0_wght400_GRAD0_opsz40.svg" alt="menu-icon"
@@ -735,64 +737,6 @@ $avatar_directory = "image/avatar_directory/";
                             </article>
                         </div>
                     </li>
-                </ul>
-                <ul>
-                    <li>
-                        <?php
-                        if ($authenticated) {
-                        ?>
-                            <div
-                                class="sm:flex hidden items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                                <button type="button"
-                                    class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                                    id="user-menu-button1" aria-expanded="false" data-dropdown-toggle="user-dropdown1"
-                                    data-dropdown-placement="bottom">
-                                    <span class="sr-only">Open user menu</span>
-                                    <img class="w-8 h-8 rounded-full"
-                                        src="<?php echo htmlspecialchars($avatar_directory . $_SESSION['avatar']); ?>"
-                                        alt="user avatar">
-                                </button>
-                                <!-- Dropdown menu -->
-                                <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
-                                    id="user-dropdown1">
-                                    <div class="px-4 py-3">
-                                        <span class="block text-sm text-gray-900 dark:text-white">
-                                            <?php echo htmlspecialchars($_SESSION['fullname']); ?></span>
-                                        <span
-                                            class="block text-sm  text-gray-500 truncate dark:text-gray-400"><?php echo htmlspecialchars($_SESSION['email']); ?></span>
-                                    </div>
-                                    <ul class="py-2" aria-labelledby="user-menu-button">
-                                        <li>
-                                            <a href="profile.php"
-                                                class="block px-4 py-2 text-sm text-gray-700 hover:coloHover hover:px-4 hover:py-2 rounded-xl dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</a>
-                                        </li>
-                                        <li>
-                                            <a href="login.php"
-                                                class="block px-4 py-2 text-sm text-gray-700 hover:coloHover hover:px-4 hover:py-2 rounded-xl dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Login</a>
-                                        </li>
-                                        <li>
-                                            <a href="logout.php"
-                                                class="block px-4 py-2 text-sm text-gray-700 hover:coloHover hover:px-4 hover:py-2 rounded-xl dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Logout</a>
-                                        </li>
-                                        <li>
-                                            <a href="sign-out.php"
-                                                class="block px-4 py-2 text-sm text-gray-700 hover:coloHover hover:px-4 hover:py-2 rounded-xl dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign-out</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        <?php
-                        } else {
-                        ?>
-                    <li class="border-t-2 border-gray-700"><a href="sign-up.php"
-                            class="mr-4 text-sm <?php echo (basename($_SERVER['PHP_SELF']) == 'sign-up.php') ? 'text-pastelBlue' : 'text-halfBlack'; ?>">Sign-up</a>
-                    </li>
-                    <li class="mb-2"><a href="login.php"
-                            class="mr-4 text-sm <?php echo (basename($_SERVER['PHP_SELF']) == 'login.php') ? 'text-pastelBlue' : 'text-halfBlack'; ?>">Login</a>
-                    </li>
-                <?php   }  ?>
-                </li>
                 </ul>
         </article>
         </li>

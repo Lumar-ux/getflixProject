@@ -11,11 +11,11 @@ $mail = new PHPMailer();
 $mail->isSMTP();
 $mail->SMTPAuth = true;
 
-$mail->Host = 'smtp.gmail.com';
+$mail->Host = 'in-v3.mailjet.com';
 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-$mail->Port = 465;
-$mail->Username = "getflix404@gmail.com";
-$mail->Password = 'Alone@!220';
+$mail->Port = 80;
+$mail->Username = "7c9805b13f5dc7bf4100038ead1f7aae";
+$mail->Password = 'f7a322b54ee229a4195f4b0c96700041';
 
 $mail->isHTML(true);
 
