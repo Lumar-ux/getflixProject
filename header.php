@@ -25,10 +25,10 @@ $avatar_directory = "image/avatar_directory/";
 ?>
 <header class="w-[80%] sm:container mx-auto h-[88.6px] sm:h-[110px]">
     <nav class="h-full w-full">
-        <ul class="list-none h-full flex justify-between items-center">
-            <li class="sm:hidden flex"><a href="index.php"><img src="image/GETFLIX_logo.svg" alt="GetFlix Logo"
+        <ul class="list-none h-full flex justify-center sm:justify-between items-center sm:flex-nowrap flex-wrap">
+            <li class="logo-mobile sm:hidden flex mt-6"><a href="index.php"><img src="image/GETFLIX_logo.svg" alt="GetFlix Logo"
                         class="sm:h-[30px] h-[18px] sm:mr-[73px] mr-0"></a></li>
-            <li class="sm:flex hidden"><a href="index.php"><img src="image/GETFLIX_logo.svg" alt="GetFlix Logo"
+            <li class="logo-desk sm:flex hidden"><a href="index.php"><img src="image/GETFLIX_logo.svg" alt="GetFlix Logo"
                         class="sm:h-[30px] h-[18px] sm:mr-[73px] mr-0"></a>
                 <a href="index.php"
                     class="mr-4 <?php echo (basename($_SERVER['PHP_SELF']) == 'index.php') ? 'text-pastelBlue' : 'text-white'; ?>">Home</a>
@@ -339,8 +339,55 @@ $avatar_directory = "image/avatar_directory/";
                     </article>
                 </div>
             </li>
-            <li class="desktop-nav flex">
-                <img src="image/Search_Icon.svg" alt="Search Icon" class="mr-4 block">
+            <li class="desktop-nav flex items-center">
+                <!-- <img src="image/Search_Icon.svg" alt="Search Icon" class="mr-4 block"> -->
+                <article class="zone-search flex">
+                    <div>
+                        <form class="">
+                    </div>
+                    <button type="submit" class="py-2.5 me-2 text-sm font-medium text-white rounded-lg ">
+                        <img src="image/Search_Icon.svg" alt="Search Icon">
+                    </button>
+                    </div>
+                    <div class="flex items-center">
+                        <label for="simple-search" class="sr-only">Search</label>
+                        <button id="dropdown-button-2" class="z-10 inline-flex items-center sm:py-2.5 sm:px-4  px-2 text-sm font-medium sm:h-[50px] h-[25px] text-gray-500 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white dark:border-gray-600 focus:ring-pastelBlue focus:ring-2" type="button">
+                            <span id="selected-item sm:text-base text-sm">Movie</span> <!-- Span to show selected item -->
+                            <svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
+                        <!-- Dropdown for filter -->
+                        <div id="dropdown-search-city" class="absolute z-10 mt-12 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button-2">
+                                <li>
+                                    <a href="#" class="dropdown-item inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-black" role="menuitem">
+                                        Movie
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-black" role="menuitem">
+                                        Tv Series
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="relative sm:w-full sm:h-[50px] h-[25px] w-[120px]">
+                            <input type="text" id="livesearch" autocomplete="off" class="bg-gray-50 text-gray-900 text-sm rounded-r-lg  block w-full h-full py-3 px-4  dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white focus:ring-pastelBlue focus:ring-2" placeholder="Search ..." required />
+
+                            <!-- showing results resieved from search -->
+                            <div id="livesearch_dropdown" class="z-10 mt-1 hidden absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-full dark:bg-gray-700">
+                                <ul id="livesearch_ul" class="py-2 text-sm text-gray-700 dark:text-gray-200 max-h-80 overflow-y-scroll" aria-labelledby="dropdown-button-2">
+                                    <!-- will come from js -->
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    </form>
+                    </div>
+                </article>
+
                 <!-- 120px<img src="image/avatar-01.png" alt="avatar users" class="mr-2.5">
                 <img src="image/icon_arrow-down.svg" alt="arrow down"> -->
                 <?php
@@ -356,7 +403,7 @@ $avatar_directory = "image/avatar_directory/";
                     $user_data_email = $user_result->email;
                     $user_data_avatar = $user_result->avatar;
                 ?>
-                    <article>
+                    <article class="user-profil sm:w-[50px] sm:h-[50px] h-[30px] w-[30px] sm:ml-4 ml-2 shrink-0">
                         <!-- button, login -->
                         <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                             <button type="button"
@@ -364,7 +411,7 @@ $avatar_directory = "image/avatar_directory/";
                                 id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
                                 data-dropdown-placement="bottom">
                                 <span class="sr-only">Open user menu</span>
-                                <img class="w-8 h-8 rounded-full"
+                                <img class="sm:w-[50px] sm:h-[50px] h-[30px] w-[30px] rounded-full shrink-0"
                                     src="<?php echo htmlspecialchars($avatar_directory . $_SESSION['avatar']); ?>"
                                     alt="user avatar">
                             </button>
@@ -411,9 +458,9 @@ $avatar_directory = "image/avatar_directory/";
             </li>
         <?php   }  ?>
         <!-- menu pour mobile -->
-        <article class="sm:hidden flex items-center">
+        <article class="menu-icon sm:hidden flex items-center h-[38px] w-[38px] pl-2 py-2">
             <button id="multiLevelDropdownButton" data-dropdown-toggle="multi-dropdown"
-                class="p-2 focus:ring-2 focus:outline-none focus:ring-gray-300 rounded-xl mr-4 inline-flex items-center leading-none h-[20px]"
+                class="w-full h-full  focus:ring-2 focus:outline-none focus:ring-gray-300 rounded-xl inline-flex items-center leading-none"
                 type="button"><img src="image/menu_32dp_FFF_FILL0_wght400_GRAD0_opsz40.svg" alt="menu-icon"
                     class="w-7" fill="none" viewBox="0 0 10 6" aria-hidden="true">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -445,7 +492,7 @@ $avatar_directory = "image/avatar_directory/";
                         </button>
                         <div id="doubleDropdown1"
                             class="z-10 bg-greyWhite divide-y divide-gray-100 rounded-xl shadow w-fit hidden px-2">
-                            <article class="flex">
+                            <article class=" flex">
                                 <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton1">
                                     <li>
                                         <a href="category.php?c=argentina"
