@@ -159,15 +159,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         </section>
         <section class="img-login h-full sm:grid grid-rows-2 grid-cols-2 gap-6 grow hidden">
-            <div class="bg-gray-500 rounded-xl" name="img-log_01">
-                <img src="image/login_image/image1.jpg" class="max-h-[388.5px] w-full object-top rounded-xl" alt="movie-poster">
-            </div>
-            <div class="rounded-xl row-span-2" name="img-log_02">
-                <img src="image/login_image/image2.jpg" class="max-h-[801px] object-cover rounded-xl" alt="movie-poster">
-            </div>
-            <div class="bg-gray-500 rounded-xl" name="img-log_03">
-                <img src="image/login_image/image3.jpg" class="max-h-[388.5px] w-full object-cover rounded-xl" alt="movie-poster">
-            </div>
+            <img src="image/login_image/image1.jpg" alt="poster_movie-01" class="object-cover rounded-xl w-full h-full" name="img-log_01">
+            <img src="image/login_image/image2.jpg" alt="poster_movie-02" class="object-cover w-full h-full rounded-xl row-span-2" name="img-log_02">
+            <img src="image/login_image/image3.jpg" alt="poster_movie-03" class="object-cover rounded-xl w-full h-full" name="img-log_03">
         </section>
     </main>
     <?php include_once("./footer.php"); ?>
