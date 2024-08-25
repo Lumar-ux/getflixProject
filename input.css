@@ -45,7 +45,7 @@ body:hover::-webkit-scrollbar-thumb, .cate-main:hover::-webkit-scrollbar-thumb {
   background: var(--sb-thumb-color);
 }
   .grid1 {
-    width: 2776.7px;
+    width: 2600px;
   }
   .grid1:after {
     content: '';

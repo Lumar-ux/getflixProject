@@ -10,24 +10,23 @@ if (!isset($_SESSION['autority']) || $_SESSION['autority'] !== 1) {
 // Gestion de la suppression des utilisateurs
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
     $id = intval($_POST['id']);  // Correction : utiliser 'id' au lieu de 'user_id'
-    
+
     try {
         require_once "dbh.inc.php";
         $query = "DELETE FROM users WHERE user_id = :user_id";
-        
+
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(":user_id", $id, PDO::PARAM_INT);
-        
+
         $stmt->execute();
         $pdo = null;
         $stmt = null;
 
-         // Redirection pour éviter la resoumission lors du rafraîchissement
+        // Redirection pour éviter la resoumission lors du rafraîchissement
         header("Location: " . $_SERVER['PHP_SELF']);
         exit();
-
-    } catch(PDOException $e) {  
-        die("Échec de la requête : ". $e->getMessage());
+    } catch (PDOException $e) {
+        die("Échec de la requête : " . $e->getMessage());
     }
 }
 
@@ -37,13 +36,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Assurez-vous de ne pas stocker les mots de passe en clair
     $fullname = htmlspecialchars($_POST['fullname']);
     $email = htmlspecialchars($_POST['email']);
-    $avatar = 'default_avatar.jpg';// Avatar par défaut
+    $avatar = 'default_avatar.jpg'; // Avatar par défaut
     $autority = intval($_POST['autority']);
 
     try {
         require_once "dbh.inc.php";
         $query = "INSERT INTO users (username, password, fullname, email, avatar, autority) VALUES (:username, :password, :fullname, :email, :avatar, :autority)";
-        
+
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(":username", $username);
         $stmt->bindParam(":password", $password);
@@ -51,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
         $stmt->bindParam(":email", $email);
         $stmt->bindParam(":avatar", $avatar);
         $stmt->bindParam(":autority", $autority, PDO::PARAM_INT);
-        
+
         $stmt->execute();
         $pdo = null;
         $stmt = null;
@@ -59,10 +58,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
         // Redirection pour éviter la resoumission lors du rafraîchissement
         header("Location: " . $_SERVER['PHP_SELF']);
         exit();
-
-    } catch(PDOException $e) {  
-        die("Échec de la requête : ". $e->getMessage());
-    }  
+    } catch (PDOException $e) {
+        die("Échec de la requête : " . $e->getMessage());
+    }
 }
 
 include_once "graph.inc.php"; // Inclure le fichier pour générer les données du graphique
@@ -156,59 +154,51 @@ include_once "graph.inc.php"; // Inclure le fichier pour générer les données 
                         <th class="px-4 py-2 border-b text-xs md:text-sm">Autority</th>
                         <th class="px-4 py-2 border-b text-xs md:text-sm">User_id</th>
                         <th class="px-4 py-2 border-b text-xs md:text-sm">Username</th>
-                        <th class="px-4 py-2 border-b text-xs md:text-sm">Password</th>
                         <th class="px-4 py-2 border-b text-xs md:text-sm">Fullname</th>
                         <th class="px-4 py-2 border-b text-xs md:text-sm">Email</th>
                         <th class="px-4 py-2 border-b text-xs md:text-sm">Avatar</th>
-                        <th class="px-4 py-2 border-b text-xs md:text-sm">Last Updated</th>
                         <th class="px-4 py-2 text-xs md:text-sm">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php 
-                // Configuration de la base de données
-                include_once "dbh.inc.php";
-                
-                // Requête SQL pour récupérer tous les DATA users
-                $sql = "SELECT * FROM users";
-                
-                $result = $pdo->query($sql);
+                    <?php
+                    // Configuration de la base de données
+                    include_once "dbh.inc.php";
 
-                if (!$result) { 
-                    die("Requête invalide : " . $pdo->errorInfo()[2]);
-                }
+                    // Requête SQL pour récupérer tous les DATA users
+                    $sql = "SELECT * FROM users";
 
-                // Récupérer et afficher les données de chaque ligne
-                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                    echo "
+                    $result = $pdo->query($sql);
+
+                    if (!$result) {
+                        die("Requête invalide : " . $pdo->errorInfo()[2]);
+                    }
+
+                    // Récupérer et afficher les données de chaque ligne
+                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                        echo "
                     <tr>
                         <td class='px-4 py-2 text-xs md:text-sm'>{$row['created_at']}</td>
                         <td class='px-4 py-2 text-xs md:text-sm'>{$row['autority']}</td>
                         <td class='px-4 py-2 text-xs md:text-sm'>{$row['user_id']}</td>
                         <td class='px-4 py-2 text-xs md:text-sm'>{$row['username']}</td>
-                        <td class='px-4 py-2 text-xs md:text-sm'>{$row['password']}</td>
                         <td class='px-4 py-2 text-xs md:text-sm'>{$row['fullname']}</td>
                         <td class='px-4 py-2 text-xs md:text-sm'>{$row['email']}</td>
                         <td class='px-4 py-2 text-xs md:text-sm'>
                             <img src='./image/avatar_directory/{$row['avatar']}' alt='Avatar' class='w-8 h-8'>
                         </td>
-                         <td class='px-4 py-2 text-xs md:text-sm'>
-                            {$row['last_updated']} <!-- Affichage de la date du dernier changement -->
-                        </td>
                         <td class='px-4 py-2 text-xs md:text-sm'>
                         <section class='flex space-x-2'>
-                            <a href='edit.php?id={$row['user_id']}' class='bg-pastelBlue text-white px-3 py-1 rounded-lg hover:bg-[#5461B0] inline-block mr-2'>Edit</a>
-<form method='POST' action='admin.php' style='display:inline;'>
+                    <form method='POST' action='admin.php' style='display:inline;'>
                     <input type='hidden' name='id' value='{$row['user_id']}'>
-                    <button type='submit' name='delete'
-                        class='bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600'>Delete</button>
+                    <button type='submit' name='delete' class='bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600'>Delete</button>
                     </form>
         </section>
         </td>
         </tr>
         ";
-        }
-        ?>
+                    }
+                    ?>
                 </tbody>
             </table>
         </section>
@@ -216,49 +206,49 @@ include_once "graph.inc.php"; // Inclure le fichier pour générer les données 
     <!-- Inclure Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Récupérer les données depuis PHP
-        const dates = <?php echo $datesJson; ?>;
-        const userCounts = <?php echo $userCountsJson; ?>;
+        document.addEventListener('DOMContentLoaded', function() {
+            // Récupérer les données depuis PHP
+            const dates = <?php echo $datesJson; ?>;
+            const userCounts = <?php echo $userCountsJson; ?>;
 
-        // Création du graphique
-        const ctx = document.getElementById('userChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'line', // Type de graphique
-            data: {
-                labels: dates, // Labels des axes (dates)
-                datasets: [{
-                    label: 'Number of Users', // Légende de la série
-                    data: userCounts, // Données à afficher (nombre d'utilisateurs)
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    fill: true,
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    }
+            // Création du graphique
+            const ctx = document.getElementById('userChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line', // Type de graphique
+                data: {
+                    labels: dates, // Labels des axes (dates)
+                    datasets: [{
+                        label: 'Number of Users', // Légende de la série
+                        data: userCounts, // Données à afficher (nombre d'utilisateurs)
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: true,
+                    }]
                 },
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Date'
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
                         }
                     },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Number of Users'
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Date'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Number of Users'
+                            }
                         }
                     }
                 }
-            }
+            });
         });
-    });
     </script>
 </body>
 

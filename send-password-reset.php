@@ -1,4 +1,5 @@
 <?php
+require_once("dbh.inc.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -10,7 +11,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $expiry = date("Y-m-d H:i:s", time() + 60 * 30);
 
-    require_once "dbh.inc.php";
+
+
+
+    //geting user name
+
+    $user_query = "SELECT username FROM users where email = :email;";
+    $user_st = $pdo->prepare($user_query);
+    $user_st->bindParam(':email', $email, PDO::PARAM_STR);
+    $user_st->execute();
+    $user_info = $user_st->fetch(PDO::FETCH_ASSOC);
+    $username = $user_info['username'];
 
     $query = "UPDATE users SET reset_token_hash = :token_hash, 
                 reset_token_expires_at = :expiry 
@@ -28,12 +39,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $mail = require __DIR__ . "/mailer.php";
         $mail->setFrom("noreply@getflix.rf.gd"); // email address from your domain
         $mail->addAddress($email); // user email
-        $mail->Subject = "Password Reset";
+        $mail->Subject = "Reset Your Password";
+        $mail->isHTML(true);
         $mail->Body = <<<END
-
-        Click <a href="http://localhost/reset-password.php?token=$token">Here</a>
-        to reset your password.
-
+            <p>Dear $username,</p>
+            
+            <p>We received a request to reset your password for your account. If you didn't make this request, you can ignore this email.</p>
+            
+            <p>To reset your password, please click the link below:</p>
+            
+            <a href="http://getflix.rf.gd/reset-password.php?token=$token" 
+                style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #ffffff; background-color: #007bff; text-decoration: none; border-radius: 5px;">
+            Reset Your Password
+            </a>
+            
+            <p>This link will expire in 24 hours. If you need any further assistance, feel free to contact our support team.</p>
+            
+            <p>Thank you for using our service.</p>
+            
+            <p>Best regards,<br>
+            Getflix Support Team</p>
         END;
         // the url has to be a actual link 
         try {

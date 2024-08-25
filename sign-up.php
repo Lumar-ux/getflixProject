@@ -130,7 +130,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $insert_id = $dbConnection->lastInsertId();
 
             // Définir une variable de session pour indiquer le succès
-
             $_SESSION['registration_success'] = true;
             $_SESSION['email'] = $email;
             $_SESSION['fullname'] = $fullname; // Stocker le nom complet pour le message
@@ -167,8 +166,8 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
 <?php
 
     // Réinitialiser la variable de session pour éviter que l'alerte ne réapparaisse lors du rafraîchissement de la page
-    unset($_SESSION['registration_success']);
-    unset($_SESSION['fullname']);
+    // unset($_SESSION['registration_success']);
+    // unset($_SESSION['fullname']);
 }
 
 
@@ -194,23 +193,23 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
             <article class="relative top-[50px]">
                 <h1 class="text-[32px] font-bold mb-8 leading-none text-center">Sign Up</h1>
                 <form action="" method="post" class="flex flex-col mb-[10px]">
-                    <input type="username" name="username" placeholder="User Name"
+                    <input type="username" name="username" placeholder="User Name" required
                         class="w-[234px] sm:w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4"
                         value="<?php echo htmlspecialchars($username); ?>">
                     <span class="text-red-500"><?php echo htmlspecialchars($username_error); ?></span>
-                    <input type="password" name="password" placeholder="Password"
+                    <input type="password" name="password" placeholder="Password" required
                         class="w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4" value="" />
                     <span class="text-red-500"><?php echo htmlspecialchars($password_error); ?></span>
-                    <input type="password" name="confirm_password" placeholder="Confirm Password"
+                    <input type="password" name="confirm_password" placeholder="Confirm Password" required
                         class="w-[234px] sm:w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4" />
                     <span class="text-red-500"><?php echo htmlspecialchars($confirm_password_error); ?></span>
                     <input type="fullname" name="fullname" placeholder="Full Name"
                         class="w-[234px] sm:w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4"
-                        value="<?php echo htmlspecialchars($fullname); ?>" />
+                        value="<?php echo htmlspecialchars($fullname); ?>" required />
                     <span class="text-red-500"><?php echo htmlspecialchars($fullname_error); ?></span>
                     <input type="email" name="email" placeholder="Email"
                         class="w-[234px] sm:w-[405px] h-[58px] border-2 border-pastelBlue rounded-xl text-center mb-4"
-                        value="<?php echo htmlspecialchars($email); ?>">
+                        value="<?php echo htmlspecialchars($email); ?>" required>
                     <span class="text-red-500"><?php echo htmlspecialchars($email_error); ?></span>
                     <section
                         class="bg-[#B1BBFC] h-[120px] w-[234px] sm:w-[405px] overflow-x-scroll flex items-center rounded-xl mb-4">
@@ -239,9 +238,15 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
             </article>
         </section>
         <section class="img-login h-full sm:grid grid-rows-2 grid-cols-2 gap-6 grow hidden">
-            <div class="bg-gray-500 rounded-xl" name="img-log_01">1</div>
-            <div class="bg-gray-500 rounded-xl row-span-2" name="img-log_02">2</div>
-            <div class="bg-gray-500 rounded-xl" name="img-log_03">3</div>
+            <div class="bg-gray-500 rounded-xl" name="img-log_01">
+                <img src="image/login_image/image1.jpg" class="max-h-[388.5px] w-full object-top rounded-xl" alt="movie-poster">
+            </div>
+            <div class="rounded-xl row-span-2" name="img-log_02">
+                <img src="image/login_image/image2.jpg" class="max-h-[801px] object-cover rounded-xl" alt="movie-poster">
+            </div>
+            <div class="bg-gray-500 rounded-xl" name="img-log_03">
+                <img src="image/login_image/image3.jpg" class="max-h-[388.5px] w-full object-cover rounded-xl" alt="movie-poster">
+            </div>
         </section>
     </main>
     <?php include_once("./footer.php"); ?>

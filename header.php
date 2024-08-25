@@ -12,9 +12,7 @@ if (session_status() === PHP_SESSION_NONE) {
 include_once "dbh.inc.php";
 
 $authenticated = false;
-if (isset($_SESSION["user_id"])
-    /**&& (session_status() == PHP_SESSION_NONE)**/
-) {
+if (isset($_SESSION["user_id"])) {
     $user_id = $_SESSION["user_id"];
     $authenticated = true;
 }
@@ -351,7 +349,7 @@ $avatar_directory = "image/avatar_directory/";
                     </div>
                     <div class="flex items-center">
                         <label for="simple-search" class="sr-only">Search</label>
-                        <button id="dropdown-button-2" class="z-10 inline-flex items-center sm:py-2.5 sm:px-4  px-1 text-sm font-medium sm:h-[50px] h-[20px] text-gray-500 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white dark:border-gray-600 focus:ring-pastelBlue focus:ring-2" type="button">
+                        <button id="dropdown-button-2" class="z-10 inline-flex items-center sm:py-2.5 sm:px-4  px-1 text-sm font-medium sm:h-[50px] h-[20px] text-gray-500 bg-gray-50 border border-gray-300 rounded-s-lg hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white dark:border-gray-600 focus:ring-pastelBlue focus:ring-2 rounded-l-full border-r-0" type="button">
                             <span id="selected-item" class="sm:text-base text-sm w-20">Movie</span> <!-- Span to show selected item -->
                             <svg class="w-2.5 h-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
@@ -372,8 +370,8 @@ $avatar_directory = "image/avatar_directory/";
                                 </li>
                             </ul>
                         </div>
-                        <div class="relative sm:w-full sm:h-[50px] h-[20px] w-[120px] mr-3">
-                            <input type="text" id="livesearch" autocomplete="off" class="bg-gray-50 text-gray-900 text-md rounded-r-lg  block w-full h-full py-3 px-4  dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white focus:ring-pastelBlue focus:ring-2" placeholder="Search ..." required />
+                        <div class="relative sm:w-full sm:h-[50px] h-[20px] w-[120px] mr-3 ">
+                            <input type="text" id="livesearch" autocomplete="off" class="bg-gray-50 text-gray-900 text-md rounded-r-full  block w-full h-full py-3 px-4  dark:bg-gray-700 border-l-0 dark:placeholder-gray-400 dark:text-white focus:ring-pastelBlue focus:ring-2" placeholder="Search ..." required />
 
                             <!-- showing results resieved from search -->
                             <div id="livesearch_dropdown" class="z-10 mt-1 hidden absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-full dark:bg-gray-700">
@@ -422,7 +420,7 @@ $avatar_directory = "image/avatar_directory/";
                                     <span class="block text-sm text-gray-900 dark:text-white">
                                         <?php echo htmlspecialchars($_SESSION['fullname']); ?></span>
                                     <span
-                                        class="block text-sm  text-gray-500 truncate dark:text-gray-400"><?php echo htmlspecialchars($_SESSION['email']); ?></span>
+                                        class="block text-sm  text-gray-500 truncate dark:text-gray-400"><?php echo $_SESSION['email']; ?></span>
                                 </div>
                                 <ul class="py-2" aria-labelledby="user-menu-button">
                                     <li>

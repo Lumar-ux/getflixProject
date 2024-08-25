@@ -7,17 +7,17 @@ $query = "SELECT * FROM users WHERE reset_token_hash =:token_hash";
 
 $stmt = $pdo->prepare($query);
 
-$stmt->bind_param(':token_hash', $token_hash);
+$stmt->bindParam(':token_hash', $token_hash);
 $stmt->execute();
 
-$result = $stmt->get_result();
-$user = $result->fetch_assoc();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+// $user = $result->fetch_assoc();
 
-if ($user === null) {
+if ($result === null) {
     die("token not found");
 }
 
-if (strtotime($user['reset_token_expires_at']) <= time()) {
+if (strtotime($result['reset_token_expires_at']) <= time()) {
     die('token has expired');
 }
 
@@ -42,8 +42,8 @@ if (isset($_POST['password'])) {
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
         $query = "UPDATE users SET password =:n_password , reset_token_hash =null, reset_token_expires_at=null WHERE user_id =:user_id;";
         $stmt = $pdo->prepare($query);
-        $stmt->bind_param(':n_password', $password_hash);
-        $stmt->bind_param(':user_id', $user['user_id']);
+        $stmt->bindParam(':n_password', $password_hash);
+        $stmt->bindParam(':user_id', $user['user_id']);
         $stmt->execute();
 
         $affectedRows = $stmt->rowCount();
