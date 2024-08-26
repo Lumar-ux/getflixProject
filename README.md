@@ -52,10 +52,11 @@ Ce projet est une synthèse des compétences acquises en développement web, met
 
 ## 🛠️ Technologies utilisées
 
-- **Frontend**: HTML, TailWind CSS
+- **Frontend**: HTML, TailWind CSS, JS & Ajax
 - **Backend**: PHP, MySQL
 - **API**: TMDB API
 - **Outils de déploiement**: InfinityFree
+- **Gestion des Projets**: Github Projects
 - **Autres**: Mailjet pour la newsletter
 
 ## 📅 Gestion de projet
@@ -81,3 +82,5 @@ Les contributions sont les bienvenues ! Si vous souhaitez améliorer ce projet o
 ---
 
 Merci de votre intérêt pour **GetFlix** ! J'espère que ce projet vous inspirera et que vous apprendrez autant que moi en le parcourant.
+
+© 2024 GetFlix, [Lucas Maroy](https://github.com/Lumar-ux/getflixProject)/[Amandine Van de Winckel](https://github.com/amandineVdw/getflixProject)/[Alisabah Separ](https://github.com/AliSepar)
