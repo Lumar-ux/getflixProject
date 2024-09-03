@@ -57,7 +57,7 @@ Ce projet est une synthèse des compétences acquises en développement web, met
 - **API**: TMDB API
 - **Outils de déploiement**: InfinityFree
 - **Gestion des Projets**: Github Projects
-- **Autres**: Mailjet pour la newsletter
+- **Autres**: Mailjet pour la newsletter, ainsi qu'Improvmx pour créer des adresses email personnalisées avec votre propre domaine.
 
 ## 📅 Gestion de projet
 
