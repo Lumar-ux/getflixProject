@@ -1,4 +1,4 @@
-<footer class="container mx-auto h-[250px]">
+<footer class="w-[80%] sm:container mx-auto h-[250px]">
   <nav class="h-full flex flex-col">
     <article class="flex mb-[35px]">
       <img src="image/Instagram.svg" alt="Instragram" class="mr-4">
@@ -7,26 +7,20 @@
       <img src="image/Youtube.svg" alt="Youtube">
     </article>
     <article class="h-fit flex mb-9">
-      <ul class="list-none mr-14">
-        <li class="text-xs text-white mb-4">Audiodescription</li>
-        <li class="text-xs text-white mb-4">Relations Investisseurs</li>
-        <li class="text-xs text-white mb-4">Informations légales</li>
-        <li class="text-xs text-white">Choix liés à la pub</li>
-      </ul>
-      <ul class="mr-14">
-        <li class="text-xs text-white mb-4">Centre d&rsquo;aide</li>
-        <li class="text-xs text-white mb-4">Recrutement</li>
-        <li class="text-xs text-white">Préférences de cookies</li>
-      </ul>
-      <ul class="mr-14">
-        <li class="text-xs text-white mb-4">Carte cadeaux</li>
-        <li class="text-xs text-white mb-4">Conditions d&rsquo;utilisation</li>
-        <li class="text-xs text-white">Mentions légales</li>
-      </ul>
-      <ul>
-        <li class="text-xs text-white mb-4">Presse</li>
-        <li class="text-xs text-white mb-4">Confidentialité</li>
-        <li class="text-xs text-white">Nous contacter</li>
+      <ul class="list-none last:*:mb-0 *:mb-4 columns-2 sm:columns-4">
+        <li class="text-xs text-white leading-none">Audiodescription</li>
+        <li class="text-xs text-white leading-none">Relations Investisseurs</li>
+        <li class="text-xs text-white leading-none">Informations légales</li>
+        <li class="text-xs text-white leading-none">Choix liés à la pub</li>
+        <li class="text-xs text-white leading-none">Centre d&rsquo;aide</li>
+        <li class="text-xs text-white leading-none">Recrutement</li>
+        <li class="text-xs text-white leading-none mb-0 sm:break-after-column">Préférences de cookies</li>
+        <li class="text-xs text-white leading-none">Carte cadeaux</li>
+        <li class="text-xs text-white leading-none">Conditions d&rsquo;utilisation</li>
+        <li class="text-xs text-white leading-none sm:break-after-column">Mentions légales</li>
+        <li class="text-xs text-white leading-none">Presse</li>
+        <li class="text-xs text-white leading-none">Confidentialité</li>
+        <li class="text-xs text-white leading-none">Nous contacter</li>
       </ul>
     </article>
     <article>
@@ -34,3 +28,5 @@
     </article>
   </nav>
 </footer>
+<script src="livesearch.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
