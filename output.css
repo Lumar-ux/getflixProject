@@ -1546,6 +1546,14 @@ html {
   max-height: 200px;
 }
 
+.max-h-\[388\.5px\] {
+  max-height: 388.5px;
+}
+
+.max-h-\[801px\] {
+  max-height: 801px;
+}
+
 .max-h-full {
   max-height: 100%;
 }
@@ -2146,6 +2154,11 @@ html {
   border-color: rgb(249 128 128 / var(--tw-border-opacity));
 }
 
+.border-red-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(240 82 82 / var(--tw-border-opacity));
+}
+
 .\!bg-gray-50 {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity)) !important;
@@ -2278,6 +2291,11 @@ html {
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.object-top {
+  -o-object-position: top;
+     object-position: top;
 }
 
 .p-1 {

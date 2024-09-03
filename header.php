@@ -50,159 +50,159 @@ $avatar_directory = "image/avatar_directory/";
                         <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton1">
                             <li>
                                 <a href="category.php?c=argentina"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Argentina</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Argentina</a>
                             </li>
                             <li>
                                 <a href="category.php?c=australia"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Australia</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Australia</a>
                             </li>
                             <li>
                                 <a href="category.php?c=austria"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Austria</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Austria</a>
                             </li>
                             <li>
                                 <a href="category.php?c=belgium"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Belgium</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Belgium</a>
                             </li>
                             <li>
                                 <a href="category.php?c=brazil"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Brazil</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Brazil</a>
                             </li>
                             <li>
                                 <a href="category.php?c=canada"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Canada</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Canada</a>
                             </li>
                             <li>
                                 <a href="category.php?c=china"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">China</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">China</a>
                             </li>
                             <li>
                                 <a href="category.php?c=czech_republic"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Czech
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Czech
                                     Republic</a>
                             </li>
                             <li>
                                 <a href="category.php?c=denmark"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Denmark</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Denmark</a>
                             </li>
                         </ul>
                         <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton1">
                             <li>
                                 <a href="category.php?c=finland"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Finland</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Finland</a>
                             </li>
                             <li>
                                 <a href="category.php?c=france"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">France</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">France</a>
                             </li>
                             <li>
                                 <a href="category.php?c=germany"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Germany</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Germany</a>
                             </li>
                             <li>
                                 <a href="category.php?c=hong_kong"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Hong
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Hong
                                     Kong</a>
                             </li>
                             <li>
                                 <a href="category.php?c=hungary"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Hungary</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Hungary</a>
                             </li>
                             <li>
                                 <a href="category.php?c=india"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">India</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">India</a>
                             </li>
                             <li>
                                 <a href="category.php?c=ireland"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Ireland</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Ireland</a>
                             </li>
                             <li>
                                 <a href="category.php?c=israel"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Israel</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Israel</a>
                             </li>
                             <li>
                                 <a href="category.php?c=italy"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Italy</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Italy</a>
                             </li>
                         </ul>
                         <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton1">
                             <li>
                                 <a href="category.php?c=japan"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Japan</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Japan</a>
                             </li>
                             <li>
                                 <a href="category.php?c=luxembourg"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Luxembourg</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Luxembourg</a>
                             </li>
                             <li>
                                 <a href="category.php?c=mexico"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Mexico</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Mexico</a>
                             </li>
                             <li>
                                 <a href="category.php?c=netherlands"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Netherlands</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Netherlands</a>
                             </li>
                             <li>
                                 <a href="category.php?c=new_zealand"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">New
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">New
                                     Zealand</a>
                             </li>
                             <li>
                                 <a href="category.php?c=norway"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Norway</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Norway</a>
                             </li>
                             <li>
                                 <a href="category.php?c=poland"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Poland</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Poland</a>
                             </li>
                             <li>
                                 <a href="category.php?c=romania"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Romania</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Romania</a>
                             </li>
                             <li>
                                 <a href="category.php?c=russia"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Russia</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Russia</a>
                             </li>
                         </ul>
                         <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton1">
                             <li>
                                 <a href="category.php?c=south_africa"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">South
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">South
                                     Africa</a>
                             </li>
                             <li>
                                 <a href="category.php?c=south_korea"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">South
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">South
                                     Korea</a>
                             </li>
                             <li>
                                 <a href="category.php?c=spain"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Spain</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Spain</a>
                             </li>
                             <li>
                                 <a href="category.php?c=sweden"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Sweden</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Sweden</a>
                             </li>
                             <li>
                                 <a href="category.php?c=switzerland"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Switzerland</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Switzerland</a>
                             </li>
                             <li>
                                 <a href="category.php?c=taiwan"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Taiwan</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Taiwan</a>
                             </li>
                             <li>
                                 <a href="category.php?c=thailand"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Thailand</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Thailand</a>
                             </li>
                             <li>
                                 <a href="category.php?c=united_kingdom"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">United
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">United
                                     Kingdom</a>
                             </li>
                             <li>
                                 <a href="category.php?c=United+States+of+America"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">USA</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">USA</a>
                             </li>
                         </ul>
                     </article>
@@ -223,115 +223,115 @@ $avatar_directory = "image/avatar_directory/";
                         <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton3">
                             <li>
                                 <a href="category.php?l=german"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">German</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">German</a>
                             </li>
                             <li>
                                 <a href="category.php?l=english"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">English</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">English</a>
                             </li>
                             <li>
                                 <a href="category.php?l=arabic"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Arabic</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Arabic</a>
                             </li>
                             <li>
                                 <a href="category.php?l=bulgarian"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Bulgarian</a>
+                                    class="block px-4 py-2 hover:bg-coloHover  hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Bulgarian</a>
                             </li>
                             <li>
                                 <a href="category.php?l=korean"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Korean</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Korean</a>
                             </li>
                             <li>
                                 <a href="category.php?l=danish"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Danish</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Danish</a>
                             </li>
                             <li>
                                 <a href="category.php?l=spanish"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Spanish</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Spanish</a>
                             </li>
                             <li>
                                 <a href="category.php?l=finnish"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Finnish</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Finnish</a>
                             </li>
                             <li>
                                 <a href="category.php?l=flemish"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Flemish</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Flemish</a>
                             </li>
                         </ul>
                         <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton3">
                             <li>
                                 <a href="category.php?l=filipino"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Filipino</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Filipino</a>
                             </li>
                             <li>
                                 <a href="category.php?l=french"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">French</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">French</a>
                             </li>
                             <li>
                                 <a href="category.php?l=hindi"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Hindi</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Hindi</a>
                             </li>
                             <li>
                                 <a href="category.php?l=indonesian"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Indonesian</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Indonesian</a>
                             </li>
                             <li>
                                 <a href="category.php?l=italian"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Italian</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Italian</a>
                             </li>
                             <li>
                                 <a href="category.php?l=japanese"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Japanese</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Japanese</a>
                             </li>
                             <li>
                                 <a href="category.php?l=malayalam"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Malayalam</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Malayalam</a>
                             </li>
                             <li>
                                 <a href="category.php?l=mandarin"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Mandarin</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Mandarin</a>
                             </li>
                             <li>
                                 <a href="category.php?l=dutch"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Dutch</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Dutch</a>
                             </li>
                         </ul>
                         <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton3">
                             <li>
                                 <a href="category.php?l=norwegian"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Norwegian</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Norwegian</a>
                             </li>
                             <li>
                                 <a href="category.php?l=polish"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Polish</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Polish</a>
                             </li>
                             <li>
                                 <a href="category.php?l=portuguese"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Portuguese</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Portuguese</a>
                             </li>
                             <li>
                                 <a href="category.php?l=romanian"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Romanian</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Romanian</a>
                             </li>
                             <li>
                                 <a href="category.php?l=swedish"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Swedish</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Swedish</a>
                             </li>
                             <li>
                                 <a href="category.php?l=tamil"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Tamil</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Tamil</a>
                             </li>
                             <li>
                                 <a href="category.php?l=telugu"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Telugu</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Telugu</a>
                             </li>
                             <li>
                                 <a href="category.php?l=thai"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Thai</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Thai</a>
                             </li>
                             <li>
                                 <a href="category.php?l=turkish"
-                                    class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Turkish</a>
+                                    class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Turkish</a>
                             </li>
                         </ul>
                     </article>
@@ -430,10 +430,10 @@ $avatar_directory = "image/avatar_directory/";
                                     <li class="<?php echo (basename((!isset($_SESSION['autority']) || $_SESSION['autority'] !== 1))) ? 'hidden' : 'block'; ?>">
                                         <a href="admin.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Admin</a>
                                     </li>
-                                    <li>
+                                    <!-- <li>
                                         <a href="login.php"
                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Login</a>
-                                    </li>
+                                    </li> -->
                                     <li>
                                         <a href="logout.php"
                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Logout</a>
@@ -494,159 +494,159 @@ $avatar_directory = "image/avatar_directory/";
                                 <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton1">
                                     <li>
                                         <a href="category.php?c=argentina"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Argentina</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Argentina</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=australia"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Australia</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Australia</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=austria"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Austria</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Austria</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=belgium"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Belgium</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Belgium</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=brazil"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Brazil</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Brazil</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=canada"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Canada</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Canada</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=china"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">China</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">China</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=czech_republic"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Czech
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Czech
                                             Republic</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=denmark"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Denmark</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Denmark</a>
                                     </li>
                                 </ul>
                                 <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton1">
                                     <li>
                                         <a href="category.php?c=finland"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Finland</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Finland</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=france"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">France</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">France</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=germany"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Germany</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Germany</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=hong_kong"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Hong
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Hong
                                             Kong</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=hungary"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Hungary</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Hungary</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=india"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">India</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">India</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=ireland"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Ireland</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Ireland</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=israel"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Israel</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Israel</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=italy"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Italy</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Italy</a>
                                     </li>
                                 </ul>
                                 <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton1">
                                     <li>
                                         <a href="category.php?c=japan"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Japan</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Japan</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=luxembourg"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Luxembourg</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Luxembourg</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=mexico"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Mexico</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Mexico</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=netherlands"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Netherlands</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Netherlands</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=new_zealand"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">New
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">New
                                             Zealand</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=norway"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Norway</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Norway</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=poland"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Poland</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Poland</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=romania"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Romania</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Romania</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=russia"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Russia</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Russia</a>
                                     </li>
                                 </ul>
                                 <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton1">
                                     <li>
                                         <a href="category.php?c=south_africa"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">South
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">South
                                             Africa</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=south_korea"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">South
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">South
                                             Korea</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=spain"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Spain</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Spain</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=sweden"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Sweden</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Sweden</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=switzerland"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Switzerland</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Switzerland</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=taiwan"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Taiwan</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Taiwan</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=thailand"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Thailand</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Thailand</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=united_kingdom"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">United
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">United
                                             Kingdom</a>
                                     </li>
                                     <li>
                                         <a href="category.php?c=United+States+of+America"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">USA</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">USA</a>
                                     </li>
                                 </ul>
                             </article>
@@ -668,115 +668,115 @@ $avatar_directory = "image/avatar_directory/";
                                 <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton3">
                                     <li>
                                         <a href="category.php?l=german"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">German</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">German</a>
                                     </li>
                                     <li>
                                         <a href="category.php?l=english"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">English</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">English</a>
                                     </li>
                                     <li>
                                         <a href="category.php?l=arabic"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Arabic</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Arabic</a>
                                     </li>
                                     <li>
                                         <a href="category.php?l=bulgarian"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Bulgarian</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Bulgarian</a>
                                     </li>
                                     <li>
                                         <a href="category.php?l=korean"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Korean</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Korean</a>
                                     </li>
                                     <li>
                                         <a href="category.php?l=danish"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Danish</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Danish</a>
                                     </li>
                                     <li>
                                         <a href="category.php?l=spanish"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Spanish</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Spanish</a>
                                     </li>
                                     <li>
                                         <a href="category.php?l=finnish"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Finnish</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Finnish</a>
                                     </li>
                                     <li>
                                         <a href="category.php?l=flemish"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Flemish</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Flemish</a>
                                     </li>
                                 </ul>
                                 <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton3">
                                     <li>
                                         <a href="category.php?l=filipino"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Filipino</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Filipino</a>
                                     </li>
                                     <li>
                                         <a href="category.php?l=french"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">French</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">French</a>
                                     </li>
                                     <li>
                                         <a href="category.php?l=hindi"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Hindi</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Hindi</a>
                                     </li>
                                     <li>
                                         <a href="category.php?l=indonesian"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Indonesian</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Indonesian</a>
                                     </li>
                                     <li>
                                         <a href="category.php?l=italian"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Italian</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Italian</a>
                                     </li>
                                     <li>
                                         <a href="category.php?l=japanese"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Japanese</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Japanese</a>
                                     </li>
                                     <li>
                                         <a href="category.php?l=malayalam"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Malayalam</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Malayalam</a>
                                     </li>
                                     <li>
                                         <a href="category.php?l=mandarin"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Mandarin</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Mandarin</a>
                                     </li>
                                     <li>
                                         <a href="category.php?l=dutch"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Dutch</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Dutch</a>
                                     </li>
                                 </ul>
                                 <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownHoverButton3">
                                     <li>
                                         <a href="category.php?l=norwegian"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Norwegian</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Norwegian</a>
                                     </li>
                                     <li>
                                         <a href="category.php?l=polish"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Polish</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Polish</a>
                                     </li>
                                     <li>
                                         <a href="category.php?l=portuguese"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Portuguese</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Portuguese</a>
                                     </li>
                                     <li>
                                         <a href="category.php?l=romanian"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Romanian</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Romanian</a>
                                     </li>
                                     <li>
                                         <a href="category.php?l=swedish"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Swedish</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Swedish</a>
                                     </li>
                                     <li>
                                         <a href="category.php?l=tamil"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Tamil</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Tamil</a>
                                     </li>
                                     <li>
                                         <a href="category.php?l=telugu"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Telugu</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Telugu</a>
                                     </li>
                                     <li>
                                         <a href="category.php?l=thai"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Thai</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Thai</a>
                                     </li>
                                     <li>
                                         <a href="category.php?l=turkish"
-                                            class="block px-4 py-2 hover:bg-coloHover hover:px-4 hover:py-2 rounded-xl">Turkish</a>
+                                            class="block px-4 py-2 hover:bg-coloHover hover:text-gray-50 hover:px-4 hover:py-2 rounded-xl">Turkish</a>
                                     </li>
                                 </ul>
                             </article>
