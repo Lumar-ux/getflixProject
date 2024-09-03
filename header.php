@@ -450,7 +450,7 @@ $avatar_directory = "image/avatar_directory/";
                 } else {
                 ?>
                     <a href="sign-up.php"
-                        class="mr-4 <?php echo (basename($_SERVER['PHP_SELF']) == 'sign-up.php') ? 'text-pastelBlue' : 'text-white'; ?>">Sign-up</a>
+                        class="mr-4 sm:ml-4 ml-2 <?php echo (basename($_SERVER['PHP_SELF']) == 'sign-up.php') ? 'text-pastelBlue' : 'text-white'; ?>">Sign-up</a>
                     <a href="login.php"
                         class="mr-4 <?php echo (basename($_SERVER['PHP_SELF']) == 'login.php') ? 'text-pastelBlue' : 'text-white'; ?>">Login</a>
             </li>

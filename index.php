@@ -228,8 +228,8 @@ $records = getRandomRecordsEveryTwoDays();
       </article>
     </section>
     <section class="cate-main w-full h-fit overflow-x-scroll mb-14">
-      <article class="grid1 h-full space-y-3 sm:space-y-6">
-        <div class="grid-item grid-item--width2 bg-pastelBlue rounded-xl p-4 flex flex-col justify-between mt-3 sm:mt-6">
+      <article class="grid1 h-full space-y-3 sm:space-y-6 space-x-3 sm:space-x-6 ">
+        <div class="grid-item grid-item--width2 bg-pastelBlue rounded-xl p-4 flex flex-col justify-between mt-3 sm:mt-6 ml-3 sm:ml-6">
           <h1 name="category-02" class="text-white text-[51px] sm:text-[56px] font-[570] uppercase break-words leading-tight">Tv Shows Top 10</h1>
           <a href="category.php?topseries" class="self-end w-[19%] h-[19%]"><img src="image/Arrow-Categorie.svg" alt="Arrow-Categorie" class="w-full h-full"></a>
         </div>
@@ -250,8 +250,8 @@ $records = getRandomRecordsEveryTwoDays();
       </article>
     </section>
     <section class="cate-main w-full h-fit overflow-x-scroll mb-14">
-      <article class="grid1 h-full space-y-3 sm:space-y-6">
-        <div class="grid-item grid-item--width2 bg-pastelBlue rounded-xl p-4 flex flex-col justify-between mt-3 sm:mt-6">
+      <article class="grid1 h-full space-y-3 sm:space-y-6 space-x-3 sm:space-x-6">
+        <div class="grid-item grid-item--width2 bg-pastelBlue rounded-xl p-4 flex flex-col justify-between mt-3 sm:mt-6 ml-3 sm:ml-6">
           <h1 name="category-03" class="text-white text-[51px] sm:text-[56px] font-[570] uppercase break-words leading-tight">Discover Movies</h1>
           <a href="category.php?movies" class="self-end w-[19%] h-[19%]"><img src="image/Arrow-Categorie.svg" alt="Arrow-Categorie" class="w-full h-full"></a>
         </div>
@@ -271,8 +271,8 @@ $records = getRandomRecordsEveryTwoDays();
       </article>
     </section>
     <section class="cate-main w-full h-fit overflow-x-scroll mb-14">
-      <article class="grid1 h-full space-y-3 sm:space-y-6">
-        <div class="grid-item grid-item--width2 bg-pastelBlue rounded-xl p-4 flex flex-col justify-between mt-3 sm:mt-6">
+      <article class="grid1 h-full space-y-3 sm:space-y-6 space-x-3 sm:space-x-6">
+        <div class="grid-item grid-item--width2 bg-pastelBlue rounded-xl p-4 flex flex-col justify-between mt-3 sm:mt-6 ml-3 sm:ml-6">
           <h1 name="category-04" class="text-white text-[51px] sm:text-[56px] font-[570] uppercase break-words leading-tight">Discover Tv Shows</h1>
           <a href="category.php?series" class="self-end w-[19%] h-[19%]"><img src="image/Arrow-Categorie.svg" alt="Arrow-Categorie" class="w-full h-full"></a>
         </div>
