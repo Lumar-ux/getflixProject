@@ -47,13 +47,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <p>We received a request to reset your password for your account. If you didn't make this request, you can ignore this email.</p>
             
             <p>To reset your password, please click the link below:</p>
+            <br>
             
             <a href="http://getflix.rf.gd/reset-password.php?token=$token" 
                 style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #ffffff; background-color: #007bff; text-decoration: none; border-radius: 5px;">
             Reset Your Password
             </a>
             
-            <p>This link will expire in 24 hours. If you need any further assistance, feel free to contact our support team.</p>
+            <br>
+            <p>This link will expire in 30 minutes. If you need any further assistance, feel free to contact our support team.</p>
             
             <p>Thank you for using our service.</p>
             

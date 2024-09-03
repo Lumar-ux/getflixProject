@@ -1,27 +1,38 @@
 <?php
 require_once('dbh.inc.php');
-$token = $_GET['token'];
+
+// Retrieve and hash the token
+$token = $_GET['token'] ?? ''; // Use null coalescing to avoid undefined index notice
+$token = filter_var($token); // Sanitize token to avoid malicious input
 $token_hash = hash('sha256', $token);
 
-$query = "SELECT * FROM users WHERE reset_token_hash =:token_hash";
-
+// Prepare the SQL query
+$query = "SELECT * FROM users WHERE reset_token_hash = :token_hash";
 $stmt = $pdo->prepare($query);
-
 $stmt->bindParam(':token_hash', $token_hash);
 $stmt->execute();
 
+// Fetch the result
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
-// $user = $result->fetch_assoc();
 
-if ($result === null) {
-    die("token not found");
+if ($result === false) { // Check if the token was found
+    redirectWithError("Invalid or expired token");
 }
 
+// Check if the token has expired
 if (strtotime($result['reset_token_expires_at']) <= time()) {
-    die('token has expired');
+    redirectWithError("Token has expired");
 }
 
-echo "token is valid and hasn't expired";
+// echo "token is valid and hasn't expired";
+
+
+// Function to redirect with an error message
+function redirectWithError($message)
+{
+    header("Location: reset_password.php?error=" . urlencode($message) . "&token=" . $_GET['token']);
+    exit();
+}
 
 
 
@@ -29,30 +40,82 @@ if (isset($_POST['password'])) {
     $password = $_POST['password'];
     $confirm_pass = $_POST['confirm_pass'];
 
+    // Check if the password contains at least one number
     if (!preg_match("/[0-9]/", $password) || !preg_match("/[0-9]/", $confirm_pass)) {
-        die('Password must contain at lest one number');
+        redirectWithError('Password must contain at least one number');
     }
 
-    if (!preg_match("/[0-9]/", $password) || !preg_match("/[0-9]/", $confirm_pass)) {
-        die('Password must contain at lest one number');
-    }
+    // Check if the passwords match
     if ($confirm_pass !== $password) {
-        die('password did not match');
+        redirectWithError("Passwords do not match");
     } else {
+        // Hash the password
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
-        $query = "UPDATE users SET password =:n_password , reset_token_hash =null, reset_token_expires_at=null WHERE user_id =:user_id;";
+
+        // Prepare the SQL query
+        $query = "UPDATE users SET password = :n_password, reset_token_hash = NULL, reset_token_expires_at = NULL WHERE user_id = :user_id;";
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(':n_password', $password_hash);
-        $stmt->bindParam(':user_id', $user['user_id']);
+        $stmt->bindParam(':user_id', $result['user_id']);
         $stmt->execute();
 
-        $affectedRows = $stmt->rowCount();
+        try {
+            // Check if the password was updated successfully
+            $affectedRows = $stmt->rowCount();
 
-        if ($affectedRows > 0) {
-            header("location:login.php?password=updated");
-        } else {
-            header("location:login.php?password=not_updated");
+            if ($affectedRows > 0) {
+                sendChangeConfirmation($result['username'], $result['email']);
+                header("Location: login.php?password=updated");
+            } else {
+                header("Location: login.php?password=not_updated");
+            }
+        } catch (PDOException $e) {
+            // Log the error
+            error_log("Database error: " . $e->getMessage());
+            redirectWithError("An error occurred. Please try again later.");
         }
+        exit();
+    }
+}
+
+
+function sendChangeConfirmation($username, $email)
+{
+    // get date and time
+    $current_date = date('Y-m-d');
+    echo "Current date: " . $current_date . "\n";
+    // Get current time
+    $current_time = date('H:i:s');
+    echo "Current time: " . $current_time . "\n";
+
+
+
+    $mail = require __DIR__ . "/mailer.php";
+    $mail->setFrom("noreply@getflix.rf.gd"); // email address from your domain
+    $mail->addAddress($email); // user email
+    $mail->Subject = "Password Change Confirmation";
+    $mail->isHTML(true);
+    $mail->Body = <<<END
+        <p>Dear $username,</p>
+        <p>Your account password was successfully changed on $current_date at $current_time.</p>
+        <p>Important notes:</p>
+        <ul>
+            <li>Your new password is now active for future logins.</li>
+            <li>If you didn't make this change, please contact us immediately at <a href="mailto:support@getflix.rf.gd">support@getflix.rf.gd</a></li>
+        </ul>
+        <p>For account security:</p>
+        <ul>
+            <li>Never share your password.</li>
+            <li>Use unique passwords for different accounts.</li>
+        </ul>
+        <p>If you have any questions, our support team is here to help.</p>
+        <p>Best regards,<br>Getflix Team</p>
+    END;
+    try {
+        $mail->send();
+        echo "Message has been sent successfully.";
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer error: {$mail->ErrorInfo}";
     }
 }
 
@@ -76,7 +139,11 @@ if (isset($_POST['password'])) {
             class="login w-full sm:w-[651.81px] h-[717px] sm:h-full bg-greyWhite rounded-xl sm:mr-6 mr-0 flex flex-col items-center ">
             <article id="forget_form" class=" relative sm:top-[110px] top-[88px] text-center items-center">
                 <h1 class="text-[32px] font-bold mb-8 leading-none text-center">Reset your password</h1>
-                <p class="text-sm w-[240px] sm:w-[328px] mb-8 mx-auto text-center ">
+                <?php
+                if (isset($_GET['error'])) {
+                    echo '<p class="text-sm w-[240px] sm:w-[328px] mb-8 mx-auto text-center text-red-600 border border-red-500">' . htmlspecialchars($_GET['error']) . '</p>';
+                }
+                ?>
 
                 <form action="" method="post" class="flex flex-col mb-[10px]">
                     <input type="password" name="password" id="floatingEmail" placeholder="New password" autocomplete="off" required
@@ -93,9 +160,15 @@ if (isset($_POST['password'])) {
 
         </section>
         <section class="img-login h-full sm:grid grid-rows-2 grid-cols-2 gap-6 grow hidden">
-            <div class="bg-gray-500 rounded-xl" name="img-log_01">1</div>
-            <div class="bg-gray-500 rounded-xl row-span-2" name="img-log_02">2</div>
-            <div class="bg-gray-500 rounded-xl" name="img-log_03">3</div>
+            <div class="bg-gray-500 rounded-xl" name="img-log_01">
+                <img src="image/login_image/image1.jpg" class="max-h-[388.5px] w-full object-top rounded-xl" alt="movie-poster">
+            </div>
+            <div class="rounded-xl row-span-2" name="img-log_02">
+                <img src="image/login_image/image2.jpg" class="max-h-[801px] object-cover rounded-xl" alt="movie-poster">
+            </div>
+            <div class="bg-gray-500 rounded-xl" name="img-log_03">
+                <img src="image/login_image/image3.jpg" class="max-h-[388.5px] w-full object-cover rounded-xl" alt="movie-poster">
+            </div>
         </section>
     </main>
     <?php include_once("./footer.php"); ?>
